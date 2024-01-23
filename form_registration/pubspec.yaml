@@ -1,0 +1,29 @@
+name: form_registration
+description: Task registration SMS.
+version: 1.0.0+1
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+dependencies:
+  another_stepper: ^1.2.2
+  cached_network_image: ^3.3.1
+  connectivity_plus: ^5.0.2
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^2.0.9
+  flutter_svg_provider: ^1.0.7
+
+  intl: any
+  pin_code_fields: ^8.0.1
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic_mono: ^1.25.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
