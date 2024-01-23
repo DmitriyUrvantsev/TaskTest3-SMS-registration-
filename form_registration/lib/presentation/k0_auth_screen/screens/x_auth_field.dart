@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/widgets/custom_text_form_field.dart';
@@ -10,27 +11,21 @@ class AuthFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
-        mask: '+#(###) ###-##-##',
-        filter: {"#": RegExp(r'[0-9]')},
-        type: MaskAutoCompletionType.lazy);
+    final read = context.read<Screen0Provider>();
+    final formKey = read.formKey;
+    MaskTextInputFormatter maskFormatter = read.maskFormatter;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text('Номер телефона', style: theme.textTheme.labelLarge),
       SizedBox(height: 5.v),
-      
-
-
-      Selector<Screen0Provider, TextEditingController?>(
-          selector: (context, provider) =>
-              provider.phoneValueController, //!======
-          builder: (context, phoneValueController, child) {
-            return CustomTextFormField(
+      Form(
+        key: formKey,
+        child: Column(
+          children: [
+            CustomTextFormField(
               validator: (val) => val != null
-                  ? (val.length < 15 ? 'Введите номер телефона' : null)
+                  ? (val.length < 17 ? 'Введите номер телефона' : null)
                   : null,
-              //controller: phoneValueController,
-              //hintText: '+7',
               prefixText: '+7',
               textInputAction: TextInputAction.done,
               autofocus: false,
@@ -38,23 +33,69 @@ class AuthFieldWidget extends StatelessWidget {
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 maskFormatter
               ],
-
-              // validator: (val) => val != null
-              //     ? (val.length < 15 ? 'Введите номер телефона' : null)
-              //     : null,
-
-              // //labelText: '+7',
-              // //labelStyle: CustomTextStyles.bodyLargeOnPrimaryTransparent,
-              // //hintText: '(***) ***-**-**',
-              // prefixText: '+7',
-              // autofocus: false,
-              // keyboardType: TextInputType.number,
-              // inputFormatters: [
-              //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-              //   maskFormatter
-              // ],
-            );
-          })
+            ),
+          ],
+        ),
+      )
     ]);
   }
 }
+
+//!===============================================
+
+// class AuthFieldWidget extends StatelessWidget {
+//   const AuthFieldWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//           final _formKey = GlobalKey<FormState>();
+//     // Build a Form widget using the _formKey created above.
+//     return Form(
+//       key: _formKey,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//            CustomTextFormField(
+//             // The validator receives the text that the user has entered.
+//             validator: (value) {
+//               if (value == null || value.isEmpty) {
+//                 return 'Please enter some text';
+//               }
+//               return null;
+//             },
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.symmetric(vertical: 16),
+//             child: MyButton(formKey: _formKey),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class MyButton extends StatelessWidget {
+//   const MyButton({
+//     super.key,
+//     required GlobalKey<FormState> formKey,
+//   }) : _formKey = formKey;
+
+//   final GlobalKey<FormState> _formKey;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//       onPressed: () {
+//         // Validate returns true if the form is valid, or false otherwise.
+//         if (_formKey.currentState?.validate() ?? false) {
+//           // If the form is valid, display a snackbar. In the real world,
+//           // you'd often call a server or save the information in a database.
+//           ScaffoldMessenger.of(context).showSnackBar(
+//             const SnackBar(content: Text('Processing Data')),
+//           );
+//         }
+//       },
+//       child: const Text('Submit'),
+//     );
+//   }
+// }

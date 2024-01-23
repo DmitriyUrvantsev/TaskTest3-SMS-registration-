@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/k10_screen/k10_screen.dart';
-import 'package:form_registration/presentation/k10_screen/provider/k10_provider.dart';
+
 import 'package:form_registration/presentation/k1_screen/k1_screen.dart';
 import 'package:form_registration/presentation/k1_screen/provider/k1_provider.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
@@ -8,18 +7,18 @@ import 'package:form_registration/presentation/k2_screen/k2_screen.dart';
 import 'package:form_registration/presentation/k2_screen/provider/k2_provider.dart';
 import 'package:form_registration/presentation/k0_auth_screen/screens/k0_screen.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
-import 'package:form_registration/presentation/k4_screen/k4_screen.dart';
-import 'package:form_registration/presentation/k4_screen/provider/k4_provider.dart';
-import 'package:form_registration/presentation/k5_screen/k5_page.dart';
-import 'package:form_registration/presentation/k5_screen/provider/k5_provider.dart';
-import 'package:form_registration/presentation/k6_screen/k6_screen.dart';
-import 'package:form_registration/presentation/k6_screen/provider/k6_provider.dart';
-import 'package:form_registration/presentation/k7_screen/k7_screen.dart';
-import 'package:form_registration/presentation/k7_screen/provider/k7_provider.dart';
-import 'package:form_registration/presentation/k8_screen/k8_screen.dart';
-import 'package:form_registration/presentation/k8_screen/provider/k8_provider.dart';
-import 'package:form_registration/presentation/k9_screen/k9_screen.dart';
-import 'package:form_registration/presentation/k9_screen/provider/k9_provider.dart';
+// import 'package:form_registration/presentation/k4_screen/k4_screen.dart';
+// import 'package:form_registration/presentation/k4_screen/provider/k4_provider.dart';
+// import 'package:form_registration/presentation/k5_screen/k5_page.dart';
+// import 'package:form_registration/presentation/k5_screen/provider/k5_provider.dart';
+// import 'package:form_registration/presentation/k6_screen/k6_screen.dart';
+// import 'package:form_registration/presentation/k6_screen/provider/k6_provider.dart';
+// import 'package:form_registration/presentation/k7_screen/k7_screen.dart';
+// import 'package:form_registration/presentation/k7_screen/provider/k7_provider.dart';
+// import 'package:form_registration/presentation/k8_screen/k8_screen.dart';
+// import 'package:form_registration/presentation/k8_screen/provider/k8_provider.dart';
+// import 'package:form_registration/presentation/k9_screen/k9_screen.dart';
+// import 'package:form_registration/presentation/k9_screen/provider/k9_provider.dart';
 
 import 'package:provider/provider.dart';
 

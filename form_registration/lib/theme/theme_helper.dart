@@ -158,6 +158,9 @@ class PrimaryColors {
 
   // LightBlue
   Color get lightBlueA700 => const Color(0XFF0098EE);
+
+   // Red
+  Color get red => const Color.fromARGB(255, 238, 44, 0);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

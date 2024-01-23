@@ -143,7 +143,7 @@ class CustomTextFormField extends StatelessWidget {
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.h),
           borderSide: BorderSide(
-            color: appTheme.amber600,
+            color: appTheme.red,
             width: 1,
           ),
         ),
@@ -155,8 +155,8 @@ class CustomTextFormField extends StatelessWidget {
           ),
         ),
         errorStyle: TextStyle(
-          color: appTheme.amber600,
-          fontSize: 12.fSize,
+          color: appTheme.red,
+          fontSize: 14.fSize,
         ),
       );
 }

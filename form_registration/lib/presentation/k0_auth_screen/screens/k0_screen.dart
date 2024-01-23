@@ -14,6 +14,8 @@ class K0AuthScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final read = context.read<Screen0Provider>();
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: _buildAppBar(context),
@@ -47,7 +49,7 @@ class K0AuthScreenWidget extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 29.h),
                   buttonStyle: CustomButtonStyles.fillAmber,
                   onPressed: () {
-                    // onTaptf(context);
+                    read.showScreenConfirmation(context);
                   }),
               SizedBox(height: 8.v),
               SizedBox(
