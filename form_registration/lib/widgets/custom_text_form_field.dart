@@ -6,8 +6,8 @@ import 'package:form_registration/core/app_export.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextFormField extends StatelessWidget {
-   CustomTextFormField({
-     Key? key,
+  CustomTextFormField({
+    Key? key,
     this.alignment,
     this.width,
     this.scrollPadding,
@@ -36,7 +36,8 @@ class CustomTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.maskInput,
     this.validator,
-    this.onChanged, this.errorText,
+    this.onChanged,
+    this.errorText,
   }) : super(
           key: key,
         );
@@ -73,7 +74,6 @@ class CustomTextFormField extends StatelessWidget {
 
   final FormFieldValidator<String>? validator;
 
-
   @override
   Widget build(BuildContext context) {
     return alignment != null
@@ -87,6 +87,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget textFormFieldWidget(BuildContext context) => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(
+          initialValue: prefixText,//!======
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
@@ -109,6 +110,8 @@ class CustomTextFormField extends StatelessWidget {
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,
         suffixIconConstraints: suffixConstraints,
+        labelText: labelText ?? "",
+        labelStyle: labelStyle,
         isDense: true,
         contentPadding: contentPadding ?? EdgeInsets.all(12.h),
         fillColor: fillColor,

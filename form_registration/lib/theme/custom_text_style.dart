@@ -23,6 +23,10 @@ class CustomTextStyles {
   static get bodyLargeOnPrimary => theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
       );
+       static get bodyLargeOnPrimaryTransparent =>
+      theme.textTheme.bodyLarge!.copyWith(
+            color: theme.colorScheme.onPrimary.withOpacity(0.5),
+          );
   static get bodyMediumAmber600 => theme.textTheme.bodyMedium!.copyWith(
         color: appTheme.amber600,
       );

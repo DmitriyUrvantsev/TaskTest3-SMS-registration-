@@ -11,48 +11,48 @@ class AuthFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
-        mask: '(###) ###-##-##',
+        mask: '+#(###) ###-##-##',
         filter: {"#": RegExp(r'[0-9]')},
         type: MaskAutoCompletionType.lazy);
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text('Номер телефона', style: theme.textTheme.labelLarge),
       SizedBox(height: 5.v),
+      
+
+
       Selector<Screen0Provider, TextEditingController?>(
           selector: (context, provider) =>
               provider.phoneValueController, //!======
           builder: (context, phoneValueController, child) {
             return CustomTextFormField(
+              validator: (val) => val != null
+                  ? (val.length < 15 ? 'Введите номер телефона' : null)
+                  : null,
+              //controller: phoneValueController,
+              //hintText: '+7',
+              prefixText: '+7',
+              textInputAction: TextInputAction.done,
+              autofocus: false,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                maskFormatter
+              ],
 
-          //      validator: (val) => val != null
-          // ? (val.length < 15 ? 'Введите номер телефона' : null)
-          // : null,
-          //     controller: phoneValueController,
-          //     hintText: '+7',
-          //     textInputAction: TextInputAction.done,
-          //     autofocus: false,
-          //     inputFormatters: [
-          //       FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-          //       maskFormatter
-          //     ],
+              // validator: (val) => val != null
+              //     ? (val.length < 15 ? 'Введите номер телефона' : null)
+              //     : null,
 
-
-validator: (val) => val != null
-          ? (val.length < 15 ? 'Введите номер телефона' : null)
-          : null,
-
-      labelText: 'Номер телефона',
-     // labelStyle: CustomTextStyles.bodyLargeOnPrimaryTransparent,
-      hintText: '(***) ***-**-**',
-      prefixText: '+7',
-      autofocus: false,
-      keyboardType: TextInputType.number,
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-        maskFormatter
-      ],
-
-
+              // //labelText: '+7',
+              // //labelStyle: CustomTextStyles.bodyLargeOnPrimaryTransparent,
+              // //hintText: '(***) ***-**-**',
+              // prefixText: '+7',
+              // autofocus: false,
+              // keyboardType: TextInputType.number,
+              // inputFormatters: [
+              //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              //   maskFormatter
+              // ],
             );
           })
     ]);
