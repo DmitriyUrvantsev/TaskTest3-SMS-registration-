@@ -1,9 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:form_registration/core/app_export.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
-    super.key,
+   CustomTextFormField({
+     Key? key,
     this.alignment,
     this.width,
     this.scrollPadding,
@@ -17,6 +21,8 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines,
     this.hintText,
     this.hintStyle,
+    this.labelText,
+    this.labelStyle,
     this.prefix,
     this.prefixConstraints,
     this.suffix,
@@ -24,9 +30,16 @@ class CustomTextFormField extends StatelessWidget {
     this.contentPadding,
     this.borderDecoration,
     this.fillColor,
-    this.filled = false,
+    this.filled = true,
+    this.prefixText,
+    this.keyboardType,
+    this.inputFormatters,
+    this.maskInput,
     this.validator,
-  });
+    this.onChanged, this.errorText,
+  }) : super(
+          key: key,
+        );
 
   final Alignment? alignment;
   final double? width;
@@ -38,30 +51,28 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
-
   final int? maxLines;
-
   final String? hintText;
-
   final TextStyle? hintStyle;
-
+  final String? labelText;
+  final TextStyle? labelStyle;
   final Widget? prefix;
-
   final BoxConstraints? prefixConstraints;
-
   final Widget? suffix;
-
   final BoxConstraints? suffixConstraints;
-
   final EdgeInsets? contentPadding;
-
   final InputBorder? borderDecoration;
-
   final Color? fillColor;
-
   final bool? filled;
+  final String? prefixText;
+  final TextInputType? keyboardType;
+  final Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final MaskTextInputFormatter? maskInput;
+  final String? errorText;
 
   final FormFieldValidator<String>? validator;
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +99,7 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           decoration: decoration,
           validator: validator,
+          inputFormatters: inputFormatters,
         ),
       );
   InputDecoration get decoration => InputDecoration(
