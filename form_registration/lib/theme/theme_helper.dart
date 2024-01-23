@@ -1,18 +1,19 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // The current app theme
-  final _appTheme = PrefUtils().getThemeData();
+  var _appTheme = PrefUtils().getThemeData();
 
 // A map of custom color themes supported by the app
-  final Map<String, PrimaryColors> _supportedCustomColor = {
+  Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
 
 // A map of color schemes supported by the app
-  final Map<String, ColorScheme> _supportedColorScheme = {
+  Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
 
@@ -123,7 +124,7 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static const primaryColorScheme = ColorScheme.light(
+  static final primaryColorScheme = ColorScheme.light(
     // Primary colors
     primary: Color(0XFFA7A7A7),
 
@@ -136,31 +137,31 @@ class ColorSchemes {
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
   // Amber
-  Color get amber600 => const Color(0XFFFFB700);
+  Color get amber600 => Color(0XFFFFB700);
 
   // Blackc
-  Color get black9004c => const Color(0X4C000000);
+  Color get black9004c => Color(0X4C000000);
 
   // BlueGray
-  Color get blueGray100 => const Color(0XFFD9D9D9);
+  Color get blueGray100 => Color(0XFFD9D9D9);
 
   // Gray
-  Color get gray100 => const Color(0XFFF6F6F6);
-  Color get gray200 => const Color(0XFFEBEBEB);
-  Color get gray300 => const Color(0XFFE3E3E3);
-  Color get gray400 => const Color(0XFFC6C6C8);
-  Color get gray50 => const Color(0XFFFBFBFB);
-  Color get gray600 => const Color(0XFF7D7D7D);
-  Color get gray800 => const Color(0XFF4E4E4E);
+  Color get gray100 => Color(0XFFF6F6F6);
+  Color get gray200 => Color(0XFFEBEBEB);
+  Color get gray300 => Color(0XFFE3E3E3);
+  Color get gray400 => Color(0XFFC6C6C8);
+  Color get gray50 => Color(0XFFFBFBFB);
+  Color get gray600 => Color(0XFF7D7D7D);
+  Color get gray800 => Color(0XFF4E4E4E);
 
   // Green
-  Color get green700 => const Color(0XFF38A213);
+  Color get green700 => Color(0XFF38A213);
 
   // LightBlue
-  Color get lightBlueA700 => const Color(0XFF0098EE);
+  Color get lightBlueA700 => Color(0XFF0098EE);
 
-   // Red
-  Color get red => const Color.fromARGB(255, 238, 44, 0);
+    // Red
+  Color get red =>  const Color.fromARGB(255, 238, 59, 0);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

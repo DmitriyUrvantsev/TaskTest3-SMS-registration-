@@ -44,15 +44,16 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                         StepperData(),
                         StepperData(),
                         StepperData(),
-                        StepperData()
                       ]),
                   SizedBox(height: 25.v),
-                  Text("lbl", style: theme.textTheme.displaySmall),
+                  Text('Подтверждение',
+                      style: theme
+                          .textTheme.displaySmall), //?.copyWith(fontSize: 34)),
                   SizedBox(height: 20.v),
                   Container(
                       width: 261.h,
                       margin: EdgeInsets.only(left: 5.h, right: 6.h),
-                      child: Text("msg",
+                      child: Text('Введите номер телефона для регистрации',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -77,8 +78,9 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                       onTap: () {
                         //!onTapTxtWidget(context);
                       },
-                      child: Text("msg2",
-                          style: CustomTextStyles.bodyMediumAmber600)),
+                      child: Text('60 сек до повтора отправки кода',
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(height: 1.33))),
                   SizedBox(height: 5.v)
                 ]))));
   }
@@ -91,6 +93,4 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
             imagePath: ImageConstant.imgVector,
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }
-
-
 }

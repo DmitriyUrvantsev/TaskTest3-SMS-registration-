@@ -23,18 +23,14 @@ class CustomTextStyles {
   static get bodyLargeOnPrimary => theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
       );
-       static get bodyLargeOnPrimaryTransparent =>
-      theme.textTheme.bodyLarge!.copyWith(
-            color: theme.colorScheme.onPrimary.withOpacity(0.5),
-          );
   static get bodyMediumAmber600 => theme.textTheme.bodyMedium!.copyWith(
         color: appTheme.amber600,
       );
   static get bodySmallffa7a7a7 => theme.textTheme.bodySmall!.copyWith(
-        color: const Color(0XFFA7A7A7),
+        color: Color(0XFFA7A7A7),
       );
   static get bodySmallffffb700 => theme.textTheme.bodySmall!.copyWith(
-        color: const Color(0XFFFFB700),
+        color: Color(0XFFFFB700),
       );
   // Label text style
   static get labelLargeSFProTextGray600 =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/core/utils/size_utils.dart';
+import 'package:form_registration/theme/theme_helper.dart';
 
 class AppDecoration {
   // Fill decorations
