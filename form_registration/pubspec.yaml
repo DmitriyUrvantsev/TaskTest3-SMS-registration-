@@ -16,9 +16,10 @@ dependencies:
   google_fonts: ^6.1.0
   intl: any
   mask_text_input_formatter: ^2.8.0
-  pin_code_fields: ^8.0.1
+
   provider: ^6.1.1
   shared_preferences: ^2.2.2
+  streamed_controller: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,10 +29,10 @@ flutter:
   assets:
     - assets/
     - assets/images/
-  
-  fonts: 
+
+  fonts:
     - family: SF Pro Text
-      fonts: 
+      fonts:
         - asset: assets/fonts/SFProTextRegular.ttf
           weight: 400
         - asset: assets/fonts/SFProTextSemibold.ttf
@@ -39,11 +40,10 @@ flutter:
         - asset: assets/fonts/SFProTextMedium.ttf
           weight: 500
     - family: SF Pro Display
-      fonts: 
+      fonts:
         - asset: assets/fonts/SFProDisplayBold.ttf
           weight: 700
         - asset: assets/fonts/SFProDisplayMedium.ttf
           weight: 500
         - asset: assets/fonts/SFProDisplayRegular.ttf
           weight: 400
-

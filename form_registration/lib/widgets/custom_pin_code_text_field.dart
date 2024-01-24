@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:form_registration/widgets/main_pincode_textfield/main_pin_code_textfield.dart';
+import 'package:form_registration/widgets/main_pincode_textfield/models/pin-theme.dart';
 
+//import 'package:pin_code_fields/pin_code_fields.dart';
+
+// ignore: must_be_immutable
 class CustomPinCodeTextField extends StatelessWidget {
   CustomPinCodeTextField({
     super.key,
@@ -16,13 +20,9 @@ class CustomPinCodeTextField extends StatelessWidget {
   });
 
   final Alignment? alignment;
-
   final BuildContext context;
-
   final TextEditingController? controller;
-
   final TextStyle? textStyle;
-
   final TextStyle? hintStyle;
 
   Function(String) onChanged;
@@ -39,10 +39,11 @@ class CustomPinCodeTextField extends StatelessWidget {
         : pinCodeTextFieldWidget;
   }
 
-  Widget get pinCodeTextFieldWidget => PinCodeTextField(
+  Widget get pinCodeTextFieldWidget => MainPinCodeTextField(
         appContext: context,
         controller: controller,
-        length: 4,
+        autoFocus: true,
+        length: 5,
         keyboardType: TextInputType.number,
         textStyle: textStyle ?? theme.textTheme.headlineMedium,
         hintStyle: hintStyle ?? theme.textTheme.headlineMedium,
@@ -51,9 +52,9 @@ class CustomPinCodeTextField extends StatelessWidget {
         ],
         enableActiveFill: true,
         pinTheme: PinTheme(
-          fieldHeight: 2.h,
+          fieldHeight: 40.h,
           fieldWidth: 40.h,
-          shape: PinCodeFieldShape.underline,
+         // shape: PinCodeFieldShape.underline,
           inactiveFillColor: theme.colorScheme.primary,
           activeFillColor: theme.colorScheme.primary,
           inactiveColor: Colors.transparent,

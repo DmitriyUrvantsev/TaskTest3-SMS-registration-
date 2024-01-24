@@ -35,6 +35,7 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(horizontal: 51.h, vertical: 2.v),
                 child: Column(children: [
+                  //?========================
                   AnotherStepper(
                       stepperDirection: Axis.horizontal,
                       activeIndex: 0,
@@ -45,6 +46,12 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                         StepperData(),
                         StepperData(),
                       ]),
+                  //?========================
+
+
+
+
+
                   SizedBox(height: 25.v),
                   Text('Подтверждение',
                       style: theme
@@ -60,6 +67,7 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                           style: theme.textTheme.bodyMedium!
                               .copyWith(height: 1.33))),
                   SizedBox(height: 61.v),
+                  //!==========================================
                   Padding(
                       padding: EdgeInsets.only(left: 4.h, right: 5.h),
                       child: Selector<Screen1Provider, TextEditingController?>(
@@ -67,13 +75,17 @@ class K1ScreenWidgetState extends State<K1ScreenWidget> {
                               provider.otpController,
                           builder: (context, otpController, child) {
                             return CustomPinCodeTextField(
+
                                 context: context,
                                 controller: otpController,
                                 onChanged: (value) {
                                   otpController?.text = value;
+                                  print(value);
                                 });
                           })),
                   SizedBox(height: 43.v),
+
+                  //!================================================
                   GestureDetector(
                       onTap: () {
                         //!onTapTxtWidget(context);
