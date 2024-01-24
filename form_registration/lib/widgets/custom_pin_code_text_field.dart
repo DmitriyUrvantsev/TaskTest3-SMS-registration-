@@ -54,7 +54,7 @@ class CustomPinCodeTextField extends StatelessWidget {
         pinTheme: PinTheme(
           fieldHeight: 40.h,
           fieldWidth: 40.h,
-         // shape: PinCodeFieldShape.underline,
+          // shape: PinCodeFieldShape.underline,
           inactiveFillColor: theme.colorScheme.primary,
           activeFillColor: theme.colorScheme.primary,
           inactiveColor: Colors.transparent,

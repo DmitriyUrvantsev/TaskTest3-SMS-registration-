@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'dart:math';
 
@@ -229,7 +227,7 @@ class MainPinCodeTextField extends StatefulWidget {
   /// Builds separator children
   final IndexedWidgetBuilder? separatorBuilder;
 
-   MainPinCodeTextField({
+  MainPinCodeTextField({
     super.key,
     required this.appContext,
     required this.length,
@@ -294,7 +292,7 @@ class MainPinCodeTextField extends StatefulWidget {
     this.useExternalAutoFillGroup = false,
     this.scrollPadding = const EdgeInsets.all(20),
     this.separatorBuilder,
-  })  : assert(obscuringCharacter.isNotEmpty);
+  }) : assert(obscuringCharacter.isNotEmpty);
 
   @override
   _PinCodeTextFieldState createState() => _PinCodeTextFieldState();
@@ -903,9 +901,7 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
               width: _pinTheme.fieldWidth,
               height: _pinTheme.fieldHeight,
               decoration: BoxDecoration(
-                color: widget.enableActiveFill
-                    ? _getFillColorFromIndex(i)
-                    : Colors.transparent,
+               
                 boxShadow: (_pinTheme.activeBoxShadows != null ||
                         _pinTheme.inActiveBoxShadows != null)
                     ? _getBoxShadowFromIndex(i)
@@ -914,17 +910,15 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
                     ? BoxShape.circle
                     : BoxShape.rectangle,
                 borderRadius: borderRadius,
-                border: _pinTheme.shape == PinCodeFieldShape.underline
-                    ? Border(
-                        bottom: BorderSide(
-                          color: _getColorFromIndex(i),
-                          width: _getBorderWidthForIndex(i),
-                        ),
-                      )
-                    : Border.all(
-                        color: _getColorFromIndex(i),
-                        width: _getBorderWidthForIndex(i),
-                      ),
+                border: Border(
+                  bottom: BorderSide(
+                    width: 2.0,
+                    color: widget.enableActiveFill
+                        ? _getFillColorFromIndex(i)
+                        : Colors.transparent,
+                  ),
+                ),
+
               ),
               child: Center(
                 child: AnimatedSwitcher(
