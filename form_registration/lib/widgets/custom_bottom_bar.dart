@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/k2_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/presentation/k2_3_4_main_screen/provider/k2_provider.dart';
 
 // ignore: must_be_immutable
 class CustomBottomBar extends StatefulWidget {
@@ -13,26 +13,13 @@ class CustomBottomBar extends StatefulWidget {
 }
 
 class CustomBottomBarState extends State<CustomBottomBar> {
-  int selectedIndex = 0;
 
-  List<BottomMenuModel> bottomMenuList = [
-    BottomMenuModel(
-      icon: ImageConstant.imgNav,
-      activeIcon: ImageConstant.imgNav,
-      title: 'Мои проекты',
-      type: BottomBarEnum.tf,
-    ),
-    BottomMenuModel(
-      icon: ImageConstant.imgNavLightBlueA700,
-      activeIcon: ImageConstant.imgNavLightBlueA700,
-      title: 'Мой аккаунт',
-      type: BottomBarEnum.tf,
-    )
-  ];
+
 
   @override
-  Widget build(BuildContext context) {
-    final read = context.read<Screen2Provider>();
+  Widget build(BuildContext context) { 
+     final read = context.read<Screen2Provider>();
+  int selectedIndex = read.currentMainScreenIndex;
     return Container(
       height: 75.v,
       decoration: BoxDecoration(
@@ -57,14 +44,14 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         elevation: 0,
         currentIndex: selectedIndex,
         type: BottomNavigationBarType.fixed,
-        items: List.generate(bottomMenuList.length, (index) {
+        items: List.generate(read.bottomMenuList.length, (index) {
           return BottomNavigationBarItem(
             icon: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomImageView(
-                  imagePath: bottomMenuList[index].icon,
+                  imagePath: read.bottomMenuList[index].icon,
                   height: 21.adaptSize,
                   width: 21.adaptSize,
                   color: appTheme.gray600,
@@ -72,7 +59,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                 Padding(
                   padding: EdgeInsets.only(top: 2.v),
                   child: Text(
-                    bottomMenuList[index].title ?? "",
+                    read.bottomMenuList[index].title ?? "",
                     style: theme.textTheme.labelMedium!.copyWith(
                       color: appTheme.gray800,
                     ),
@@ -85,7 +72,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomImageView(
-                  imagePath: bottomMenuList[index].activeIcon,
+                  imagePath: read.bottomMenuList[index].activeIcon,
                   height: 20.adaptSize,
                   width: 20.adaptSize,
                   color: appTheme.lightBlueA700,
@@ -93,7 +80,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                 Padding(
                   padding: EdgeInsets.only(top: 1.v),
                   child: Text(
-                    bottomMenuList[index].title ?? "",
+                    read.bottomMenuList[index].title ?? "",
                     style: CustomTextStyles.labelMediumLightblueA700.copyWith(
                       color: appTheme.lightBlueA700,
                     ),
@@ -106,7 +93,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         }),
         onTap: (index) {
           selectedIndex = index;
-          widget.onChanged?.call(bottomMenuList[index].type);
+          widget.onChanged?.call(read.bottomMenuList[index].type);
           read.toglleIndex(index);
           setState(() {});
         },
