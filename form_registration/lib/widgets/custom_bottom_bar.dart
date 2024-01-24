@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/k2_main_screen/provider/k2_provider.dart';
 
 class CustomBottomBar extends StatefulWidget {
   CustomBottomBar({super.key, this.onChanged});
@@ -30,6 +31,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final read = context.read<Screen2Provider>();
     return Container(
       height: 75.v,
       decoration: BoxDecoration(
@@ -104,6 +106,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         onTap: (index) {
           selectedIndex = index;
           widget.onChanged?.call(bottomMenuList[index].type);
+          read.toglleIndex(index);
           setState(() {});
         },
       ),

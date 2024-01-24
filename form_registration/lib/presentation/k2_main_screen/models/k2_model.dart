@@ -1,2 +1,5 @@
 
-class K2Model {}
+
+class K2Model {
+
+}

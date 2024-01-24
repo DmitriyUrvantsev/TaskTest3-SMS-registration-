@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/presentation/k1_confirmation_screen/provider/k1_provider.dart';
-import 'package:form_registration/presentation/k20_screen/provider/k2_provider.dart';
+import 'package:form_registration/presentation/k2_main_screen/provider/k2_provider.dart';
+
 import 'package:form_registration/presentation/k3_account_screen/provider/k3_provider.dart';
 import 'package:form_registration/presentation/k4_projects_screen/provider/k4_provider.dart';
 import 'core/app_export.dart';
@@ -28,14 +29,14 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MultiProvider(
-  providers: [
-  ChangeNotifierProvider(create: (context) => ThemeProvider()),
-  ChangeNotifierProvider(create: (context) => Screen0Provider()),
-   ChangeNotifierProvider(create: (context) => Screen1Provider()),
-    ChangeNotifierProvider(create: (context) => Screen2Provider()),
-     ChangeNotifierProvider(create: (context) => Screen3Provider()),
-      ChangeNotifierProvider(create: (context) => Screen4Provider()),
-  ], 
+          providers: [
+            ChangeNotifierProvider(create: (context) => ThemeProvider()),
+            ChangeNotifierProvider(create: (context) => Screen0Provider()),
+            ChangeNotifierProvider(create: (context) => Screen1Provider()),
+            ChangeNotifierProvider(create: (context) => Screen2Provider()),
+            ChangeNotifierProvider(create: (context) => Screen3Provider()),
+            ChangeNotifierProvider(create: (context) => Screen4Provider()),
+          ],
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
               return MaterialApp(
@@ -56,9 +57,6 @@ class MyApp extends StatelessWidget {
               );
             },
           ),
-
-
-
         );
       },
     );

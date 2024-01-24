@@ -7,7 +7,7 @@ import 'package:form_registration/presentation/k20_screen/models/k2_model.dart';
 /// current k2ModelObj
 
 // ignore_for_file: must_be_immutable
-class Screen2Provider extends ChangeNotifier {
+class Screen20Provider extends ChangeNotifier {
   TextEditingController otpController = TextEditingController();
 
   K2Model k2ModelObj = K2Model();

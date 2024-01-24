@@ -11,15 +11,13 @@ class K2MainScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final read = context.read<Screen2Provider>();//!выдает ошибку/ надо зафигачить мулти в main
+    final read = context.read<Screen2Provider>();
+    final index = context.watch<Screen2Provider>().currentMainScreenIndex;
     return Scaffold(
       backgroundColor: appTheme.gray100,
       body: SizedBox(
-        width: SizeUtils.width, //!======= потом поправь
-        child:
-            //K3AccounrScreenWidget(),
-            K4ProjectsScreenWidget(),
-      ),
+          width: SizeUtils.width, //!======= потом поправь
+          child: read.mainScreenWidget[index]),
       bottomNavigationBar: _sectionBottomBar(context),
     );
   }

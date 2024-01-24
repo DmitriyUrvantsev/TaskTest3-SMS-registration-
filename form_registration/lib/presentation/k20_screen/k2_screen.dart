@@ -2,10 +2,10 @@ import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/k2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
-import 'provider/k2_provider.dart';
 
 class K2ScreenWidget extends StatelessWidget {
   const K2ScreenWidget({super.key});
