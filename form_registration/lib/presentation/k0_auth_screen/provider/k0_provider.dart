@@ -11,11 +11,10 @@ class Screen0Provider extends ChangeNotifier {
 
   void showScreenConfirmation(context) {
     print(formKey.currentState);
-   if (formKey.currentState?.validate() ?? false) {
+    if (formKey.currentState?.validate() ?? false) {
       Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
     }
   }
 
 //!==============================================================================
-
 }

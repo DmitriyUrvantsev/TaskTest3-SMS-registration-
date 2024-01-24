@@ -15,7 +15,7 @@ class K3AccounrScreenWidget extends StatefulWidget {
 
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => Screen3AccountProvider(),
+        create: (context) => Screen3Provider(),
         child: const K3AccounrScreenWidget());
   }
 }
@@ -31,7 +31,7 @@ class K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen3AccountProvider>();
+    final read = context.read<Screen3Provider>();
     return SafeArea(
         child: Scaffold(
             backgroundColor: appTheme.gray100,

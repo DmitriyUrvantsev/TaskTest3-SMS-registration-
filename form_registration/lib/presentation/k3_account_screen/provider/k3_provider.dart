@@ -7,6 +7,6 @@ import 'package:form_registration/presentation/k3_account_screen/models/k3_model
 /// current k7ModelObj
 
 // ignore_for_file: must_be_immutable
-class Screen3AccountProvider extends ChangeNotifier {
+class Screen3Provider extends ChangeNotifier {
   K3Model k7ModelObj = K3Model();
 }

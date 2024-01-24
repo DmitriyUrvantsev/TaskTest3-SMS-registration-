@@ -11,7 +11,7 @@ import 'package:form_registration/routes/app_routes.dart';
 class Screen1Provider extends ChangeNotifier {
   TextEditingController otpController = TextEditingController();//!=============
 
-  K1Model k0ModelObj = K1Model();
+  K1Model k1ModelObj = K1Model();
 
 
   void showMainScreen(context) {
