@@ -79,6 +79,7 @@ class K8ScreenWidgetState extends State<K8ScreenWidget> {
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
+        onTap: () {},
         imagePath: ImageConstant.imgArrowRight,
         margin: EdgeInsets.only(
           left: 8.h,

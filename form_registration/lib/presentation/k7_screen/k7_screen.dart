@@ -89,6 +89,7 @@ class K7ScreenWidgetState extends State<K7ScreenWidget> {
         height: 43.v,
         leadingWidth: 28.h,
         leading: AppbarLeadingImage(
+          onTap: () {},
             imagePath: ImageConstant.imgArrowRight,
             margin: EdgeInsets.only(left: 8.h, top: 9.v, bottom: 12.v)),
         title: Padding(

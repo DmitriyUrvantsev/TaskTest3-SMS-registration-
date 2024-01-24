@@ -86,9 +86,12 @@ class K1AuthScreenWidget extends StatelessWidget {
     return CustomAppBar(
         leadingWidth: 374.h,
         leading: AppbarLeadingImage(
-          onTap: () => read.backPop(context),
-            imagePath: ImageConstant.imgVector, 
-
+            onTap: () {
+              read.backPop(context);
+              print('back');
+            },
+            imagePath: ImageConstant.imgVector,
+            color: PrimaryColors().gray800,
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }
 }

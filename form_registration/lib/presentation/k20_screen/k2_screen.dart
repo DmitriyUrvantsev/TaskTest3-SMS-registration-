@@ -75,6 +75,7 @@ class K2ScreenWidget extends StatelessWidget {
     return CustomAppBar(
         leadingWidth: 374.h,
         leading: AppbarLeadingImage(
+          onTap: () {},
             imagePath: ImageConstant.imgVector,
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }

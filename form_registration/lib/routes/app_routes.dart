@@ -27,8 +27,8 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     AppNavigationRoutes.auth: (context) =>const K0AuthScreenWidget(),
        AppNavigationRoutes.confirmation: (context) => const K1AuthScreenWidget(),
-     AppNavigationRoutes.mainScreen: (context) => const K2MainScreenWidget(),
-    AppNavigationRoutes.account: (context) => K3AccounrScreenWidget(),
+     AppNavigationRoutes.mainScreen: (context) =>  K2MainScreenWidget(),
+    AppNavigationRoutes.account: (context) => const K3AccounrScreenWidget(),
    
     AppNavigationRoutes.projects: (context) => const K4ProjectsScreenWidget(),
 

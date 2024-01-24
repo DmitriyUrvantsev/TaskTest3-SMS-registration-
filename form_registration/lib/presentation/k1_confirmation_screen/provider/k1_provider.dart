@@ -18,8 +18,8 @@ class Screen1Provider extends ChangeNotifier {
     Navigator.of(context).pushNamed(AppNavigationRoutes.mainScreen);
   }
 
-    void backPop(context) {
+  void backPop(context) {
     Navigator.of(context).pop();
+    notifyListeners();
   }
-
 }

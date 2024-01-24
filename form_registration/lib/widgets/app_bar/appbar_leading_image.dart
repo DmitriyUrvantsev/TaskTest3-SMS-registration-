@@ -4,13 +4,13 @@ import 'package:form_registration/core/app_export.dart';
 // ignore: must_be_immutable
 class AppbarLeadingImage extends StatelessWidget {
   AppbarLeadingImage(
-      {super.key, this.imagePath, this.margin, this.onTap, this.color});
+      {super.key, this.imagePath, this.margin, required this.onTap, this.color});
 
   String? imagePath;
   Color? color;
   EdgeInsetsGeometry? margin;
 
-  Function? onTap;
+  Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AppbarLeadingImage extends StatelessWidget {
       padding: margin ?? EdgeInsets.zero,
 
       child: InkWell(
-        onTap: () => onTap,
+        onTap: () => onTap(),
         child: CustomImageView(
           color: color,
           imagePath: imagePath,

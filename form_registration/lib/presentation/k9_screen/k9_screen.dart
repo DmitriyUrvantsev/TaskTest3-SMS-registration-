@@ -94,6 +94,7 @@ class K9ScreenWidgetState extends State<K9ScreenWidget> {
     return CustomAppBar(
         leadingWidth: 374.h,
         leading: AppbarLeadingImage(
+          onTap: () {},
             imagePath: ImageConstant.imgVector,
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }
