@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/k2_screen/models/k2_model.dart';
+import 'package:form_registration/presentation/k20_screen/models/k2_model.dart';
 
 /// A provider class for the K2Screen.
 ///

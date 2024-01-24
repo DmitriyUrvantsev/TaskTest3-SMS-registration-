@@ -15,21 +15,29 @@ class K0AuthScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final read = context.read<Screen0Provider>();
-    final formKey = GlobalKey<FormState>();
+    //final formKey = GlobalKey<FormState>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: _buildAppBar(context),
+        appBar: const CustomAppBar(),
         body: Container(
             width: double.maxFinite,
             padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 2.v),
             child: Column(children: [
-              AnotherStepper(
-                  //!потом
-                  stepperDirection: Axis.horizontal,
-                  activeIndex: 0,
-                  barThickness: 1,
-                  inverted: true,
-                  stepperList: [StepperData(), StepperData(), StepperData()]),
+              //?==================
+              SizedBox(
+                width: 196.fSize,
+                child: AnotherStepper(
+                    stepperDirection: Axis.horizontal,
+                    activeIndex: 0,
+                    barThickness: 1,
+                    inverted: true,
+                    stepperList: [
+                      StepperData(),
+                      StepperData(),
+                      StepperData(),
+                    ]),
+              ),
+              //?==================
               SizedBox(height: 27.v),
               Text('Регистрация', style: theme.textTheme.displaySmall),
               SizedBox(height: 21.v),
@@ -67,14 +75,5 @@ class K0AuthScreenWidget extends StatelessWidget {
                       textAlign: TextAlign.center)),
               const Spacer(flex: 66)
             ])));
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
-        leadingWidth: 374.h,
-        leading: AppbarLeadingImage(
-            imagePath: ImageConstant.imgVector,
-            margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }
 }

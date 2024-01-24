@@ -17,13 +17,13 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     BottomMenuModel(
       icon: ImageConstant.imgNav,
       activeIcon: ImageConstant.imgNav,
-      title: "lbl6",
+      title: 'Мои проекты',
       type: BottomBarEnum.tf,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavLightBlueA700,
       activeIcon: ImageConstant.imgNavLightBlueA700,
-      title: "lbl7",
+      title: 'Мой аккаунт',
       type: BottomBarEnum.tf,
     )
   ];
@@ -37,12 +37,12 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         boxShadow: [
           BoxShadow(
             color: appTheme.black9004c,
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: const Offset(
-              0,
-              -0.5,
-            ),
+            spreadRadius: 1.h,
+            //blurRadius: 2.h,
+            // offset: const Offset(
+            //   0,
+            //   -0.5,
+            // ),
           ),
         ],
       ),
@@ -64,14 +64,14 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                   imagePath: bottomMenuList[index].icon,
                   height: 21.adaptSize,
                   width: 21.adaptSize,
-                  color: appTheme.gray300,
+                  color: appTheme.gray600,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 2.v),
                   child: Text(
                     bottomMenuList[index].title ?? "",
                     style: theme.textTheme.labelMedium!.copyWith(
-                      color: appTheme.gray600,
+                      color: appTheme.gray800,
                     ),
                   ),
                 ),

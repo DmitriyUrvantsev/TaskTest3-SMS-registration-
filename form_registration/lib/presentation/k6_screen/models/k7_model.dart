@@ -1,2 +1,0 @@
-
-class K7Model {}

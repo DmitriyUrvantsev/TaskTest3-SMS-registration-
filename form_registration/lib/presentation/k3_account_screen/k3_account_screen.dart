@@ -5,22 +5,23 @@ import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
-import 'provider/k6_provider.dart';
+import 'provider/k3_provider.dart';
 
-class K6ScreenWidget extends StatefulWidget {
-  const K6ScreenWidget({super.key});
+class K3AccounrScreenWidget extends StatefulWidget {
+  const K3AccounrScreenWidget({super.key});
 
   @override
-  K6ScreenWidgetState createState() => K6ScreenWidgetState();
+  K3AccounrScreenWidgetState createState() => K3AccounrScreenWidgetState();
 
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => Screen6Provider(), child: const K6ScreenWidget());
+        create: (context) => Screen3AccountProvider(),
+        child: const K3AccounrScreenWidget());
   }
 }
 
 // ignore_for_file: must_be_immutable
-class K6ScreenWidgetState extends State<K6ScreenWidget> {
+class K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
@@ -30,6 +31,7 @@ class K6ScreenWidgetState extends State<K6ScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final read = context.read<Screen3AccountProvider>();
     return SafeArea(
         child: Scaffold(
             backgroundColor: appTheme.gray100,
@@ -48,7 +50,7 @@ class K6ScreenWidgetState extends State<K6ScreenWidget> {
                   SizedBox(height: 27.v),
                   _buildRow(context, action: "lbl8", action1: "lbl9",
                       onTapRow: () {
-                  //  onTapRow(context);
+                    //  onTapRow(context);
                   }),
                   SizedBox(height: 5.v),
                   _buildRow(context, action: "lbl10", action1: "lbl9")
@@ -110,6 +112,4 @@ class K6ScreenWidgetState extends State<K6ScreenWidget> {
                   margin: EdgeInsets.only(left: 10.h))
             ])));
   }
-
- 
 }

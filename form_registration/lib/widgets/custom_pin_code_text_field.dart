@@ -4,7 +4,7 @@ import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/main_pin_code_textfield.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/models/pin-theme.dart';
 
-//import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 // ignore: must_be_immutable
 class CustomPinCodeTextField extends StatelessWidget {
@@ -12,6 +12,7 @@ class CustomPinCodeTextField extends StatelessWidget {
     super.key,
     required this.context,
     required this.onChanged,
+    required this.onCompleted,
     this.alignment,
     this.controller,
     this.textStyle,
@@ -24,7 +25,7 @@ class CustomPinCodeTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
-
+Function(String) onCompleted;
   Function(String) onChanged;
 
   final FormFieldValidator<String>? validator;
@@ -40,6 +41,7 @@ class CustomPinCodeTextField extends StatelessWidget {
   }
 
   Widget get pinCodeTextFieldWidget => MainPinCodeTextField(
+   
         appContext: context,
         controller: controller,
         autoFocus: true,
@@ -62,6 +64,7 @@ class CustomPinCodeTextField extends StatelessWidget {
           selectedColor: Colors.transparent,
         ),
         onChanged: (value) => onChanged(value),
+         onCompleted: (value) => onCompleted(value),
         validator: validator,
       );
 }

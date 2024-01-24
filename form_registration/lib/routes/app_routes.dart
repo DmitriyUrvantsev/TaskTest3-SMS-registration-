@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:form_registration/presentation/k1_screen/k1_screen.dart';
-import 'package:form_registration/presentation/k1_screen/provider/k1_provider.dart';
+import 'package:form_registration/presentation/k1_confirmation_screen/k1_confirmation_screen.dart';
+import 'package:form_registration/presentation/k1_confirmation_screen/provider/k1_provider.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
-import 'package:form_registration/presentation/k2_screen/k2_screen.dart';
-import 'package:form_registration/presentation/k2_screen/provider/k2_provider.dart';
-import 'package:form_registration/presentation/k0_auth_screen/screens/k0_screen.dart';
+import 'package:form_registration/presentation/k20_screen/k2_screen.dart';
+import 'package:form_registration/presentation/k20_screen/provider/k2_provider.dart';
+import 'package:form_registration/presentation/k0_auth_screen/screens/k0_auth_screen.dart';
 import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
+import 'package:form_registration/presentation/k2_main_screen/k2_main_screen.dart';
+import 'package:form_registration/presentation/k3_account_screen/k3_account_screen.dart';
+import 'package:form_registration/presentation/k3_account_screen/provider/k3_provider.dart';
 // import 'package:form_registration/presentation/k4_screen/k4_screen.dart';
 // import 'package:form_registration/presentation/k4_screen/provider/k4_provider.dart';
 // import 'package:form_registration/presentation/k5_screen/k5_page.dart';
@@ -37,22 +40,27 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     AppNavigationRoutes.auth: (context) => ChangeNotifierProvider(
-        create: (context) => Screen0Provider(), child: const K0AuthScreenWidget()),
-//! - auth k3, цвет дисейлконпки в к0
+        create: (context) => Screen0Provider(),
+        child: const K0AuthScreenWidget()),
 
     //--------------------
     AppNavigationRoutes.confirmation: (context) => ChangeNotifierProvider(
-        create: (context) => Screen1Provider(), child: const K1ScreenWidget()),
-//! - confirmation k1
+        create: (context) => Screen1Provider(),
+        child: const K1AuthScreenWidget()),
+
     //--------------------
-    AppNavigationRoutes.account: (context) => ChangeNotifierProvider(
-        create: (context) => Screen0Provider(), child: const K2ScreenWidget()),
+    AppNavigationRoutes.mainScreen: (context) => ChangeNotifierProvider(
+        create: (context) => Screen2Provider(),
+        child: const K2MainScreenWidget()),
 //--------------------
-    AppNavigationRoutes.accountFormName: (context) => ChangeNotifierProvider(
-        create: (context) => Screen0Provider(), child: const K0AuthScreenWidget()),
-//--------------------
-    AppNavigationRoutes.accountFormSurname: (context) => ChangeNotifierProvider(
-        create: (context) => Screen0Provider(), child: const K0AuthScreenWidget()),
+    // AppNavigationRoutes.account: (context) => ChangeNotifierProvider(
+    //     create: (context) => Screen3AccountProvider(),
+    //     child: const K3AccounrScreenWidget()),
+
+//!--------------------
+    // AppNavigationRoutes.accountFormSurname: (context) => ChangeNotifierProvider(
+    //     create: (context) => Screen0Provider(),
+    //     child: const K0AuthScreenWidget()),
   };
 
 // //----------------наша функция где можно передать arg ---------------------------------

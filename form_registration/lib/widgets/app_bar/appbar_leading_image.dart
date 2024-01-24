@@ -18,19 +18,25 @@ class AppbarLeadingImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        onTap!.call();
-      },
-      child: Padding(
-        padding: margin ?? EdgeInsets.zero,
+    return
+        // InkWell(
+        //   onTap: () {
+        //     onTap!.call();
+        //   },
+        //   child:
+        Padding(
+      padding: margin ?? EdgeInsets.zero,
+      child: InkWell(
+        onTap: () => Navigator.pop(context),
         child: CustomImageView(
+          color: PrimaryColors().gray800,
           imagePath: imagePath,
           height: 20.v,
           width: 15.h,
           fit: BoxFit.contain,
         ),
       ),
+      //),
     );
   }
 }

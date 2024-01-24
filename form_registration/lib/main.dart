@@ -31,13 +31,14 @@ class MyApp extends StatelessWidget {
                 title: 'form_registration',
                 navigatorKey: NavigatorService.navigatorKey,
                 debugShowCheckedModeBanner: false,
-                
+
                 initialRoute: MainNavigation().initialRoute,
                 routes: MainNavigation().routes,
                 //!добавить показ клавы на айфоне!!!!!
                 //!клавиатура наезжает на кнопку
                 //! повесить функцию на клавиатуру тоже
                 //!изменить клавиатуру на регистрации и на подтверждении тоже!!!
+                //! при возврате на 0 стриать тулефон
 
                 //!onGenerateInitialRoutes: ,
               );

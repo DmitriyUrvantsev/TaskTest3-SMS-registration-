@@ -93,6 +93,9 @@ class K4ScreenWidgetState extends State<K4ScreenWidget> {
                       onChanged: (value) {
                         otpController?.text = value;
                       },
+                       onCompleted: (value) {
+                        otpController?.text = value;
+                      },
                     );
                   },
                 ),
