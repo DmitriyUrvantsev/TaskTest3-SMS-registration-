@@ -82,9 +82,11 @@ class K1AuthScreenWidget extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _sectionAppBar(BuildContext context) {
+    final read = context.read<Screen1Provider>();
     return CustomAppBar(
         leadingWidth: 374.h,
         leading: AppbarLeadingImage(
+          onTap: () => read.backPop(context),
             imagePath: ImageConstant.imgVector, 
 
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));

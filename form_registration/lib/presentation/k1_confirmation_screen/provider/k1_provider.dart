@@ -9,18 +9,17 @@ import 'package:form_registration/routes/app_routes.dart';
 
 // ignore_for_file: must_be_immutable
 class Screen1Provider extends ChangeNotifier {
-  TextEditingController otpController = TextEditingController();//!=============
+  TextEditingController otpController =
+      TextEditingController(); //!=============
 
   K1Model k1ModelObj = K1Model();
 
-
   void showMainScreen(context) {
-   
-      Navigator.of(context).pushNamed(AppNavigationRoutes.mainScreen);
-    
+    Navigator.of(context).pushNamed(AppNavigationRoutes.mainScreen);
   }
 
-
-
+    void backPop(context) {
+    Navigator.of(context).pop();
+  }
 
 }

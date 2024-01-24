@@ -14,13 +14,11 @@ class AppbarLeadingImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-     
-        Padding(
+    return Padding(
       padding: margin ?? EdgeInsets.zero,
-      
+
       child: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: () => onTap,
         child: CustomImageView(
           color: color,
           imagePath: imagePath,

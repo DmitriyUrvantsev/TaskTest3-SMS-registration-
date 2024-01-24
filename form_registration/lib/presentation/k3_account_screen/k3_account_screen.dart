@@ -44,11 +44,13 @@ class K3AccounrScreenWidget extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
+    final read = context.read<Screen3Provider>();
     return CustomAppBar(
       backgroundColor: PrimaryColors().white, //!=================
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
+          onTap: () => read.backProjectScreen(context),
           color: PrimaryColors().lightBlueA700,
           imagePath: ImageConstant.imgArrowRight,
           margin: EdgeInsets.only(left: 8.h, top: 9.v, bottom: 12.v)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/k3_account_screen/models/k3_model.dart';
+import 'package:form_registration/routes/app_routes.dart';
 
 /// A provider class for the K7Screen.
 ///
@@ -9,4 +10,13 @@ import 'package:form_registration/presentation/k3_account_screen/models/k3_model
 // ignore_for_file: must_be_immutable
 class Screen3Provider extends ChangeNotifier {
   K3Model k7ModelObj = K3Model();
+
+
+
+
+
+
+    void backProjectScreen(context) {
+    Navigator.of(context).popAndPushNamed(AppNavigationRoutes.mainScreen);
+  }
 }

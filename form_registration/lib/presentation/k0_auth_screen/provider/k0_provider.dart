@@ -10,7 +10,7 @@ class Screen0Provider extends ChangeNotifier {
       type: MaskAutoCompletionType.lazy);
 
   void showScreenConfirmation(context) {
-    print(formKey.currentState);
+    
     if (formKey.currentState?.validate() ?? false) {
       Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
     }
