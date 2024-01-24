@@ -142,8 +142,12 @@ class PrimaryColors {
   // Blackc
   Color get black9004c => Color(0X4C000000);
 
+
   // BlueGray
   Color get blueGray100 => Color(0XFFD9D9D9);
+
+  // BlueGray
+  Color get white => const Color.fromARGB(255, 255, 255, 255);
 
   // Gray
   Color get gray100 => Color(0XFFF6F6F6);

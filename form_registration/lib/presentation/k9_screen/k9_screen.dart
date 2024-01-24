@@ -35,59 +35,58 @@ class K9ScreenWidgetState extends State<K9ScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 2.v),
-                child: Column(children: [
-                  AnotherStepper(
-                      stepperDirection: Axis.horizontal,
-                      activeIndex: 0,
-                      barThickness: 1,
-                      inverted: true,
-                      stepperList: [
-                        StepperData(),
-                        StepperData(),
-                        StepperData()
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 2.v),
+            child: Column(children: [
+              AnotherStepper(
+                  stepperDirection: Axis.horizontal,
+                  activeIndex: 0,
+                  barThickness: 1,
+                  inverted: true,
+                  stepperList: [
+                    StepperData(),
+                    StepperData(),
+                    StepperData()
+                  ]),
+              SizedBox(height: 27.v),
+              Text("lbl2", style: theme.textTheme.displaySmall),
+              SizedBox(height: 21.v),
+              SizedBox(
+                  width: 181.h,
+                  child: Text("msg3",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(height: 1.33))),
+              SizedBox(height: 42.v),
+              _buildColumn(context),
+              const Spacer(flex: 33),
+              CustomElevatedButton(
+                  text: "msg4",
+                  margin: EdgeInsets.symmetric(horizontal: 29.h),
+                  onPressed: () {
+                   // onTaptf(context);
+                  }),
+              SizedBox(height: 8.v),
+              SizedBox(
+                  width: 228.h,
+                  child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "msg6",
+                            style: CustomTextStyles.bodySmallffa7a7a7),
+                        TextSpan(
+                            text: "msg7",
+                            style: CustomTextStyles.bodySmallffffb700)
                       ]),
-                  SizedBox(height: 27.v),
-                  Text("lbl2", style: theme.textTheme.displaySmall),
-                  SizedBox(height: 21.v),
-                  SizedBox(
-                      width: 181.h,
-                      child: Text("msg3",
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.bodyMedium!
-                              .copyWith(height: 1.33))),
-                  SizedBox(height: 42.v),
-                  _buildColumn(context),
-                  const Spacer(flex: 33),
-                  CustomElevatedButton(
-                      text: "msg4",
-                      margin: EdgeInsets.symmetric(horizontal: 29.h),
-                      onPressed: () {
-                       // onTaptf(context);
-                      }),
-                  SizedBox(height: 8.v),
-                  SizedBox(
-                      width: 228.h,
-                      child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: "msg6",
-                                style: CustomTextStyles.bodySmallffa7a7a7),
-                            TextSpan(
-                                text: "msg7",
-                                style: CustomTextStyles.bodySmallffffb700)
-                          ]),
-                          textAlign: TextAlign.center)),
-                  const Spacer(flex: 66)
-                ]))));
+                      textAlign: TextAlign.center)),
+              const Spacer(flex: 66)
+            ])));
   }
 
   /// Section Widget

@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:form_registration/core/app_export.dart';
 
 // ignore: must_be_immutable
@@ -11,7 +13,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.title,
     this.centerTitle,
-    this.actions, 
+    this.backgroundColor,
+    this.actions,
     this.bottom,
   });
 
@@ -26,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
 
   final bool? centerTitle;
-
+  final Color? backgroundColor;
   final List<Widget>? actions;
   final PreferredSizeWidget? bottom;
 
@@ -37,8 +40,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       toolbarHeight: height ?? 42.v,
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
-      flexibleSpace: _getStyle(),
+      backgroundColor: backgroundColor,
+      //flexibleSpace: _getStyle(),
       leadingWidth: leadingWidth ?? 0,
       leading: leading,
       title: title,
@@ -53,32 +56,31 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         SizeUtils.width,
         height ?? 42.v,
       );
-  _getStyle() {
-    switch (styleType) {
-      case Style.bgShadow:
-        return Container(
-          
-          height: 43.v,
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-            color: appTheme.gray100,
-            boxShadow: [
-              BoxShadow(
-                color: appTheme.black9004c,
-                spreadRadius: 2.h,
-                blurRadius: 2.h,
-                offset: const Offset(
-                  0,
-                  1,
-                ),
-              ),
-            ],
-          ),
-        );
-      default:
-        return null;
-    }
-  }
+  // _getStyle() {
+  //   switch (styleType) {
+  //     case Style.bgShadow:
+  //       return Container(
+  //         height: 43.v,
+  //         width: double.maxFinite,
+  //         decoration: BoxDecoration(
+  //           color: appTheme.gray100,
+  //           boxShadow: [
+  //             BoxShadow(
+  //               color: appTheme.black9004c,
+  //               spreadRadius: 2.h,
+  //               blurRadius: 2.h,
+  //               offset: const Offset(
+  //                 0,
+  //                 1,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 enum Style {

@@ -7,78 +7,67 @@ import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
 import 'provider/k3_provider.dart';
 
-class K3AccounrScreenWidget extends StatefulWidget {
+class K3AccounrScreenWidget extends StatelessWidget {
   const K3AccounrScreenWidget({super.key});
-
-  @override
-  K3AccounrScreenWidgetState createState() => K3AccounrScreenWidgetState();
-
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => Screen3Provider(),
-        child: const K3AccounrScreenWidget());
-  }
-}
-
-// ignore_for_file: must_be_immutable
-class K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final read = context.read<Screen3Provider>();
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.gray100,
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
-                child: Column(children: [
-                  CustomImageView(
-                      imagePath: ImageConstant.imgContrast,
-                      height: 76.v,
-                      width: 73.h),
-                  SizedBox(height: 17.v),
-                  Text("msg_apollo_gmail_com",
-                      style: CustomTextStyles.labelLargeSFProTextGray600),
-                  SizedBox(height: 27.v),
-                  _buildRow(context, action: "lbl8", action1: "lbl9",
-                      onTapRow: () {
-                    //  onTapRow(context);
-                  }),
-                  SizedBox(height: 5.v),
-                  _buildRow(context, action: "lbl10", action1: "lbl9")
-                ])),
-            bottomNavigationBar: _buildBottomBar(context)));
+    return Scaffold(
+      backgroundColor: appTheme.gray100,
+      appBar:
+          // AppBar(
+          //   backgroundColor: Colors.blue,
+          // ),
+
+          _buildAppBar(context),
+      body: Container(
+          width: double.maxFinite,
+          padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
+          child: Column(children: [
+            CustomImageView(
+                imagePath: ImageConstant.imgContrast,
+                height: 76.v,
+                width: 73.h),
+            SizedBox(height: 17.v),
+            Text("msg_apollo_gmail_com",
+                style: CustomTextStyles.labelLargeSFProTextGray600),
+            SizedBox(height: 27.v),
+            _buildRow(context, action: "lbl8", action1: "lbl9", onTapRow: () {
+              //  onTapRow(context);
+            }),
+            SizedBox(height: 5.v),
+            _buildRow(context, action: "lbl10", action1: "lbl9")
+          ])),
+    );
   }
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
-        height: 43.v,
-        leadingWidth: 28.h,
-        leading: AppbarLeadingImage(
-            imagePath: ImageConstant.imgArrowRight,
-            margin: EdgeInsets.only(left: 8.h, top: 9.v, bottom: 12.v)),
-        title: Padding(
-            padding: EdgeInsets.only(left: 2.h),
-            child: Row(children: [
-              AppbarSubtitle(
-                  text: "lbl7", margin: EdgeInsets.only(bottom: 1.v)),
-              AppbarTitle(text: "lbl4", margin: EdgeInsets.only(left: 26.h))
-            ])),
-        styleType: Style.bgShadow);
-  }
-
-  /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(onChanged: (BottomBarEnum type) {});
+      backgroundColor: PrimaryColors().white, //!=================
+      height: 43.v,
+      leadingWidth: 28.h,
+      leading: AppbarLeadingImage(
+          color: PrimaryColors().lightBlueA700,
+          imagePath: ImageConstant.imgArrowRight,
+          margin: EdgeInsets.only(left: 8.h, top: 9.v, bottom: 12.v)),
+      title: Padding(
+          padding: EdgeInsets.only(left: 2.h),
+          child: Row(children: [
+            AppbarSubtitle(
+                text: 'Мой аккаунт', margin: EdgeInsets.only(bottom: 1.v)),
+            AppbarTitle(text: 'Аккаунт', margin: EdgeInsets.only(left: 26.h))
+          ])),
+      styleType: Style.bgShadow,
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(4.0),
+        child: Container(
+          color: PrimaryColors().gray600,
+          height: 1.0,
+        ),
+      ),
+    );
   }
 
   /// Common widget

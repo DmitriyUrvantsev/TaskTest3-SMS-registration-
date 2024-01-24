@@ -31,57 +31,56 @@ class K7ScreenWidgetState extends State<K7ScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.gray100,
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
-                child: Column(children: [
-                  SizedBox(
-                      height: 79.v,
-                      width: 78.h,
-                      child: Stack(alignment: Alignment.topLeft, children: [
-                        CustomImageView(
-                            imagePath: ImageConstant.imgClose,
-                            height: 59.adaptSize,
-                            width: 59.adaptSize,
-                            alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.only(left: 6.h)),
-                        Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
+    return Scaffold(
+        backgroundColor: appTheme.gray100,
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
+            child: Column(children: [
+              SizedBox(
+                  height: 79.v,
+                  width: 78.h,
+                  child: Stack(alignment: Alignment.topLeft, children: [
+                    CustomImageView(
+                        imagePath: ImageConstant.imgClose,
+                        height: 59.adaptSize,
+                        width: 59.adaptSize,
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(left: 6.h)),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                            height: 76.v,
+                            width: 73.h,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: fs.Svg(ImageConstant.imgGroup1),
+                                    fit: BoxFit.cover)),
+                            child: CustomImageView(
+                                imagePath: ImageConstant.imgEllipse8,
                                 height: 76.v,
                                 width: 73.h,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: fs.Svg(ImageConstant.imgGroup1),
-                                        fit: BoxFit.cover)),
-                                child: CustomImageView(
-                                    imagePath: ImageConstant.imgEllipse8,
-                                    height: 76.v,
-                                    width: 73.h,
-                                    radius: BorderRadius.circular(38.h),
-                                    alignment: Alignment.center))),
-                        CustomImageView(
-                            imagePath: ImageConstant.imgCloseGray100,
-                            height: 31.v,
-                            width: 32.h,
-                            alignment: Alignment.bottomRight)
-                      ])),
-                  SizedBox(height: 13.v),
-                  Text("msg_apollon_gmail_com",
-                      style: CustomTextStyles.labelLargeSFProTextGray600),
-                  SizedBox(height: 27.v),
-                  _buildRow(context, action: "lbl8", action1: "lbl11",
-                      onTapRow: () {
-                  //  onTapRow(context);
-                  }),
-                  SizedBox(height: 5.v),
-                  _buildRow(context, action: "lbl10", action1: "lbl12")
-                ])),
-            bottomNavigationBar: _buildBottomBar(context)));
+                                radius: BorderRadius.circular(38.h),
+                                alignment: Alignment.center))),
+                    CustomImageView(
+                        imagePath: ImageConstant.imgCloseGray100,
+                        height: 31.v,
+                        width: 32.h,
+                        alignment: Alignment.bottomRight)
+                  ])),
+              SizedBox(height: 13.v),
+              Text("msg_apollon_gmail_com",
+                  style: CustomTextStyles.labelLargeSFProTextGray600),
+              SizedBox(height: 27.v),
+              _buildRow(context, action: "lbl8", action1: "lbl11",
+                  onTapRow: () {
+              //  onTapRow(context);
+              }),
+              SizedBox(height: 5.v),
+              _buildRow(context, action: "lbl10", action1: "lbl12")
+            ])),
+        bottomNavigationBar: _buildBottomBar(context));
   }
 
   /// Section Widget

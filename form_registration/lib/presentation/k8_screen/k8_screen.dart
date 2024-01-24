@@ -32,46 +32,44 @@ class K8ScreenWidgetState extends State<K8ScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: appTheme.gray100,
-        resizeToAvoidBottomInset: false,
-        appBar: _buildAppBar(context),
-        body: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            children: [
-              SizedBox(height: 24.v),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 8.h,
-                  right: 9.h,
-                ),
-                child: Selector<Screen8Provider, TextEditingController?>(
-                  selector: (
-                    context,
-                    provider,
-                  ) =>
-                      provider.yourLastNameController,
-                  builder: (context, yourLastNameController, child) {
-                    return CustomTextFormField(
-                      controller: yourLastNameController,
-                      hintText: "lbl13",
-                      textInputAction: TextInputAction.done,
-                      borderDecoration:
-                          TextFormFieldStyleHelper.fillOnPrimaryContainer,
-                      filled: true,
-                      fillColor: theme.colorScheme.onPrimaryContainer,
-                    );
-                  },
-                ),
+    return Scaffold(
+      backgroundColor: appTheme.gray100,
+      resizeToAvoidBottomInset: false,
+      appBar: _buildAppBar(context),
+      body: SizedBox(
+        width: double.maxFinite,
+        child: Column(
+          children: [
+            SizedBox(height: 24.v),
+            Padding(
+              padding: EdgeInsets.only(
+                left: 8.h,
+                right: 9.h,
               ),
-              const Spacer(),
-            ],
-          ),
+              child: Selector<Screen8Provider, TextEditingController?>(
+                selector: (
+                  context,
+                  provider,
+                ) =>
+                    provider.yourLastNameController,
+                builder: (context, yourLastNameController, child) {
+                  return CustomTextFormField(
+                    controller: yourLastNameController,
+                    hintText: "lbl13",
+                    textInputAction: TextInputAction.done,
+                    borderDecoration:
+                        TextFormFieldStyleHelper.fillOnPrimaryContainer,
+                    filled: true,
+                    fillColor: theme.colorScheme.onPrimaryContainer,
+                  );
+                },
+              ),
+            ),
+            const Spacer(),
+          ],
         ),
-        bottomNavigationBar: _buildBottomBar(context),
       ),
+      bottomNavigationBar: _buildBottomBar(context),
     );
   }
 

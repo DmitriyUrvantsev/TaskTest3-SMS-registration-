@@ -10,71 +10,64 @@ import 'provider/k2_provider.dart';
 class K2ScreenWidget extends StatelessWidget {
   const K2ScreenWidget({super.key});
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 51.h, vertical: 2.v),
-                child: Column(children: [
-                  AnotherStepper(
-                      stepperDirection: Axis.horizontal,
-                      activeIndex: 0,
-                      barThickness: 1,
-                      inverted: true,
-                      stepperList: [
-                        StepperData(),
-                        StepperData(),
-                        StepperData(),
-                        StepperData()
-                      ]),
-                  SizedBox(height: 25.v),
-                  Text("lbl", style: theme.textTheme.displaySmall),
-                  SizedBox(height: 20.v),
-                  Container(
-                      width: 261.h,
-                      margin: EdgeInsets.only(left: 5.h, right: 6.h),
-                      child: Text("msg",
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.bodyMedium!
-                              .copyWith(height: 1.33))),
-                  SizedBox(height: 23.v),
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 6.h),
-                      child: Selector<Screen2Provider, TextEditingController?>(
-                          selector: (context, provider) =>
-                              provider.otpController,
-                          builder: (context, otpController, child) {
-                            return CustomPinCodeTextField(
-                                context: context,
-                                controller: otpController,
-                                onChanged: (value) {
-                                  otpController?.text = value;
-                                },
-                                 onCompleted: (value) {
-                        otpController?.text = value;
-                      },
-                                );
-                          })),
-                  SizedBox(height: 43.v),
-                  GestureDetector(
-                      onTap: () {
-                        //onTapTxtWidget(context);
-                      },
-                      child: Text("msg2",
-                          style: CustomTextStyles.bodyMediumAmber600)),
-                  SizedBox(height: 5.v)
-                ]))));
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 51.h, vertical: 2.v),
+            child: Column(children: [
+              AnotherStepper(
+                  stepperDirection: Axis.horizontal,
+                  activeIndex: 0,
+                  barThickness: 1,
+                  inverted: true,
+                  stepperList: [
+                    StepperData(),
+                    StepperData(),
+                    StepperData(),
+                    StepperData()
+                  ]),
+              SizedBox(height: 25.v),
+              Text("lbl", style: theme.textTheme.displaySmall),
+              SizedBox(height: 20.v),
+              Container(
+                  width: 261.h,
+                  margin: EdgeInsets.only(left: 5.h, right: 6.h),
+                  child: Text("msg",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(height: 1.33))),
+              SizedBox(height: 23.v),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6.h),
+                  child: Selector<Screen2Provider, TextEditingController?>(
+                      selector: (context, provider) => provider.otpController,
+                      builder: (context, otpController, child) {
+                        return CustomPinCodeTextField(
+                          context: context,
+                          controller: otpController,
+                          onChanged: (value) {
+                            otpController?.text = value;
+                          },
+                          onCompleted: (value) {
+                            otpController?.text = value;
+                          },
+                        );
+                      })),
+              SizedBox(height: 43.v),
+              GestureDetector(
+                  onTap: () {
+                    //onTapTxtWidget(context);
+                  },
+                  child:
+                      Text("msg2", style: CustomTextStyles.bodyMediumAmber600)),
+              SizedBox(height: 5.v)
+            ])));
   }
 
   /// Section Widget
@@ -85,6 +78,4 @@ class K2ScreenWidget extends StatelessWidget {
             imagePath: ImageConstant.imgVector,
             margin: EdgeInsets.fromLTRB(18.h, 10.v, 341.h, 11.v)));
   }
-
-  
 }
