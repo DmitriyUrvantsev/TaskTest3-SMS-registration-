@@ -12,6 +12,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final read = context.read<Screen2Provider>();
+    final watch = context.watch<Screen2Provider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _sectionAppBar(context),
@@ -28,7 +29,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
             Text('apollo@gmail.com',
                 style: CustomTextStyles.labelLargeSFProTextGray600),
             SizedBox(height: 27.v),
-            _buildRow(context, action: 'Имя', action1: 'Настроить',
+            _buildRow(context, action: 'Имя', action1: watch.userName,
                 onTapRow: () {
               read.showFormName(context);
             }),
@@ -96,7 +97,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 2.v),
                   child: Text(action1,
                       style: theme.textTheme.bodyLarge!
-                          .copyWith(color: appTheme.gray400))),
+                          .copyWith(color: appTheme.gray600))),
               CustomImageView(
                   color: PrimaryColors().gray400,
                   imagePath: ImageConstant.imgArrowRightGray400,

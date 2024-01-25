@@ -7,8 +7,9 @@ import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
 
 class Screen2Provider extends ChangeNotifier {
-  // K2Model k2ModelObj = K2Model();
-  TextEditingController otpController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  //TextEditingController otpController = TextEditingController();
+  TextEditingController yourNameController = TextEditingController();
   //---------------------------------------------------------------------------
   final List mainScreenWidget = [
     const K4ProjectsScreenWidget(),
@@ -51,13 +52,17 @@ class Screen2Provider extends ChangeNotifier {
   }
 //==============================================================================
 
-//!=======AccountFormNameModel==================================================
-  TextEditingController yourNameController = TextEditingController();
-
-  //K5Model k5ModelObj = K5Model();
+//!=======Form Name Model==================================================
+  String userName = 'Настроить';
 
   void backToAccount(context) {
-    Navigator.pop(context);
+    if (formKey.currentState?.validate() ?? false) {
+      userName = yourNameController.text.substring(0, 1).toUpperCase() +
+          yourNameController.text.substring(1).toLowerCase();
+      print('userName $userName');
+      notifyListeners();
+      Navigator.pop(context);
+    }
   }
 
   @override

@@ -15,6 +15,8 @@ class K7AccountFormNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final read = context.read<Screen2Provider>();
+    final formKey = read.formKey;
     return Scaffold(
       backgroundColor: appTheme.gray100,
       resizeToAvoidBottomInset: false,
@@ -30,23 +32,20 @@ class K7AccountFormNameWidget extends StatelessWidget {
                 left: 8.h,
                 right: 9.h,
               ),
-              child: Selector<Screen2Provider, TextEditingController?>(
-                selector: (
-                  context,
-                  provider,
-                ) =>
-                    provider.yourNameController,
-                builder: (context, yourNameController, child) {
-                  return CustomTextFormField(
-                    controller: yourNameController,
-                    hintText: 'Ваше имя',
-                    textInputAction: TextInputAction.done,
-                    borderDecoration:
-                        TextFormFieldStyleHelper.fillOnPrimaryContainer,
-                    filled: true,
-                    fillColor: theme.colorScheme.onPrimaryContainer,
-                  );
-                },
+              child: Form(
+                key:  formKey,
+                child: CustomTextFormField(
+                   validator: (val) => val != null
+                  ? (val.isEmpty ? 'Введите Ваше имя' : null)
+                  : null,
+                  controller: read.yourNameController,
+                  hintText: 'Ваше имя',
+                  textInputAction: TextInputAction.done,
+                  borderDecoration:
+                      TextFormFieldStyleHelper.fillOnPrimaryContainer,
+                  filled: true,
+                  fillColor: theme.colorScheme.onPrimaryContainer,
+                ),
               ),
             ),
             const Spacer(),
