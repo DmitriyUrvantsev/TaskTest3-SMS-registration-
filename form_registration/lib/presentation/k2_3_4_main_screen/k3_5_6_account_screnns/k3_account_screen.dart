@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';

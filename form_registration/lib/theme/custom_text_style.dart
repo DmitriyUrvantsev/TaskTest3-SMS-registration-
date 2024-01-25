@@ -27,10 +27,10 @@ class CustomTextStyles {
         color: appTheme.amber600,
       );
   static get bodySmallffa7a7a7 => theme.textTheme.bodySmall!.copyWith(
-        color: Color(0XFFA7A7A7),
+        color: const Color(0XFFA7A7A7),
       );
   static get bodySmallffffb700 => theme.textTheme.bodySmall!.copyWith(
-        color: Color(0XFFFFB700),
+        color: const Color(0XFFFFB700),
       );
   // Label text style
   static get labelLargeSFProTextGray600 =>
@@ -49,9 +49,5 @@ extension on TextStyle {
     );
   }
 
-  TextStyle get sFProDisplay {
-    return copyWith(
-      fontFamily: 'SF Pro Display',
-    );
-  }
+
 }

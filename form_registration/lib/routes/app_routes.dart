@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:form_registration/presentation/k1_confirmation_screen/k1_confirmation_screen.dart';
 import 'package:form_registration/presentation/k0_auth_screen/screens/k0_auth_screen.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screen.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k3_account_screen.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k4_projects_screen.dart';
+import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/k2_main_screen.dart';
+import 'package:form_registration/presentation/k2_3_4_main_screen/k3_5_6_account_screnns/k3_account_screen.dart';
+import 'package:form_registration/presentation/k2_3_4_main_screen/k4_k4_projects_screens/k4_projects_screen.dart';
 
 
 

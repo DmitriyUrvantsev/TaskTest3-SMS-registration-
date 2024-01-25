@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // These are the Viewport values of your Figma Design.
 // These are used in the code as a reference to create your UI Responsively.
-const num FIGMA_DESIGN_WIDTH = 375;
-const num FIGMA_DESIGN_HEIGHT = 812;
-const num FIGMA_DESIGN_STATUS_BAR = 0;
+const num figmWidth = 375;
+const num figmaHeigth = 812;
+const num figmaStatusBar = 0;
 typedef ResponsiveBuild = Widget Function(
   BuildContext context,
   Orientation orientation,
@@ -60,11 +60,11 @@ class SizeUtils {
     // Sets screen width and height
     if (orientation == Orientation.portrait) {
       width =
-          boxConstraints.maxWidth.isNonZero(defaultValue: FIGMA_DESIGN_WIDTH);
+          boxConstraints.maxWidth.isNonZero(defaultValue: figmWidth);
       height = boxConstraints.maxHeight.isNonZero();
     } else {
       width =
-          boxConstraints.maxHeight.isNonZero(defaultValue: FIGMA_DESIGN_WIDTH);
+          boxConstraints.maxHeight.isNonZero(defaultValue: figmWidth);
       height = boxConstraints.maxWidth.isNonZero();
     }
     deviceType = DeviceType.mobile;
@@ -82,12 +82,12 @@ extension ResponsiveExtension on num {
 
   /// This method is used to set padding/margin (for the left and Right side) &
   /// width of the screen or widget according to the Viewport width.
-  double get h => ((this * _width) / FIGMA_DESIGN_WIDTH);
+  double get h => ((this * _width) / figmWidth);
 
   /// This method is used to set padding/margin (for the top and bottom side) &
   /// height of the screen or widget according to the Viewport height.
   double get v =>
-      (this * _height) / (FIGMA_DESIGN_HEIGHT - FIGMA_DESIGN_STATUS_BAR);
+      (this * _height) / (figmaHeigth - figmaStatusBar);
 
   /// This method is used to set smallest px in image height and width
   double get adaptSize {

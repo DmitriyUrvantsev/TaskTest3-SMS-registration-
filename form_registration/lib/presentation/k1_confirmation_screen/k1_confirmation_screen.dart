@@ -59,11 +59,9 @@ class K1AuthScreenWidget extends StatelessWidget {
                             controller: otpController,
                             onChanged: (value) {
                               otpController?.text = value;
-                              print(value);
                             },
                             onCompleted: (value) {
                               read.showMainScreen(context);
-                              print(value + value);
                             });
                       })),
               SizedBox(height: 43.v),
@@ -88,7 +86,6 @@ class K1AuthScreenWidget extends StatelessWidget {
         leading: AppbarLeadingImage(
             onTap: () {
               read.backPop(context);
-              print('back');
             },
             imagePath: ImageConstant.imgVector,
             color: PrimaryColors().gray800,
