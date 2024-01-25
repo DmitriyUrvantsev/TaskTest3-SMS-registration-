@@ -13,6 +13,14 @@ import 'package:form_registration/widgets/main_pincode_textfield/models/haptik_t
 import 'package:form_registration/widgets/main_pincode_textfield/models/pin-theme.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/models/pin_code_platform.dart';
 
+
+
+
+
+
+
+
+
 /// Pin code text fields which automatically changes focus and validates
 class MainPinCodeTextField extends StatefulWidget {
   /// The [BuildContext] of the application
@@ -295,10 +303,11 @@ class MainPinCodeTextField extends StatefulWidget {
   }) : assert(obscuringCharacter.isNotEmpty);
 
   @override
-  _PinCodeTextFieldState createState() => _PinCodeTextFieldState();
+  
+  PinCodeTextFieldState createState() => PinCodeTextFieldState();//! сделал не приватным
 }
 
-class _PinCodeTextFieldState extends State<MainPinCodeTextField>
+class PinCodeTextFieldState extends State<MainPinCodeTextField>
     with TickerProviderStateMixin {
   TextEditingController? _textEditingController;
   FocusNode? _focusNode;
@@ -334,7 +343,7 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
 
   Timer? _blinkDebounce;
 
-  TextStyle get _textStyle => TextStyle(
+  TextStyle get _textStyle => const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ).merge(widget.textStyle);
@@ -370,7 +379,7 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
     _hasBlinked = true;
 
     _cursorController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     _cursorAnimation = Tween<double>(
       begin: 1,
       end: 0,
@@ -412,8 +421,9 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
       });
     }
     // If a default value is set in the TextEditingController, then set to UI
-    if (_textEditingController!.text.isNotEmpty)
+    if (_textEditingController!.text.isNotEmpty) {
       _setTextToInput(_textEditingController!.text);
+    }
   }
 
   // validating all the values
@@ -487,7 +497,7 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
             currentText = currentText.substring(0, widget.length);
           }
           //  delay the onComplete event handler to give the onChange event handler enough time to complete
-          Future.delayed(Duration(milliseconds: 300),
+          Future.delayed(const Duration(milliseconds: 300),
               () => widget.onCompleted!(currentText));
         }
 
@@ -542,44 +552,7 @@ class _PinCodeTextFieldState extends State<MainPinCodeTextField>
   }
 
   // selects the right color for the field
-  Color _getColorFromIndex(int index) {
-    if (!widget.enabled) {
-      return _pinTheme.disabledColor;
-    }
-    if (((_selectedIndex == index) ||
-            (_selectedIndex == index + 1 && index + 1 == widget.length)) &&
-        _focusNode!.hasFocus) {
-      return _pinTheme.selectedColor;
-    } else if (_selectedIndex > index) {
-      Color relevantActiveColor = _pinTheme.activeColor;
-      if (isInErrorMode) relevantActiveColor = _pinTheme.errorBorderColor;
-      return relevantActiveColor;
-    }
 
-    Color relevantInActiveColor = _pinTheme.inactiveColor;
-    if (isInErrorMode) relevantInActiveColor = _pinTheme.errorBorderColor;
-    return relevantInActiveColor;
-  }
-
-  double _getBorderWidthForIndex(int index) {
-    if (!widget.enabled) {
-      return _pinTheme.disabledBorderWidth;
-    }
-
-    if (((_selectedIndex == index) ||
-            (_selectedIndex == index + 1 && index + 1 == widget.length)) &&
-        _focusNode!.hasFocus) {
-      return _pinTheme.selectedBorderWidth;
-    } else if (_selectedIndex > index) {
-      double relevantActiveBorderWidth = _pinTheme.activeBorderWidth;
-      if (isInErrorMode) relevantActiveBorderWidth = _pinTheme.errorBorderWidth;
-      return relevantActiveBorderWidth;
-    }
-
-    double relevantActiveBorderWidth = _pinTheme.inactiveBorderWidth;
-    if (isInErrorMode) relevantActiveBorderWidth = _pinTheme.errorBorderWidth;
-    return relevantActiveBorderWidth;
-  }
 
   List<BoxShadow>? _getBoxShadowFromIndex(int index) {
     if (_selectedIndex == index) {

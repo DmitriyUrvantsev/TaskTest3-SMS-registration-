@@ -1,4 +1,4 @@
-
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/main_pin_code_textfield.dart';
@@ -115,7 +115,7 @@ class PinTheme {
     List<BoxShadow>? activeBoxShadow,
     List<BoxShadow>? inActiveBoxShadow,
   }) {
-    final defaultValues = PinTheme.defaults();
+    const defaultValues = PinTheme.defaults();
     return PinTheme.defaults(
       activeColor: activeColor ?? defaultValues.activeColor,
       activeFillColor: activeFillColor ?? defaultValues.activeFillColor,

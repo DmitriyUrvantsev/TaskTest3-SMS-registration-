@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/models/k2_model.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k3_5_6_account_screnns/k3_account_screen.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k4_k4_projects_screens/k4_projects_screen.dart';
-import 'package:form_registration/routes/app_routes.dart';
+import 'package:form_registration/presentation/f2_main_screen/models/k2_model.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr356_account/k3_account_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
 
 class Screen2Provider extends ChangeNotifier {

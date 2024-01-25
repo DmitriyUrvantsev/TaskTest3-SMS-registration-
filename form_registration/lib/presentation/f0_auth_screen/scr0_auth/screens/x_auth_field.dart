@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
+import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/provider/k0_provider.dart';
 import 'package:form_registration/widgets/custom_text_form_field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 

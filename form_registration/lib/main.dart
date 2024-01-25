@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:form_registration/presentation/k0_auth_screen/provider/k0_provider.dart';
-import 'package:form_registration/presentation/k1_confirmation_screen/provider/k1_provider.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/provider/k2_provider.dart';
+import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/provider/k0_provider.dart';
+import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/provider/k1_provider.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 
 
 import 'core/app_export.dart';

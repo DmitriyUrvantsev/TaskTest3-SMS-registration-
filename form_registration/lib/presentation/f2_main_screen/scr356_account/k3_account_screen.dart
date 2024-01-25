@@ -1,50 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/provider/k2_provider.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
-import 'package:form_registration/widgets/custom_bottom_bar.dart';
-
 
 class K3AccounrScreenWidget extends StatelessWidget {
   const K3AccounrScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen2Provider>();
+    //final read = context.read<Screen2Provider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
-      appBar:
-          // AppBar(
-          //   backgroundColor: Colors.blue,
-          // ),
-
-          _buildAppBar(context),
+      appBar: _sectionAppBar(context),
       body: Container(
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
             CustomImageView(
+              
+                color: PrimaryColors().lightBlueA700,
                 imagePath: ImageConstant.imgContrast,
                 height: 76.v,
                 width: 73.h),
             SizedBox(height: 17.v),
-            Text("msg_apollo_gmail_com",
+            Text('apollo@gmail.com',
                 style: CustomTextStyles.labelLargeSFProTextGray600),
             SizedBox(height: 27.v),
-            _buildRow(context, action: "lbl8", action1: "lbl9", onTapRow: () {
+            _buildRow(context, action: 'Имя', action1: 'Настроить',
+                onTapRow: () {
               //  onTapRow(context);
             }),
             SizedBox(height: 5.v),
-            _buildRow(context, action: "lbl10", action1: "lbl9")
+            _buildRow(context, action: 'Фамилия', action1: 'Настроить')
           ])),
     );
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _sectionAppBar(BuildContext context) {
     final read = context.read<Screen2Provider>();
     return CustomAppBar(
       backgroundColor: PrimaryColors().white, //!=================
@@ -98,6 +94,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
                       style: theme.textTheme.bodyLarge!
                           .copyWith(color: appTheme.gray400))),
               CustomImageView(
+                  color: PrimaryColors().gray400,
                   imagePath: ImageConstant.imgArrowRightGray400,
                   height: 21.v,
                   width: 20.h,

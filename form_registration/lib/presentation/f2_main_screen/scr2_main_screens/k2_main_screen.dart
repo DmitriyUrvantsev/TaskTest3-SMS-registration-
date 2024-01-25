@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
-import 'provider/k2_provider.dart';
+import '../provider/k2_provider.dart';
 
+// ignore: must_be_immutable
 class K2MainScreenWidget extends StatelessWidget {
   K2MainScreenWidget({super.key});
 

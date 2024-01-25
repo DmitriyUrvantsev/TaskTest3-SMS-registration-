@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/k1_confirmation_screen/models/k1_model.dart';
+import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/models/k1_model.dart';
 import 'package:form_registration/routes/app_routes.dart';
 
 /// A provider class for the K0Screen.

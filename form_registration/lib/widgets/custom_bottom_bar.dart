@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/k2_3_4_main_screen/k2_main_screens/provider/k2_provider.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 
 // ignore: must_be_immutable
 class CustomBottomBar extends StatefulWidget {

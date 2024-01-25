@@ -6,8 +6,8 @@ import 'package:form_registration/core/app_export.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField({
-    Key? key,
+  const CustomTextFormField({
+    super.key,
     this.alignment,
     this.width,
     this.scrollPadding,
@@ -38,9 +38,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.errorText,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Alignment? alignment;
   final double? width;
