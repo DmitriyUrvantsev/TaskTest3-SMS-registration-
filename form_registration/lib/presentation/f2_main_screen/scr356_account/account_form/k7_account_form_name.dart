@@ -1,31 +1,17 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/theme/app_decoration.dart';
+import 'package:form_registration/theme/theme_helper.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_text_form_field.dart';
-import 'provider/k5_provider.dart';
 
-// ignore_for_file: must_be_immutable
-class K5ScreenWidget extends StatefulWidget {
-  const K5ScreenWidget({super.key});
-
-  @override
-  K5ScreenWidgetState createState() => K5ScreenWidgetState();
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Screen5Provider(),
-      child: const K5ScreenWidget(),
-    );
-  }
-}
-
-class K5ScreenWidgetState extends State<K5ScreenWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class K7AccountFormNameWidget extends StatelessWidget {
+  const K7AccountFormNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +30,7 @@ class K5ScreenWidgetState extends State<K5ScreenWidget> {
                 left: 8.h,
                 right: 9.h,
               ),
-              child: Selector<Screen5Provider, TextEditingController?>(
+              child: Selector<Screen2Provider, TextEditingController?>(
                 selector: (
                   context,
                   provider,
@@ -53,7 +39,7 @@ class K5ScreenWidgetState extends State<K5ScreenWidget> {
                 builder: (context, yourNameController, child) {
                   return CustomTextFormField(
                     controller: yourNameController,
-                    hintText: "lbl5",
+                    hintText: 'Ваше имя',
                     textInputAction: TextInputAction.done,
                     borderDecoration:
                         TextFormFieldStyleHelper.fillOnPrimaryContainer,
@@ -70,13 +56,15 @@ class K5ScreenWidgetState extends State<K5ScreenWidget> {
     );
   }
 
-  /// Section Widget
+  /// ======================AppBar==============================================
   PreferredSizeWidget _buildAppBar(BuildContext context) {
+    final read = context.read<Screen2Provider>();
     return CustomAppBar(
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
-        onTap: () {},
+        onTap: () => read.backToAccount(context),
+        color: PrimaryColors().lightBlueA700,
         imagePath: ImageConstant.imgArrowRight,
         margin: EdgeInsets.only(
           left: 8.h,
@@ -89,11 +77,13 @@ class K5ScreenWidgetState extends State<K5ScreenWidget> {
         child: Row(
           children: [
             AppbarSubtitle(
-              text: "lbl4",
+              onTap: () => read.backToAccount(context),
+              text: 'Аккаунт',
               margin: EdgeInsets.only(top: 1.v),
             ),
             AppbarTitle(
-              text: "lbl5",
+              onTap: () {},
+              text: 'Ваше имя',
               margin: EdgeInsets.only(left: 53.h),
             ),
           ],

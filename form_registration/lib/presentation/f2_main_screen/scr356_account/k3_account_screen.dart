@@ -11,7 +11,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final read = context.read<Screen2Provider>();
+    final read = context.read<Screen2Provider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _sectionAppBar(context),
@@ -20,7 +20,6 @@ class K3AccounrScreenWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
             CustomImageView(
-              
                 color: PrimaryColors().lightBlueA700,
                 imagePath: ImageConstant.imgContrast,
                 height: 76.v,
@@ -31,7 +30,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
             SizedBox(height: 27.v),
             _buildRow(context, action: 'Имя', action1: 'Настроить',
                 onTapRow: () {
-              //  onTapRow(context);
+              read.showFormName(context);
             }),
             SizedBox(height: 5.v),
             _buildRow(context, action: 'Фамилия', action1: 'Настроить')
@@ -39,7 +38,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
     );
   }
 
-  /// Section Widget
+  /// ======================AppBar==============================================
   PreferredSizeWidget _sectionAppBar(BuildContext context) {
     final read = context.read<Screen2Provider>();
     return CustomAppBar(
@@ -55,8 +54,13 @@ class K3AccounrScreenWidget extends StatelessWidget {
           padding: EdgeInsets.only(left: 2.h),
           child: Row(children: [
             AppbarSubtitle(
-                text: 'Мой аккаунт', margin: EdgeInsets.only(bottom: 1.v)),
-            AppbarTitle(text: 'Аккаунт', margin: EdgeInsets.only(left: 26.h))
+                onTap: () => read.backProjectScreen(),
+                text: 'Мой аккаунт',
+                margin: EdgeInsets.only(bottom: 1.v)),
+            AppbarTitle(
+                onTap: () => (),
+                text: 'Аккаунт',
+                margin: EdgeInsets.only(left: 26.h))
           ])),
       styleType: Style.bgShadow,
       bottom: PreferredSize(

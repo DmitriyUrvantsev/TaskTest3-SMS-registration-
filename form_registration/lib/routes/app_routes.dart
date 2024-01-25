@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/k1_confirmation_screen.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/screens/k0_auth_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr356_account/account_form/k7_account_form_name.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr356_account/k3_account_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
-
-
-
 
 abstract class AppNavigationRoutes {
   static const auth = '/'; //k3 + color k0(k9 - дергается)
@@ -25,13 +23,13 @@ class MainNavigation {
   final initialRoute = AppNavigationRoutes.auth;
 
   final routes = <String, Widget Function(BuildContext)>{
-    AppNavigationRoutes.auth: (context) =>const K0AuthScreenWidget(),
-       AppNavigationRoutes.confirmation: (context) => const K1AuthScreenWidget(),
-     AppNavigationRoutes.mainScreen: (context) =>  K2MainScreenWidget(),
-    AppNavigationRoutes.account: (context) => const K3AccounrScreenWidget(),
-   
-    AppNavigationRoutes.projects: (context) => const K4ProjectsScreenWidget(),
+    AppNavigationRoutes.auth: (context) => const K0AuthScreenWidget(),
+    AppNavigationRoutes.confirmation: (context) => const K1AuthScreenWidget(),
+    AppNavigationRoutes.mainScreen: (context) => K2MainScreenWidget(),
+     AppNavigationRoutes.account: (context) =>  K2MainScreenWidget(),
+    //AppNavigationRoutes.projects: (context) => const K4ProjectsScreenWidget(),
 
+    AppNavigationRoutes.accountFormName: (context) => K7AccountFormNameWidget(),
 
 //!--------------------
     // AppNavigationRoutes.accountFormSurname: (context) => ChangeNotifierProvider(
