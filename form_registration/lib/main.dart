@@ -4,7 +4,6 @@ import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/provider
 import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/provider/k1_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 
-
 import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context) => Screen0Provider()),
             ChangeNotifierProvider(create: (context) => Screen1Provider()),
             ChangeNotifierProvider(create: (context) => Screen2Provider()),
-           
           ],
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
@@ -45,9 +43,12 @@ class MyApp extends StatelessWidget {
 
                 initialRoute: MainNavigation().initialRoute,
                 routes: MainNavigation().routes,
+                //! дизайн не адаптивный(Наименование и заголовки точно)
                 //!добавить показ клавы на айфоне!!!!!
+                //! клава на регистрации не номер!!!!!!!!!!
                 //!клавиатура наезжает на кнопку
-                //! повесить функцию на клавиатуру тоже
+                //! повесить функцию на клавиатуру тоже(ВСЕ ЭКРАНЫ)
+                //! спроэктоа можно уйти на регистрацию - нужно исправить!!!
                 //!изменить клавиатуру на регистрации и на подтверждении тоже!!!
                 //! при возврате на 0 стриать тулефон
 

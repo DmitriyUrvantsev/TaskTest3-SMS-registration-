@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/k1_confirmation_screen.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/screens/k0_auth_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr356_account/account_form/k7_account_form_name.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr356_account/account_form/k7_account_form_surname.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr356_account/k3_account_screen.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_name.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_surname.dart';
 
 abstract class AppNavigationRoutes {
   static const auth = '/'; //k3 + color k0(k9 - дергается)
