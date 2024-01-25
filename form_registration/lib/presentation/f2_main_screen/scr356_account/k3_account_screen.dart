@@ -29,12 +29,19 @@ class K3AccounrScreenWidget extends StatelessWidget {
             Text('apollo@gmail.com',
                 style: CustomTextStyles.labelLargeSFProTextGray600),
             SizedBox(height: 27.v),
-            _buildRow(context, action: 'Имя', action1: watch.userName,
-                onTapRow: () {
-              read.showFormName(context);
-            }),
+            _sectionRowNameSurNameChous(
+              context,
+              action: 'Имя',
+              action1: watch.userName,
+              onTapRow: () => read.showFormName(context),
+            ),
             SizedBox(height: 5.v),
-            _buildRow(context, action: 'Фамилия', action1: 'Настроить')
+            _sectionRowNameSurNameChous(
+              context,
+              action: 'Фамилия',
+              action1: watch.userSurName,
+              onTapRow: () => read.showFormSurName(context),
+            )
           ])),
     );
   }
@@ -75,7 +82,7 @@ class K3AccounrScreenWidget extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildRow(
+  Widget _sectionRowNameSurNameChous(
     BuildContext context, {
     required String action,
     required String action1,

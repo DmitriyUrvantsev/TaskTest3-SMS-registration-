@@ -4,6 +4,7 @@ import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/
 import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/screens/k0_auth_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr356_account/account_form/k7_account_form_name.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr356_account/account_form/k7_account_form_surname.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr356_account/k3_account_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
 
@@ -15,7 +16,7 @@ abstract class AppNavigationRoutes {
   static const account = 'main_screen/account'; //k6, k7(photo)
 
   static const accountFormName = 'main_screen/account/accountFormName'; //k5, k8
-  static const accountFormSurname =
+  static const accountFormSurName =
       'main_screen/account/accountFormSurname'; //k5,k8
 }
 
@@ -29,7 +30,8 @@ class MainNavigation {
      AppNavigationRoutes.account: (context) =>  K2MainScreenWidget(),
     //AppNavigationRoutes.projects: (context) => const K4ProjectsScreenWidget(),
 
-    AppNavigationRoutes.accountFormName: (context) => K7AccountFormNameWidget(),
+    AppNavigationRoutes.accountFormName: (context) => const K7AccountFormNameWidget(),
+       AppNavigationRoutes.accountFormSurName: (context) => const K7AccountFormSurNameWidget(),
 
 //!--------------------
     // AppNavigationRoutes.accountFormSurname: (context) => ChangeNotifierProvider(

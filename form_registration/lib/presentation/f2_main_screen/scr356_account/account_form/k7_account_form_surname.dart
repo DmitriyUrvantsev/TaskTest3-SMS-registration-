@@ -10,8 +10,8 @@ import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_text_form_field.dart';
 
-class K7AccountFormNameWidget extends StatelessWidget {
-  const K7AccountFormNameWidget({super.key});
+class K7AccountFormSurNameWidget extends StatelessWidget {
+  const K7AccountFormSurNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,12 @@ class K7AccountFormNameWidget extends StatelessWidget {
                 key: formKey,
                 child: CustomTextFormField(
                   validator: (val) => val != null
-                      ? (val.isEmpty || val.length > 20
-                          ? 'Введите Ваше имя'
+                      ? (val.isEmpty || val.length > 25
+                          ? 'Введите фамилию'
                           : null)
                       : null,
-                  controller: read.yourNameController,
-                  hintText: 'Ваше имя',
+                  controller: read.yourSurNameController,
+                  hintText: 'Ваша фамилия',
                   textInputAction: TextInputAction.done,
                   borderDecoration:
                       TextFormFieldStyleHelper.fillOnPrimaryContainer,
@@ -64,7 +64,7 @@ class K7AccountFormNameWidget extends StatelessWidget {
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
-        onTap: () => read.backToAccount(context),
+        onTap: () => read.backToAccountFromSurName(context),
         color: PrimaryColors().lightBlueA700,
         imagePath: ImageConstant.imgArrowRight,
         margin: EdgeInsets.only(
@@ -78,13 +78,13 @@ class K7AccountFormNameWidget extends StatelessWidget {
         child: Row(
           children: [
             AppbarSubtitle(
-              onTap: () => read.backToAccount(context),
+              onTap: () => read.backToAccountFromSurName(context),
               text: 'Аккаунт',
               margin: EdgeInsets.only(top: 1.v),
             ),
             AppbarTitle(
               onTap: () {},
-              text: 'Ваше имя',
+              text: 'Ваша фамилия',
               margin: EdgeInsets.only(left: 53.h),
             ),
           ],

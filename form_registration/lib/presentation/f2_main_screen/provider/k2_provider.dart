@@ -10,6 +10,7 @@ class Screen2Provider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   //TextEditingController otpController = TextEditingController();
   TextEditingController yourNameController = TextEditingController();
+  TextEditingController yourSurNameController = TextEditingController();
   //---------------------------------------------------------------------------
   final List mainScreenWidget = [
     const K4ProjectsScreenWidget(),
@@ -50,6 +51,10 @@ class Screen2Provider extends ChangeNotifier {
   void showFormName(context) {
     Navigator.of(context).pushNamed(AppNavigationRoutes.accountFormName);
   }
+
+  void showFormSurName(context) {
+    Navigator.of(context).pushNamed(AppNavigationRoutes.accountFormSurName);
+  }
 //==============================================================================
 
 //!=======Form Name Model==================================================
@@ -64,11 +69,35 @@ class Screen2Provider extends ChangeNotifier {
       Navigator.pop(context);
     }
   }
+//==============================================================================
+//
+
+  //!=======Form SurName Model==================================================
+
+  String userSurName = 'Настроить';
+
+  void backToAccountFromSurName(context) {
+    if (formKey.currentState?.validate() ?? false) {
+      userSurName = yourSurNameController.text.substring(0, 1).toUpperCase() +
+          yourSurNameController.text
+              .substring(
+                1,
+              )
+              .toLowerCase();
+      print('userSurName $userSurName');
+      notifyListeners();
+      Navigator.pop(context);
+    }
+  }
+//==============================================================================
 
   @override
   void dispose() {
     super.dispose();
     yourNameController.dispose();
   }
-//==============================================================================
+
+//
+
+//showFormSurName(context)
 }
