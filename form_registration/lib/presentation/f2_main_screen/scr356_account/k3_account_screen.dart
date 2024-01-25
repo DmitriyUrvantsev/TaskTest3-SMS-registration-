@@ -1,13 +1,53 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_ios/image_picker_ios.dart';
 
-class K3AccounrScreenWidget extends StatelessWidget {
+class K3AccounrScreenWidget extends StatefulWidget {
   const K3AccounrScreenWidget({super.key});
+
+  @override
+  State<K3AccounrScreenWidget> createState() => _K3AccounrScreenWidgetState();
+}
+
+class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
+  //!===========================================================================
+  final imagePicer = ImagePicker();
+  File? myImage;
+
+  Future pickCamera() async {
+    final myCamera = await imagePicer.pickImage(source: ImageSource.camera);
+    if (myCamera == null) {
+      return;
+    }
+  }
+
+  Future pickImage() async {
+    //try {
+    final myImage = await imagePicer.pickImage(source: ImageSource.gallery);
+    if (myImage == null) {
+      return;
+    }
+    final imageTemporary = File(myImage.path);
+
+    setState(() {
+      this.myImage = imageTemporary;
+    });
+    // } on PlatformException catch (e) {
+    //   print('проблемы с $e');
+    // }
+  }
+
+  //!===========================================================================
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +65,67 @@ class K3AccounrScreenWidget extends StatelessWidget {
                 imagePath: ImageConstant.imgContrast,
                 height: 76.v,
                 width: 73.h),
+//==============================================================================
+            SizedBox(height: 17.v),
+
+            ElevatedButton.icon(
+                onPressed: () {
+                  pickCamera();
+                },
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.amber,
+                ),
+                label: const Text(
+                  'камера',
+                  style: TextStyle(color: Colors.black),
+                )),
+            ElevatedButton.icon(
+                onPressed: () => pickImage(),
+                icon: const Icon(
+                  Icons.image,
+                  color: Colors.amber,
+                ),
+                label: const Text(
+                  'галерея',
+                  style: TextStyle(color: Colors.black),
+                )),
+
+            // //!!!++++++++++++++++++++++++++++++++++++++
+            // SizedBox(
+            //     height: 79.v,
+            //     width: 78.h,
+            //     child: Stack(alignment: Alignment.topLeft, children: [
+            //       CustomImageView(
+            //           imagePath: ImageConstant.imgClose,
+            //           height: 59.adaptSize,
+            //           width: 59.adaptSize,
+            //           alignment: Alignment.centerLeft,
+            //           margin: EdgeInsets.only(left: 6.h)),
+            //       Align(
+            //           alignment: Alignment.topLeft,
+            //           child: Container(
+            //               height: 76.v,
+            //               width: 73.h,
+            //               decoration: BoxDecoration(
+            //                   image: DecorationImage(
+            //                       image: fs.Svg(ImageConstant.imgGroup1),
+            //                       fit: BoxFit.cover)),
+            //               child: CustomImageView(
+            //                   imagePath: ImageConstant.imgEllipse8,
+            //                   height: 76.v,
+            //                   width: 73.h,
+            //                   radius: BorderRadius.circular(38.h),
+            //                   alignment: Alignment.center))),
+            //       CustomImageView(
+            //           imagePath: ImageConstant.imgCloseGray100,
+            //           height: 31.v,
+            //           width: 32.h,
+            //           alignment: Alignment.bottomRight)
+            //     ])),
+
+//!!!++++++++++++++++++++++++++++++++++++++
+
             SizedBox(height: 17.v),
             Text('apollo@gmail.com',
                 style: CustomTextStyles.labelLargeSFProTextGray600),
