@@ -1,16 +1,17 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_ios/image_picker_ios.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class K3AccounrScreenWidget extends StatefulWidget {
   const K3AccounrScreenWidget({super.key});
@@ -22,29 +23,22 @@ class K3AccounrScreenWidget extends StatefulWidget {
 class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
   //!===========================================================================
   final imagePicer = ImagePicker();
-  File? myImage;
+  File? photo;
 
-  Future pickCamera() async {
-    final myCamera = await imagePicer.pickImage(source: ImageSource.camera);
-    if (myCamera == null) {
-      return;
+  Future pickImage(ImageSource source) async {
+    try {
+      final myImage = await imagePicer.pickImage(source: source);
+      if (myImage == null) {
+        return;
+      }
+      final imageTemporary = File(myImage.path);
+
+      setState(() {
+        photo = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('проблемы с $e');
     }
-  }
-
-  Future pickImage() async {
-    //try {
-    final myImage = await imagePicer.pickImage(source: ImageSource.gallery);
-    if (myImage == null) {
-      return;
-    }
-    final imageTemporary = File(myImage.path);
-
-    setState(() {
-      this.myImage = imageTemporary;
-    });
-    // } on PlatformException catch (e) {
-    //   print('проблемы с $e');
-    // }
   }
 
   //!===========================================================================
@@ -60,18 +54,11 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
-            CustomImageView(
-                color: PrimaryColors().lightBlueA700,
-                imagePath: ImageConstant.imgContrast,
-                height: 76.v,
-                width: 73.h),
 //==============================================================================
             SizedBox(height: 17.v),
 
             ElevatedButton.icon(
-                onPressed: () {
-                  pickCamera();
-                },
+                onPressed: () => pickImage(ImageSource.camera),
                 icon: const Icon(
                   Icons.camera_alt_outlined,
                   color: Colors.amber,
@@ -81,7 +68,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
                   style: TextStyle(color: Colors.black),
                 )),
             ElevatedButton.icon(
-                onPressed: () => pickImage(),
+                onPressed: () => pickImage(ImageSource.gallery),
                 icon: const Icon(
                   Icons.image,
                   color: Colors.amber,
@@ -91,38 +78,60 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
                   style: TextStyle(color: Colors.black),
                 )),
 
-            // //!!!++++++++++++++++++++++++++++++++++++++
-            // SizedBox(
-            //     height: 79.v,
-            //     width: 78.h,
-            //     child: Stack(alignment: Alignment.topLeft, children: [
-            //       CustomImageView(
-            //           imagePath: ImageConstant.imgClose,
-            //           height: 59.adaptSize,
-            //           width: 59.adaptSize,
-            //           alignment: Alignment.centerLeft,
-            //           margin: EdgeInsets.only(left: 6.h)),
-            //       Align(
-            //           alignment: Alignment.topLeft,
-            //           child: Container(
-            //               height: 76.v,
-            //               width: 73.h,
-            //               decoration: BoxDecoration(
-            //                   image: DecorationImage(
-            //                       image: fs.Svg(ImageConstant.imgGroup1),
-            //                       fit: BoxFit.cover)),
-            //               child: CustomImageView(
-            //                   imagePath: ImageConstant.imgEllipse8,
-            //                   height: 76.v,
-            //                   width: 73.h,
-            //                   radius: BorderRadius.circular(38.h),
-            //                   alignment: Alignment.center))),
-            //       CustomImageView(
-            //           imagePath: ImageConstant.imgCloseGray100,
-            //           height: 31.v,
-            //           width: 32.h,
-            //           alignment: Alignment.bottomRight)
-            //     ])),
+//!=============================================================================
+//---------------------------ABATARKA-------------------------------------------
+//!=============================================================================
+            SizedBox(
+                height: 79.v,
+                width: 78.h,
+                child: Stack(alignment: Alignment.topLeft, children: [
+                  CustomImageView(
+                      //! синяя подложка под svg
+                      imagePath: ImageConstant.imgClose,
+                      color: PrimaryColors().lightBlueA700, //!
+                      height: 59.adaptSize,
+                      width: 59.adaptSize,
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(left: 6.h)),
+                  //!=========================================================
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                          //! иконка svg
+                          height: 76.v,
+                          width: 73.h,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: fs.Svg(
+                                    ImageConstant.imgGroup1,
+                                  ), //!
+                                  fit: BoxFit.cover)),
+                          //!---------------Фото----------------------------------
+                          child: photo != null
+                              ? //Image.file(photo!) : const SizedBox.shrink()
+                              CustomImageView(
+                                  imagePath: photo!.path,
+                                  height: 76.v,
+                                  width: 73.h,
+                                  radius: BorderRadius.circular(38.h),
+                                  alignment: Alignment.center)
+                              : const SizedBox.shrink())),
+                  //!=========================================================
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      //! иконка svg
+                      height: 31.v,
+                      width: 31.h,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: fs.Svg(ImageConstant.imgCloseGray100,
+                                  color: Colors.black), //!
+                              fit: BoxFit.cover)),
+                    ),
+                  )
+                ])),
 
 //!!!++++++++++++++++++++++++++++++++++++++
 

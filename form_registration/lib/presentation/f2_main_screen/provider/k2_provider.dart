@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 //import 'package:form_registration/presentation/f2_main_screen/models/k2_model.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr356_account/k3_account_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr3_account/k3_account_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
 import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
