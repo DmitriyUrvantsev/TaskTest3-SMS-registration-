@@ -162,29 +162,33 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
                       width: 59.adaptSize,
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.only(left: 6.h)),
+
                   //!=========================================================
                   Align(
                       alignment: Alignment.topLeft,
                       child: Container(
-                          //! иконка svg
-                          height: 76.v,
-                          width: 73.h,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: fs.Svg(
-                                    ImageConstant.imgGroup1,
-                                  ), //!
-                                  fit: BoxFit.cover)),
-                          //!---------------Фото----------------------------------
-                          child: photo != null
-                              ? //Image.file(photo!) : const SizedBox.shrink()
-                              CustomImageView(
-                                  imagePath: photo!.path,
-                                  height: 76.v,
-                                  width: 73.h,
-                                  radius: BorderRadius.circular(38.h),
-                                  alignment: Alignment.center)
-                              : const SizedBox.shrink())),
+                        //! иконка svg
+                        height: 76.v,
+                        width: 73.h,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: fs.Svg(
+                                  ImageConstant.imgGroup1,
+                                ), //!
+                                fit: BoxFit.cover)),
+                        //!---------------Фото----------------------------------
+                        child: photo != null
+                            ? Container(
+                                width: 100,
+                                height: 100,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.file(photo!, fit: BoxFit.fill),
+                              )
+                            : const SizedBox.shrink(),
+                      )),
                   //!=========================================================
                   Positioned(
                     bottom: 0,
