@@ -150,53 +150,59 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
 //!=============================================================================
 //---------------------------ABATARKA-------------------------------------------
 //!=============================================================================
+
             SizedBox(
-                height: 79.v,
-                width: 78.h,
-                child: Stack(alignment: Alignment.topLeft, children: [
-                  CustomImageView(
-                      //! синяя подложка под svg
-                      imagePath: ImageConstant.imgClose,
-                      color: PrimaryColors().lightBlueA700, //!
-                      height: 59.adaptSize,
-                      width: 59.adaptSize,
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 6.h)),
+                height: 95.adaptSize,
+                width: 95.adaptSize,
+                child: Stack(alignment: Alignment.center, children: [
+                  Stack(
+                    children: [
+                      CustomImageView(
+                          //! синяя подложка под svg
+                          imagePath: ImageConstant.imgClose,
+                          color: PrimaryColors().lightBlueA700, //!
+                          height: 70.adaptSize,
+                          width: 70.adaptSize,
+                          // alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.only(left: 3.h, top: 5)),
 
-                  //!=========================================================
-                  Container(
-                    //! иконка svg
-                    height: 76.v,
-                    width: 73.h,
+                      //!=========================================================
+                      Container(
+                        //! иконка svg
+                        height: 76.adaptSize,
+                        width: 76.adaptSize,
 
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: fs.Svg(
-                              ImageConstant.imgGroup1,
-                            ), //!
-                            fit: BoxFit.cover)),
-                    //!---------------Фото----------------------------------
-                    child: photo != null
-                        ?
-                        //
-                        //
-                        Container(
-                            // width: 250,
-                            // height: 250,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child:
-                                Image.file(photo!,
-                                
-                                 fit: BoxFit.cover),
-                          )
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: fs.Svg(
+                                  ImageConstant.imgGroup1,
+                                ), //!
+                                fit: BoxFit.cover)),
+                      ),
 
-                        //
-                        //
-                        : const SizedBox.shrink(),
+                      //!---------------Фото----------------------------------
+                      photo != null
+                          ?
+                          //
+                          //
+                          Container(
+                              height: 76.adaptSize,
+                              width: 76.adaptSize,
+                              clipBehavior: Clip.hardEdge,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.file(photo!,
+                                  width: 80, height: 80, fit: BoxFit.cover),
+                            )
+
+                          //
+                          //
+                          : const SizedBox.shrink(),
+                    ],
                   ),
+
+                  // ),
                   //!=========================================================
                   Positioned(
                     bottom: 0,
