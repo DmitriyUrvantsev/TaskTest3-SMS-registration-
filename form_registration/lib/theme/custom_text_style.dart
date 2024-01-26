@@ -20,6 +20,12 @@ class CustomTextStyles {
   static get bodyLargeLightblueA700 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.lightBlueA700,
       );
+  static get bodyLargeLightblueA700PopUp => theme.textTheme.bodyLarge!
+      .copyWith(color: appTheme.lightBlueA700, fontSize: 20);
+
+      static get bodyLargeLightblueA700PopUpBold => theme.textTheme.bodyLarge!
+      .copyWith(color: appTheme.lightBlueA700, fontSize: 20, fontWeight: FontWeight.bold);
+
   static get bodyLargeOnPrimary => theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
       );
@@ -48,6 +54,4 @@ extension on TextStyle {
       fontFamily: 'SF Pro Text',
     );
   }
-
-
 }

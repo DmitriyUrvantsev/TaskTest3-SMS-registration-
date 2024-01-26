@@ -12,6 +12,8 @@ import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 class K3AccounrScreenWidget extends StatefulWidget {
   const K3AccounrScreenWidget({super.key});
@@ -24,7 +26,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
   //!===========================================================================
   final imagePicer = ImagePicker();
   File? photo;
-
+//=====================функция загрузки фото===========================
   Future pickImage(ImageSource source) async {
     try {
       final myImage = await imagePicer.pickImage(source: source);
@@ -32,12 +34,103 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
         return;
       }
       final imageTemporary = File(myImage.path);
-
+      //final imageTemporary = saveImagePermanently(myImage.path);
       setState(() {
-        photo = imageTemporary;
+        photo = imageTemporary as File;
       });
     } on PlatformException catch (e) {
       print('проблемы с $e');
+    }
+  }
+
+  // Future<File> saveImagePermanently(String imagePath) async {
+  //   final directiry = await getApplicationDocumentsDirectory();
+  //   final name = basename(imagePath);
+  //   final image = File('${directiry.path}/$name');
+  //   return File(imagePath).copy(image.path);
+  // }
+
+  //!===========================================================================
+  //!===========================================================================
+  //=========функция диалога выбора загрузки для  iOS===========================
+  Future<ImageSource?> showImageSource(BuildContext context) async {
+    if (Platform.isIOS) {
+      return showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoActionSheet(
+          message: Text(
+            'Выберете фото',
+            style: CustomTextStyles.bodyLargeLightblueA700.copyWith(
+              color: appTheme.gray600,
+            ),
+          ),
+          cancelButton: TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(ImageSource.camera);
+            },
+            child: Text(
+              'Закрыть',
+              style: CustomTextStyles.bodyLargeLightblueA700PopUpBold,
+            ),
+          ), //!
+          actions: [
+            CupertinoActionSheetAction(
+                onPressed: () {
+                  pickImage(ImageSource.camera);
+                  Navigator.of(context).pop(ImageSource.camera);
+                },
+                child: Text(
+                  'Камера',
+                  style: CustomTextStyles.bodyLargeLightblueA700PopUp,
+                )),
+            CupertinoActionSheetAction(
+                onPressed: () {
+                  pickImage(ImageSource.gallery);
+                  Navigator.of(context).pop(ImageSource.gallery);
+                },
+                child: Text(
+                  'Галерея Фото',
+                  style: CustomTextStyles.bodyLargeLightblueA700PopUp,
+                )),
+          ],
+        ),
+      );
+    } else {
+      return showModalBottomSheet(
+          context: context,
+          builder: (context) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.camera_alt_outlined,
+                        color: PrimaryColors().lightBlueA700),
+                    title: Text(
+                      'Камерa',
+                      style: CustomTextStyles.bodyLargeLightblueA700.copyWith(
+                        color: appTheme.lightBlueA700,
+                      ),
+                    ),
+                    onTap: () {
+                      pickImage(ImageSource.camera);
+                      Navigator.of(context).pop(ImageSource.camera);
+                    },
+                  ),
+                  ListTile(
+                    leading:
+                        Icon(Icons.image, color: PrimaryColors().lightBlueA700),
+                    title: Text(
+                      'Галерея',
+                      style: CustomTextStyles.bodyLargeLightblueA700.copyWith(
+                        color: appTheme.lightBlueA700,
+                      ),
+                    ),
+                    onTap: () {
+                      pickImage(ImageSource.gallery);
+                      Navigator.of(context).pop(ImageSource.gallery);
+                    },
+                  ),
+                ],
+              ));
     }
   }
 
@@ -54,30 +147,6 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
-//==============================================================================
-            SizedBox(height: 17.v),
-
-            ElevatedButton.icon(
-                onPressed: () => pickImage(ImageSource.camera),
-                icon: const Icon(
-                  Icons.camera_alt_outlined,
-                  color: Colors.amber,
-                ),
-                label: const Text(
-                  'камера',
-                  style: TextStyle(color: Colors.black),
-                )),
-            ElevatedButton.icon(
-                onPressed: () => pickImage(ImageSource.gallery),
-                icon: const Icon(
-                  Icons.image,
-                  color: Colors.amber,
-                ),
-                label: const Text(
-                  'галерея',
-                  style: TextStyle(color: Colors.black),
-                )),
-
 //!=============================================================================
 //---------------------------ABATARKA-------------------------------------------
 //!=============================================================================
@@ -120,15 +189,18 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Container(
-                      //! иконка svg
-                      height: 31.v,
-                      width: 31.h,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: fs.Svg(ImageConstant.imgCloseGray100,
-                                  color: Colors.black), //!
-                              fit: BoxFit.cover)),
+                    child: GestureDetector(
+                      onTap: () => showImageSource(context),
+                      child: Container(
+                        //! иконка svg - кнопка выбора загрузки
+                        height: 31.v,
+                        width: 31.h,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: fs.Svg(ImageConstant.imgCloseGray100,
+                                    color: Colors.black), //!
+                                fit: BoxFit.cover)),
+                      ),
                     ),
                   )
                 ])),
@@ -180,7 +252,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
                 text: 'Аккаунт',
                 margin: EdgeInsets.only(left: 26.h))
           ])),
-      styleType: Style.bgShadow,
+      // styleType: Style.bgShadow,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(4.0),
         child: Container(
