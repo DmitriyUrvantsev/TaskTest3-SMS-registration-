@@ -12,8 +12,7 @@ import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
+
 
 class K3AccounrScreenWidget extends StatefulWidget {
   const K3AccounrScreenWidget({super.key});

@@ -1,2 +1,0 @@
-
-class K9Model {}

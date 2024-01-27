@@ -1,2 +1,0 @@
-
-class K5Model {}

@@ -85,7 +85,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget textFormFieldWidget(BuildContext context) => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(
-          initialValue: prefixText,//!======
+          initialValue: prefixText, //!======
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
@@ -97,6 +97,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: textInputType,
           maxLines: maxLines ?? 1,
           decoration: decoration,
+          onChanged: onChanged,
           validator: validator,
           inputFormatters: inputFormatters,
         ),

@@ -12,6 +12,7 @@ class AuthFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final read = context.read<Screen0Provider>();
     final formKey = read.formKey;
+   // final controller = read.controller;
     MaskTextInputFormatter maskFormatter = read.maskFormatter;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -22,9 +23,13 @@ class AuthFieldWidget extends StatelessWidget {
         child: Column(
           children: [
             CustomTextFormField(
+             // controller: controller, //!
+              keyboardType: TextInputType.phone,
+           onChanged: (p0) => read.phone,
               validator: (val) => val != null
                   ? (val.length < 17 ? 'Введите номер телефона' : null)
                   : null,
+                  
               prefixText: '+7',
               textInputAction: TextInputAction.done,
               autofocus: false,

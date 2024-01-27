@@ -1,14 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_registration/data/models/user/userApp.dart';
+import 'package:form_registration/firebase_options.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/provider/k0_provider.dart';
 import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/provider/k1_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/servises/auth_servises.dart';
 
 import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+   options: DefaultFirebaseOptions.currentPlatform,
+  );
   Future.wait([
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -32,6 +39,10 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context) => Screen0Provider()),
             ChangeNotifierProvider(create: (context) => Screen1Provider()),
             ChangeNotifierProvider(create: (context) => Screen2Provider()),
+             StreamProvider<UserApp?>.value(
+          value: AuthService().user,
+          initialData: null,
+        ),
           ],
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
@@ -62,3 +73,49 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:firebase_2/domain/entity/user.dart';
+// import 'package:firebase_2/servises/auth_servises.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'firebase_options.dart';
+// import 'screen/auth/auth_model.dart';
+// import 'screen/home/home_model.dart';
+// import 'wrapper.dart';
+
+// //start
+
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (context) => AuthenticateModel()),
+//         ChangeNotifierProvider(create: (context) => HomeWidgetModel()),
+//         StreamProvider<UserApp?>.value(
+//           value: AuthService().user,
+//           initialData: null,
+//         ),
+//       ],
+//       child: MaterialApp(
+//         routes: {
+//           '/': (context) => const Wrapper(),
+// //можно было оставить home..
+//         },
+//         initialRoute: '/',
+//       ),
+//     );
+//   }
+// }

@@ -56,7 +56,7 @@ class K1AuthScreenWidget extends StatelessWidget {
                       builder: (context, otpController, child) {
                         return CustomPinCodeTextField(
                             context: context,
-                            controller: otpController,
+                            controller: otpController,// здесь null вызодит типа disposnuto уже
                             onChanged: (value) {
                               otpController?.text = value;
                             },

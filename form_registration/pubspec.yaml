@@ -6,8 +6,13 @@ environment:
 dependencies:
   another_stepper: ^1.2.2
   cached_network_image: ^3.3.1
+  cloud_firestore: ^4.14.0
+  complete_timer: ^1.0.0
   connectivity_plus: ^5.0.2
   dialogx: ^1.0.0
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
+  firebase_ui_auth: ^1.12.1
   flutter:
     sdk: flutter
   flutter_localizations:
