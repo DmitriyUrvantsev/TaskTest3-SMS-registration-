@@ -10,6 +10,7 @@ import 'package:form_registration/servises/data_base.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? userName;
+    static String verifyId = "";//!===============
 
   // создание нашего UseraApp на данных user FireBase
   UserApp? _userFromFirebaseUser(User? user) {
@@ -22,84 +23,58 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
-  // // ---------войти анонимно------------
-  // Future signInAnon() async {
-  //   try {
-  //     UserCredential result = await _auth.signInAnonymously();
-  //     User? user = result.user;
-
-  //     return _userFromFirebaseUser(user);
-  //   } catch (e) {
-  //     print('ошибка при анонимном входе - ${e.toString()}');
-  //     return null;
-  //   }
-  // }
-
-  // ---------войти с email и password---------
-  // Future signInWithEmailAndPassword(String email, String password) async {
-  //   try {
-  //     UserCredential result = await _auth.signInWithEmailAndPassword(
-  //         email: email, password: password);
-  //     User? user = result.user;
-
-  //     return user;
-  //   } catch (error) {
-  //     print('error.toString() ${error.toString()}');
-  //     return null;
-  //   }
-  // }
-
-  // ---------зарегистрироваться с email и password---------
-  // Future registerWithEmailAndPassword(
-  //     String userFio, String email, String password) async {
-  //   userName = userFio;
-  //   try {
-  //     UserCredential result = await _auth.createUserWithEmailAndPassword(
-  //         email: email, password: password);
-  //     User? user = result.user;
-  //     await DatabaseService(uid: user!.uid).updateUserData(
-  //         '$userName:\n  - чтобы оформить заказ \n - жми "заказ"');
-  //     print('userName - $userName');
-  //     print('user - $user');
-  //     return _userFromFirebaseUser(user);
-  //   } catch (error) {
-  //     print('error.toString() ${error.toString()}');
-  //     return null;
-  //   }
-  // }
 
   Future<String>? registerWithPhone(String phoneNumber, BuildContext context) {
-    final completer = Completer<String>();
+    //final completer = Completer<String>();
 
     try {
       _auth.verifyPhoneNumber(
         phoneNumber: '+79108273848',
         //phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          UserCredential authresult =
-              await _auth.signInWithCredential(credential);
+        //timeout: const Duration(seconds: 60),
 
-          User? user = authresult.user;
-          _userFromFirebaseUser(user);
-          completer.complete("signedUp");
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          String error = e.code == 'invalid-phone-number'
-              ? "Invalid number. Enter again."
-              : "Can Not Login Now. Please try again.";
-          completer.complete(error);
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          completer.complete("verified");
-          //! Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          completer.complete("timeout");
-        },
+        
+        // verificationCompleted: (PhoneAuthCredential credential) async {
+        //   UserCredential authresult =
+        //       await _auth.signInWithCredential(credential);
+
+        //   User? user = authresult.user;
+        //   _userFromFirebaseUser(user);
+        //   completer.complete("signedUp");
+        // },
+         verificationCompleted: (phoneAuthCredential) async {
+        return;
+      },
+
+        // verificationFailed: (FirebaseAuthException e) {
+        //   String error = e.code == 'invalid-phone-number'
+        //       ? "Invalid number. Enter again."
+        //       : "Can Not Login Now. Please try again.";
+        //   completer.complete(error);
+        // },
+        verificationFailed: (error) async {
+        return;
+      },
+
+        // codeSent: (String verificationId, int? resendToken) {
+        //   completer.complete("verified");
+        //   //! Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
+        // },
+        codeSent: (verificationId, forceResendingToken) async {
+        verifyId = verificationId;
+        Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
+        //nextStep();
+      },
+
+        // codeAutoRetrievalTimeout: (String verificationId) {
+        //   completer.complete("timeout");
+        // },
+        codeAutoRetrievalTimeout: (verificationId) async {
+        return;
+      },
       );
 
-      return completer.future;
+     // return completer.future;
     } on Exception catch (error) {
       print('error.toString() ${error.toString()}');
     }
