@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,29 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBO7XTuu6Fuvtj_6MgdjHojtRiy1qyPdH4',
-    appId: '1:355509414488:web:a9e07dcee64869c338382d',
-    messagingSenderId: '355509414488',
-    projectId: 'task-3-sms-registration',
-    authDomain: 'task-3-sms-registration.firebaseapp.com',
-    storageBucket: 'task-3-sms-registration.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDwVtuxp1wvxGniF0xq62HtkNWcRg-T28Q',
-    appId: '1:355509414488:android:608091551bf33f0a38382d',
-    messagingSenderId: '355509414488',
-    projectId: 'task-3-sms-registration',
-    storageBucket: 'task-3-sms-registration.appspot.com',
+    apiKey: 'AIzaSyC5XBDhEDRbHLVtr1UbdG7L1nXojO8uay4',
+    appId: '1:667777884399:android:2105104a983ea37cadfb1a',
+    messagingSenderId: '667777884399',
+    projectId: 'smsregistration',
+    storageBucket: 'smsregistration.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAQftL2kdby-EN8nHuPBp1xxGSrZZqvvVk',
-    appId: '1:355509414488:ios:4a5f91524a0b2fcf38382d',
-    messagingSenderId: '355509414488',
-    projectId: 'task-3-sms-registration',
-    storageBucket: 'task-3-sms-registration.appspot.com',
+    apiKey: 'AIzaSyCTQmmr09uuEpcsi5KLwtzXLVDa20IxWmI',
+    appId: '1:667777884399:ios:6c5e7277f0164ad6adfb1a',
+    messagingSenderId: '667777884399',
+    projectId: 'smsregistration',
+    storageBucket: 'smsregistration.appspot.com',
+    iosClientId: '667777884399-c3trfo6uul5hdpbcvh9gremupe2v3k8o.apps.googleusercontent.com',
     iosBundleId: 'com.example.formRegistration',
   );
 }

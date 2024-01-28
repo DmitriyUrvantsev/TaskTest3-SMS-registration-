@@ -1,26 +1,43 @@
 {
   "project_info": {
-    "project_number": "355509414488",
-    "project_id": "task-3-sms-registration",
-    "storage_bucket": "task-3-sms-registration.appspot.com"
+    "project_number": "667777884399",
+    "project_id": "smsregistration",
+    "storage_bucket": "smsregistration.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:355509414488:android:608091551bf33f0a38382d",
+        "mobilesdk_app_id": "1:667777884399:android:2105104a983ea37cadfb1a",
         "android_client_info": {
           "package_name": "com.example.form_registration"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "667777884399-d5v6uqok9e4iqgnqpm7dias4h12a30gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDwVtuxp1wvxGniF0xq62HtkNWcRg-T28Q"
+          "current_key": "AIzaSyC5XBDhEDRbHLVtr1UbdG7L1nXojO8uay4"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667777884399-d5v6uqok9e4iqgnqpm7dias4h12a30gg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667777884399-c3trfo6uul5hdpbcvh9gremupe2v3k8o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.formRegistration"
+              }
+            }
+          ]
         }
       }
     }
