@@ -7,7 +7,6 @@ import 'package:form_registration/data/models/user/userApp.dart';
 import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/data_base.dart';
 
-
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? userName;
@@ -69,50 +68,43 @@ class AuthService {
   //   }
   // }
 
-
-  
-
-
   Future<String>? registerWithPhone(String phoneNumber, BuildContext context) {
-  final completer = Completer<String>();
+    final completer = Completer<String>();
 
-  try {
-  _auth.verifyPhoneNumber(
-    phoneNumber: phoneNumber,
-    timeout: const Duration(seconds: 60),
-    verificationCompleted: (PhoneAuthCredential credential) async {
-      UserCredential authresult =
-          await _auth.signInWithCredential(credential);
-  
-      User? user = authresult.user;
-      _userFromFirebaseUser(user);
-      completer.complete("signedUp");
-    },
-    verificationFailed: (FirebaseAuthException e) {
-      String error = e.code == 'invalid-phone-number'
-          ? "Invalid number. Enter again."
-          : "Can Not Login Now. Please try again.";
-      completer.complete(error);
-    },
-    codeSent: (String verificationId, int? resendToken) {
-      completer.complete("verified");
-      //! Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
-    },
-    codeAutoRetrievalTimeout: (String verificationId) {
-      completer.complete("timeout");
-    },
-  );
-  
-  return completer.future;
-} on Exception catch (error) {
-   print('error.toString() ${error.toString()}');
-}
-  return null;
-}
+    try {
+      _auth.verifyPhoneNumber(
+        phoneNumber: '+79108273848',
+        //phoneNumber,
+        timeout: const Duration(seconds: 60),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          UserCredential authresult =
+              await _auth.signInWithCredential(credential);
 
+          User? user = authresult.user;
+          _userFromFirebaseUser(user);
+          completer.complete("signedUp");
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          String error = e.code == 'invalid-phone-number'
+              ? "Invalid number. Enter again."
+              : "Can Not Login Now. Please try again.";
+          completer.complete(error);
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          completer.complete("verified");
+          //! Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          completer.complete("timeout");
+        },
+      );
 
-
-
+      return completer.future;
+    } on Exception catch (error) {
+      print('error.toString() ${error.toString()}');
+    }
+    return null;
+  }
 
   //--------- выйти ---------
   Future signOut() async {
