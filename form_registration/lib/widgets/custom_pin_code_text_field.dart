@@ -4,8 +4,6 @@ import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/main_pin_code_textfield.dart';
 import 'package:form_registration/widgets/main_pincode_textfield/models/pin-theme.dart';
 
-
-
 // ignore: must_be_immutable
 class CustomPinCodeTextField extends StatelessWidget {
   CustomPinCodeTextField({
@@ -25,7 +23,7 @@ class CustomPinCodeTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
-Function(String) onCompleted;
+  Function(String) onCompleted;
   Function(String) onChanged;
 
   final FormFieldValidator<String>? validator;
@@ -41,11 +39,10 @@ Function(String) onCompleted;
   }
 
   Widget get pinCodeTextFieldWidget => MainPinCodeTextField(
-   
         appContext: context,
         controller: controller,
         autoFocus: true,
-        length: 5,
+        length: 6,
         keyboardType: TextInputType.number,
         textStyle: textStyle ?? theme.textTheme.headlineMedium,
         hintStyle: hintStyle ?? theme.textTheme.headlineMedium,
@@ -64,7 +61,7 @@ Function(String) onCompleted;
           selectedColor: Colors.transparent,
         ),
         onChanged: (value) => onChanged(value),
-         onCompleted: (value) => onCompleted(value),
+        onCompleted: (value) => onCompleted(value),
         validator: validator,
       );
 }

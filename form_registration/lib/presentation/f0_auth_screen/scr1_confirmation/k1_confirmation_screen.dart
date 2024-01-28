@@ -1,18 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
+
 import 'provider/k1_provider.dart';
 
 class K1AuthScreenWidget extends StatelessWidget {
-  const K1AuthScreenWidget({super.key});
+  final String verificationId;
+ 
+  K1AuthScreenWidget(
+   {
+    Key? key,
+    required this.verificationId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final read = context.read<Screen1Provider>();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var testoviyUser;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: _sectionAppBar(context),
@@ -41,7 +53,7 @@ class K1AuthScreenWidget extends StatelessWidget {
               Container(
                   width: 261.h,
                   margin: EdgeInsets.only(left: 5.h, right: 6.h),
-                  child: Text('Введите номер телефона для регистрации',
+                  child: Text('Введите номер телефона для регистрации',//!===========
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
@@ -56,21 +68,43 @@ class K1AuthScreenWidget extends StatelessWidget {
                       builder: (context, otpController, child) {
                         return CustomPinCodeTextField(
                             context: context,
-                            controller: otpController,// здесь null вызодит типа disposnuto уже
+                            controller:
+                                otpController, // здесь null вызодит типа disposnuto уже
                             onChanged: (value) {
                               otpController?.text = value;
                             },
-                            onCompleted: (value) {
-                              read.showMainScreen(context);
+
+                            ///
+                            /////
+                            ///
+                            ///
+                            ///
+                            onCompleted: (value) async {
+                              //!======== read.showMainScreen(context);
+
+                              String smsCode = value;
+
+                              //! Create a PhoneAuthCredential with the code
+                              PhoneAuthCredential credential =
+                                  PhoneAuthProvider.credential(
+                                      verificationId: verificationId,
+                                      smsCode: smsCode);
+
+                              //! Sign the user in (or link) with the credential
+                              testoviyUser = await _auth.signInWithCredential(credential);
+                              //
+                              //
+                              print('testoviyUser -$testoviyUser');
+
+                              //
+                              //
                             });
                       })),
               SizedBox(height: 43.v),
 
               //!================================================
               GestureDetector(
-                  onTap: () {
-                    //!onTapTxtWidget(context);
-                  },
+                  onTap: () {},
                   child: Text('60 сек до повтора отправки кода',
                       style:
                           theme.textTheme.bodyMedium!.copyWith(height: 1.33))),

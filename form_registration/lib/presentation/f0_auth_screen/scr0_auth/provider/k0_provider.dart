@@ -19,7 +19,7 @@ class Screen0Provider extends ChangeNotifier {
   void showScreenConfirmation(context) {
     if (formKey.currentState?.validate() ?? false) {
       register(context);
-      Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
+      //Navigator.of(context).pushNamed(AppNavigationRoutes.confirmation);
     }
   }
 
