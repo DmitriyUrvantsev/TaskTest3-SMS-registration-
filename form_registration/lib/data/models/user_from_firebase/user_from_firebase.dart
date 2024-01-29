@@ -4,7 +4,7 @@ import 'dart:io';
 class UserFromFirebase {
   final String? name;
   final String? surName;
-  final File? avatar;
+  final String? avatar;
   UserFromFirebase({
     this.name,
     this.surName,

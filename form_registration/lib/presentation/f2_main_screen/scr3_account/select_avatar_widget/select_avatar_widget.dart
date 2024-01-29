@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
@@ -21,6 +22,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
   File? photo;
 //=====================функция загрузки фото===========================
   Future pickImage(ImageSource source) async {
+    final read = context.read<MainScreenProvider>();
     try {
       final myImage = await imagePicer.pickImage(source: source);
       if (myImage == null) {
@@ -33,17 +35,11 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
         //!------TEMP-----
         photo = imageTemporary as File;
         //---------------------
-        
-if (photo != null) {
-   final bytes = Uint8List.fromList(photo!.readAsBytesSync());
-final imgBase64 = base64Encode(bytes);
-print(imgBase64);
-}
 
-       
-
-
-
+        // if (photo != null) {
+        //   final bytes = Uint8List.fromList(photo!.readAsBytesSync());
+        //   final imgBase64 = base64Encode(bytes);
+        // }
 
         // print('imageTemporary - $imageTemporary');
         // print('imageTemporary.absolute - ${imageTemporary.absolute}');
@@ -52,7 +48,19 @@ print(imgBase64);
     } on PlatformException catch (e) {
       print('проблемы с $e');
     }
+    if (photo != null) {
+      final bytes = Uint8List.fromList(photo!.readAsBytesSync());
+      final imgBase64 = base64Encode(bytes);
+      read.inputAvatar( imgBase64);
+    }
   }
+  // @override
+  // void didChangeDependencies() {
+  //   // TODO: implement didChangeDependencies
+  //   super.didChangeDependencies();
+  //    final read = context.read<MainScreenProvider>();
+  //    read.inputAvatar(context, w)
+  // }
 
   // Future<File> saveImagePermanently(String imagePath) async {
   //   final directiry = await getApplicationDocumentsDirectory();
@@ -63,7 +71,7 @@ print(imgBase64);
 
   //!===========================================================================
   //!===========================================================================
-  
+
   @override
   Widget build(BuildContext context) {
     return
@@ -129,10 +137,7 @@ print(imgBase64);
                 bottom: 0,
                 right: 0,
                 child: GestureDetector(
-                  onTap: () => {
-                    showImageSource(context)
-
-                    },
+                  onTap: () => showImageSource(context),
                   child: Container(
                     //! иконка svg - кнопка выбора загрузки
                     height: 31.v,
@@ -149,10 +154,11 @@ print(imgBase64);
 
 //!!!++++++++++++++++++++++++++++++++++++++
   }
+
 //                                                                *
 //                                                                *
 //                                                                *
-//              МЕНЮ ВЫБОРА ЗАГРУЗКИ ИЗОБРАЖЕНИЯ                  *            
+//              МЕНЮ ВЫБОРА ЗАГРУЗКИ ИЗОБРАЖЕНИЯ                  *
 //                                                                *
 //                                                                *
 //                                                                *
@@ -239,7 +245,4 @@ print(imgBase64);
   }
 
   //!===========================================================================
-
-
-
 }

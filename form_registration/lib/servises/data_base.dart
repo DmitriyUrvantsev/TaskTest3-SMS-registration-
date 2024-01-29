@@ -28,6 +28,8 @@ class DatabaseService extends ChangeNotifier {
       FirebaseFirestore.instance.collection('form_registration');
 
   
+
+  
   Future<void> updateUserData(
       [String? name, String? surName, String? avatar]) async {
     Map<String, dynamic> data = {

@@ -13,7 +13,7 @@ class UserAppData {
   final String uid;
   final String? name;
   final String? surName;
-  final File? avatar;
+  final String? avatar;
   
   UserAppData({
     required this.uid,

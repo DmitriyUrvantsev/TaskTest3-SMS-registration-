@@ -53,9 +53,6 @@ class MainScreenProvider extends ChangeNotifier {
 //!=======AccountScreenModel==================================================
 //---------------------------------------
 
-
-
-
 //----------------------------------------
   String? currentName;
   String? currentSurName;
@@ -65,15 +62,13 @@ class MainScreenProvider extends ChangeNotifier {
 
   AsyncSnapshot<UserAppData>? snapShot;
 
- 
-
   Future saveChangesData() async {
     await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
-        //! разберись с id
-        currentName ?? snapShot?.data?.name,
-        currentSurName ?? snapShot?.data?.surName,
-        //currentAvatar ?? snapShot?.data?.avatar,
-        );
+      //! разберись с id
+      currentName ?? snapShot?.data?.name,
+      currentSurName ?? snapShot?.data?.surName,
+      currentAvatar ?? snapShot?.data?.avatar,
+    );
     notifyListeners();
   }
 
@@ -128,6 +123,20 @@ class MainScreenProvider extends ChangeNotifier {
     }
   }
 
+  //!=======Avatar Model========================================================
+
+  Future inputAvatar(imgBase64) async {
+    currentAvatar = '''$imgBase64''' as String;
+    // imgBase64 as String;
+
+    saveChangesData();
+
+    print('currentAvatar $currentAvatar');
+    notifyListeners();
+    //Navigator.pop(context);
+  }
+
+//==============================================================================
   void backPop(context) {
     AuthService().signOut();
     Navigator.of(context)
@@ -137,33 +146,6 @@ class MainScreenProvider extends ChangeNotifier {
   }
   //==============================================================================
 //
-
-  //!=======Avatar Model========================================================
-
- Future inputAvatar(context) async {
-   
-      // currentAvatar =
-      //     yourSurNameController.text.substring(0, 1).toUpperCase() +
-      //         yourSurNameController.text
-      //             .substring(
-      //               1,
-      //             )
-      //             .toLowerCase();
-      
-      
-      saveChangesData();
-     
-      print('currentAvatar $currentAvatar');
-      notifyListeners();
-      Navigator.pop(context);
-  
-  }
-
-
-
-
-
-//==============================================================================
 
   @override
   void dispose() {
