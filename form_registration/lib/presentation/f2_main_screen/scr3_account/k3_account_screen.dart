@@ -14,7 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class K3AccounrScreenWidget extends StatefulWidget {
-  const K3AccounrScreenWidget({super.key});
+   String uid;
+   K3AccounrScreenWidget({super.key, required this.uid});
 
   @override
   State<K3AccounrScreenWidget> createState() => _K3AccounrScreenWidgetState();

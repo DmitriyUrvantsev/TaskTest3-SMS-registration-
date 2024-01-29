@@ -13,11 +13,9 @@ class MainScreenProvider extends ChangeNotifier {
   //TextEditingController otpController = TextEditingController();
   TextEditingController yourNameController = TextEditingController();
   TextEditingController yourSurNameController = TextEditingController();
+   String? uid;
   //---------------------------------------------------------------------------
-  final List mainScreenWidget = [
-    const K4ProjectsScreenWidget(),
-    const K3AccounrScreenWidget(),
-  ];
+ 
   //---------------------------------------------------------------------------
   int _currentMainScreenIndex = 0;
   int get currentMainScreenIndex => _currentMainScreenIndex;
