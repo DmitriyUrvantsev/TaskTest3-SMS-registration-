@@ -62,7 +62,7 @@ class K7AccountFormNameWidget extends StatelessWidget {
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
-        onTap: () => read.backToAccount(context),
+        onTap: () => read.inputName(context),
         color: PrimaryColors().lightBlueA700,
         imagePath: ImageConstant.imgArrowRight,
         margin: EdgeInsets.only(
@@ -76,7 +76,7 @@ class K7AccountFormNameWidget extends StatelessWidget {
         child: Row(
           children: [
             AppbarSubtitle(
-              onTap: () => read.backToAccount(context),
+              onTap: () => read.inputName(context),
               text: 'Аккаунт',
               margin: EdgeInsets.only(top: 1.v),
             ),

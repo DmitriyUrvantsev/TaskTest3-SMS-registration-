@@ -55,16 +55,16 @@ class MainScreenProvider extends ChangeNotifier {
 
   UserAppData? userData;
 
-AsyncSnapshot<UserAppData>? snapShot;
+  AsyncSnapshot<UserAppData>? snapShot;
 
-  void chekChangeUser(uid) {
-    //-----временно
-    if (uid != userData?.uid) {
-      currentName = null;
-      currentSurName = null;
-      currentAvatar = null;
-    } //-----временно
-  }
+  //! void chekChangeUser(uid) {
+  //!   //-----временно
+  //!   if (uid != userData?.uid) {
+  //!     currentName = null;
+  //!     currentSurName = null;
+  //!     currentAvatar = null;
+  //!   } //-----временно
+  //! }
 
   void showFormName(context) {
     Navigator.of(context).pushNamed(AppNavigationRoutes.accountFormName);
@@ -77,15 +77,17 @@ AsyncSnapshot<UserAppData>? snapShot;
 
 //!=======Form Name Model==================================================
 
-  void backToAccount(context) async {
+  void inputName(context) async {
     if (formKey.currentState?.validate() ?? false) {
       currentName = yourNameController.text.substring(0, 1).toUpperCase() +
           yourNameController.text.substring(1).toLowerCase();
 
       await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
           //! разберись с id
-          currentName ?? snapShot?.data?.name
-          );
+          currentName ?? snapShot?.data?.name);
+
+      //! надо сохранят в класс и в шаредпреверенс
+      //!чтобы  потом приновом входе данные сохранялись и в телефоне  в Базе
 
       print('userName $currentName');
       notifyListeners();
@@ -97,7 +99,7 @@ AsyncSnapshot<UserAppData>? snapShot;
 
   //!=======Form SurName Model==================================================
 
-  void backToAccountFromSurName(context) {
+  Future inputSurName(context) async {
     if (formKey.currentState?.validate() ?? false) {
       currentSurName =
           yourSurNameController.text.substring(0, 1).toUpperCase() +
@@ -106,6 +108,8 @@ AsyncSnapshot<UserAppData>? snapShot;
                     1,
                   )
                   .toLowerCase();
+      await DatabaseService(uid: userData?.uid ?? uid ?? '')
+          .updateUserData(currentSurName ?? snapShot?.data?.surName);
       print('userSurName $currentSurName');
       notifyListeners();
       Navigator.pop(context);

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
@@ -28,7 +29,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
     super.didChangeDependencies();
     // print('user?.uid DID - ${widget.uid}');
     final read = context.read<MainScreenProvider>();
-    read.chekChangeUser(widget.uid);
+    //!read.chekChangeUser(widget.uid);
   }
 
   //!===========================================================================
@@ -240,9 +241,8 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
             _sectionRowNameSurNameChous(
               context,
               action: 'Имя',
-              action1: UserFromFirebase().name ?? 'blya',
-              //watch.userData?.name?? 'ноль',
-              //watch.currentName?? 'Настроить- NULL',
+              action1: read.currentName?? read.snapShot?.data?.name?? 'Настроить',
+           //! надо будет переделать - брать со своего класса
               onTapRow: () => read.showFormName(context),
             ),
             SizedBox(height: 5.v),

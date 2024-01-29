@@ -62,7 +62,7 @@ class K7AccountFormSurNameWidget extends StatelessWidget {
       height: 43.v,
       leadingWidth: 28.h,
       leading: AppbarLeadingImage(
-        onTap: () => read.backToAccountFromSurName(context),
+        onTap: () => read.inputSurName(context),
         color: PrimaryColors().lightBlueA700,
         imagePath: ImageConstant.imgArrowRight,
         margin: EdgeInsets.only(
@@ -76,7 +76,7 @@ class K7AccountFormSurNameWidget extends StatelessWidget {
         child: Row(
           children: [
             AppbarSubtitle(
-              onTap: () => read.backToAccountFromSurName(context),
+              onTap: () => read.inputSurName(context),
               text: 'Аккаунт',
               margin: EdgeInsets.only(top: 1.v),
             ),

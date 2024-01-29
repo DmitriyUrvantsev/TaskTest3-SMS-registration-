@@ -75,7 +75,7 @@ class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
     super.didChangeDependencies();
     // print('user?.uid DID - ${widget.uid}');
     final read = context.read<MainScreenProvider>();
-    read.chekChangeUser(widget.uid);
+    //!read.chekChangeUser(widget.uid);
   }
 
   int index = 0;
