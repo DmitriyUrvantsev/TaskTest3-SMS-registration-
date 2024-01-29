@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
@@ -66,6 +68,16 @@ class MainScreenProvider extends ChangeNotifier {
   //!   } //-----временно
   //! }
 
+  Future saveChangesData() async {
+    await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
+        //! разберись с id
+        currentName ?? snapShot?.data?.name,
+        currentSurName ?? snapShot?.data?.surName,
+        //currentAvatar ?? snapShot?.data?.avatar,
+        );
+    notifyListeners();
+  }
+
   void showFormName(context) {
     Navigator.of(context).pushNamed(AppNavigationRoutes.accountFormName);
   }
@@ -81,10 +93,10 @@ class MainScreenProvider extends ChangeNotifier {
     if (formKey.currentState?.validate() ?? false) {
       currentName = yourNameController.text.substring(0, 1).toUpperCase() +
           yourNameController.text.substring(1).toLowerCase();
-
-      await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
-          //! разберись с id
-          currentName ?? snapShot?.data?.name);
+      saveChangesData();
+      // await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
+      //     //! разберись с id
+      //     currentName ?? snapShot?.data?.name);
 
       //! надо сохранят в класс и в шаредпреверенс
       //!чтобы  потом приновом входе данные сохранялись и в телефоне  в Базе
@@ -108,8 +120,9 @@ class MainScreenProvider extends ChangeNotifier {
                     1,
                   )
                   .toLowerCase();
-      await DatabaseService(uid: userData?.uid ?? uid ?? '')
-          .updateUserData(currentSurName ?? snapShot?.data?.surName);
+      saveChangesData();
+      // await DatabaseService(uid: userData?.uid ?? uid ?? '')
+      //     .updateUserData(currentSurName ?? snapShot?.data?.surName);
       print('userSurName $currentSurName');
       notifyListeners();
       Navigator.pop(context);
