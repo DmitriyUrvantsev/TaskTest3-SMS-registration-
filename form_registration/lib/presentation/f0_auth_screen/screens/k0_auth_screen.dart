@@ -2,7 +2,7 @@ import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/screens/x_auth_field.dart';
+import 'package:form_registration/presentation/f0_auth_screen/screens/k0_auth_field_widget.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_elevated_button.dart';
 import '../provider/k0_provider.dart';
@@ -12,7 +12,7 @@ class K0AuthScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen0Provider>();
+    final read = context.read<AuthScreenProvider>();
     //final formKey = GlobalKey<FormState>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -55,7 +55,7 @@ class K0AuthScreenWidget extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 29.h),
                   buttonStyle: CustomButtonStyles.fillAmber,
                   onPressed: () {
-                    read.showScreenConfirmation(context);
+                    read.register(context);
                   }),
               SizedBox(height: 8.v),
               SizedBox(

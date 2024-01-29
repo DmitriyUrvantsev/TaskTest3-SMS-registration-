@@ -13,13 +13,10 @@ class CustomBottomBar extends StatefulWidget {
 }
 
 class CustomBottomBarState extends State<CustomBottomBar> {
-
-
-
   @override
-  Widget build(BuildContext context) { 
-     final read = context.read<Screen2Provider>();
-  int selectedIndex = read.currentMainScreenIndex;
+  Widget build(BuildContext context) {
+    final read = context.read<MainScreenProvider>();
+    int selectedIndex = read.currentMainScreenIndex;
     return Container(
       height: 75.v,
       decoration: BoxDecoration(

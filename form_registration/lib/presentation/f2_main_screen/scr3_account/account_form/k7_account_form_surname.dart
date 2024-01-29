@@ -13,7 +13,7 @@ class K7AccountFormSurNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen2Provider>();
+    final read = context.read<MainScreenProvider>();
     final formKey = read.formKey;
     return Scaffold(
       backgroundColor: appTheme.gray100,
@@ -57,7 +57,7 @@ class K7AccountFormSurNameWidget extends StatelessWidget {
 
   /// ======================AppBar==============================================
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    final read = context.read<Screen2Provider>();
+    final read = context.read<MainScreenProvider>();
     return CustomAppBar(
       height: 43.v,
       leadingWidth: 28.h,

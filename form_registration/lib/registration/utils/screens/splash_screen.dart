@@ -4,10 +4,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
-import 'package:form_registration/registration/screens/home_screen.dart';
-import 'package:form_registration/registration/screens/login_screen.dart';
+
 import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
+import 'package:form_registration/registration/utils/screens/home_screen.dart';
+import 'package:form_registration/registration/utils/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {

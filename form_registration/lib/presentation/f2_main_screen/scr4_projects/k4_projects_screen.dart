@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
-
-
 
 class K4ProjectsScreenWidget extends StatelessWidget {
   const K4ProjectsScreenWidget({super.key});
@@ -33,7 +31,15 @@ class K4ProjectsScreenWidget extends StatelessWidget {
 
   /// Section AppBar ===========================================================
   PreferredSizeWidget _sectionAppBar(BuildContext context) {
+    final read = context.read<MainScreenProvider>();
     return CustomAppBar(
+      actions: [
+        IconButton(
+          onPressed: () => read.backPop(context),
+          icon: const Icon(Icons.exit_to_app_outlined),
+          color: PrimaryColors().gray800,
+        )
+      ],
       height: 25.v,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(4.0),

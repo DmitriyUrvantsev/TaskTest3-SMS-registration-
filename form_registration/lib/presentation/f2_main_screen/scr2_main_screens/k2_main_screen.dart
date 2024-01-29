@@ -13,8 +13,8 @@ class K2MainScreenWidget extends StatelessWidget {
   // @override
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen2Provider>();
-    index = context.watch<Screen2Provider>().currentMainScreenIndex;
+    final read = context.read<MainScreenProvider>();
+    index = context.watch<MainScreenProvider>().currentMainScreenIndex;
     return Scaffold(
       backgroundColor: appTheme.gray100,
       body: SizedBox(

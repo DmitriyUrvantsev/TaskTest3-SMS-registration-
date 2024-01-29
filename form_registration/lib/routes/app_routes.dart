@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:form_registration/presentation/f0_auth_screen/screens/k0_auth_screen.dart';
 
-import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/k1_confirmation_screen.dart';
-import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/screens/k0_auth_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_name.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_surname.dart';
+import 'package:form_registration/wrapper.dart';
 
 abstract class AppNavigationRoutes {
-  static const auth = '/'; //k3 + color k0(k9 - дергается)
-  static const confirmation = '/confirmation'; //k1
-  static const mainScreen = 'main_screen'; //k10
+  static const selectorLoading = '/'; //k3 + color k0(k9 - дергается)
+  //static const confirmation = '/confirmation'; //k1
+  //static const mainScreen = 'main_screen'; //k10
   static const projects = 'main_screen/projects'; //k6, k7(photo)
   static const account = 'main_screen/account'; //k6, k7(photo)
 
@@ -19,17 +19,19 @@ abstract class AppNavigationRoutes {
 }
 
 class MainNavigation {
-  final initialRoute = AppNavigationRoutes.auth;
+  final initialRoute = AppNavigationRoutes.selectorLoading;
 
   final routes = <String, Widget Function(BuildContext)>{
-    AppNavigationRoutes.auth: (context) => const K0AuthScreenWidget(),
-   // AppNavigationRoutes.confirmation: (context) => const K1AuthScreenWidget(),
-    AppNavigationRoutes.mainScreen: (context) => K2MainScreenWidget(),
-     AppNavigationRoutes.account: (context) =>  K2MainScreenWidget(),
+    AppNavigationRoutes.selectorLoading: (context) => const SelectorLoading(),
+   
+    //AppNavigationRoutes.mainScreen: (context) => K2MainScreenWidget(),
+    //AppNavigationRoutes.account: (context) => K2MainScreenWidget(),
     //AppNavigationRoutes.projects: (context) => const K4ProjectsScreenWidget(),
 
-    AppNavigationRoutes.accountFormName: (context) => const K7AccountFormNameWidget(),
-       AppNavigationRoutes.accountFormSurName: (context) => const K7AccountFormSurNameWidget(),
+    AppNavigationRoutes.accountFormName: (context) =>
+        const K7AccountFormNameWidget(),
+    AppNavigationRoutes.accountFormSurName: (context) =>
+        const K7AccountFormSurNameWidget(),
 
 //!--------------------
     // AppNavigationRoutes.accountFormSurname: (context) => ChangeNotifierProvider(

@@ -13,7 +13,6 @@ import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
-
 class K3AccounrScreenWidget extends StatefulWidget {
   const K3AccounrScreenWidget({super.key});
 
@@ -22,6 +21,13 @@ class K3AccounrScreenWidget extends StatefulWidget {
 }
 
 class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // print('user?.uid DID - ${widget.uid}');
+    final read = context.read<MainScreenProvider>();
+    read.chekChangeUser(widget.uid);
+  }
   //!===========================================================================
   final imagePicer = ImagePicker();
   File? photo;
@@ -137,8 +143,8 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen2Provider>();
-    final watch = context.watch<Screen2Provider>();
+    final read = context.read<MainScreenProvider>();
+    final watch = context.watch<MainScreenProvider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _sectionAppBar(context),
@@ -247,7 +253,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
 
   /// ======================AppBar==============================================
   PreferredSizeWidget _sectionAppBar(BuildContext context) {
-    final read = context.read<Screen2Provider>();
+    final read = context.read<MainScreenProvider>();
     return CustomAppBar(
       backgroundColor: PrimaryColors().white, //!=================
       height: 43.v,

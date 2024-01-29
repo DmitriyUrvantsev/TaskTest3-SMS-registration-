@@ -1,38 +1,50 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:form_registration/data/models/task/task.dart';
-import 'package:form_registration/data/models/user/userApp.dart';
-
+import 'package:form_registration/data/models/user/user_app.dart';
+import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
 
 class DatabaseService extends ChangeNotifier {
   final String uid;
   DatabaseService({required this.uid});
 
+  // // ---------ссылка на коллекцию ---------
+  // final CollectionReference taskCollection =
+  //     FirebaseFirestore.instance.collection('test_task');
+
+  // Future<void> updateUserData(String name, [String? chisburger, String? bigMac,
+  //     String? kartoshka, String? cola]) async {
+  //   Map<String, dynamic> data = {
+  //     'name': name,
+  //     'chisburger': chisburger,
+  //     'bigMac': bigMac,
+  //     'kartoshka': kartoshka,
+  //     'cola': cola,
+  //   };
+  //   return await taskCollection.doc(uid).set(data);
+  // }
+
   // ---------ссылка на коллекцию ---------
   final CollectionReference taskCollection =
-      FirebaseFirestore.instance.collection('test_task');
+      FirebaseFirestore.instance.collection('form_registration');
 
-  Future<void> updateUserData(String name, [String? chisburger, String? bigMac,
-      String? kartoshka, String? cola]) async {
+  
+  Future<void> updateUserData(
+      [String? name, String? surName, String? avatar]) async {
     Map<String, dynamic> data = {
       'name': name,
-      'chisburger': chisburger,
-      'bigMac': bigMac,
-      'kartoshka': kartoshka,
-      'cola': cola,
+      'surName': surName,
+      'avatar': avatar,
     };
     return await taskCollection.doc(uid).set(data);
   }
 
-  // ---------task list from snapshot ---------
-  List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
+  // ---------userFromFireBase list from snapshot ---------
+  List<UserFromFirebase> _taskListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return Task(
+      return UserFromFirebase(
         name: doc.get('name') ?? '0',
-        chisburger: doc.get('chisburger') ?? '0',
-        bigMac: doc.get('bigMac') ?? '0',
-        kartoshka: doc.get('kartoshka') ?? '0',
-        cola: doc.get('cola') ?? '0',
+        surName: doc.get('surName') ?? '0',
+        avatar: doc.get('avatar') ?? '0',
       );
     }).toList();
   }
@@ -42,14 +54,13 @@ class DatabaseService extends ChangeNotifier {
     return UserAppData(
       uid: uid,
       name: snapshot.get('name'),
-     surName: snapshot.get('surName'),
-     avatar: snapshot.get('avatar'),
- 
+      surName: snapshot.get('surName'),
+      avatar: snapshot.get('avatar'),
     );
   }
 
   // ---------получение tasks stream ---------
-  Stream<List<Task>> get tasks {
+  Stream<List<UserFromFirebase>> get tasks {
     return taskCollection.snapshots().map(_taskListFromSnapshot);
   }
 

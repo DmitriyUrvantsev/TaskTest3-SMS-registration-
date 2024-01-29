@@ -1,7 +1,7 @@
 
 import 'package:form_registration/registration/provider/sin_in.dart';
-import 'package:form_registration/registration/screens/login_screen.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
+import 'package:form_registration/registration/utils/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';

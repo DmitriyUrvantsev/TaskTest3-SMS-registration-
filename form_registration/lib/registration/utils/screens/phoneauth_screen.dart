@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
 import 'package:form_registration/registration/provider/internet.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
-import 'package:form_registration/registration/screens/home_screen.dart';
-import 'package:form_registration/registration/screens/login_screen.dart';
+
 import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
-import 'package:form_registration/registration/utils/snackbar.dart';
+import 'package:form_registration/registration/utils/screens/home_screen.dart';
+import 'package:form_registration/registration/utils/screens/login_screen.dart';
+
 import 'package:provider/provider.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
@@ -164,7 +165,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
     await ip.checkInternetConnection();
 
     if (ip.hasInternet == false) {
-      openSnackbar(context, "Check your internet connection", Colors.red);
+   //   openSnackbar(context, "Check your internet connection", Colors.red);
     } else {
       if (formKey.currentState!.validate()) {
         FirebaseAuth.instance.verifyPhoneNumber(
@@ -174,7 +175,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
               await FirebaseAuth.instance.signInWithCredential(credential);
             },
             verificationFailed: (FirebaseAuthException e) {
-              openSnackbar(context, e.toString(), Colors.red);
+          //    openSnackbar(context, e.toString(), Colors.red);
             },
             //-----------------------------------------------
 

@@ -96,10 +96,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:form_registration/data/models/user/userApp.dart';
-import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/k1_confirmation_screen.dart';
-import 'package:form_registration/routes/app_routes.dart';
-import 'package:form_registration/servises/data_base.dart';
+import 'package:form_registration/data/models/user/user_app.dart';
+import 'package:form_registration/presentation/f0_auth_screen/screens/k1_confirmation_screen.dart';
+
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -120,7 +119,7 @@ class AuthService {
     try {
       _auth.verifyPhoneNumber(
         //--------------------------
-        phoneNumber: '+79108273848',
+        phoneNumber: phoneNumber,
         timeout: const Duration(seconds: 60),
         //--------------------------
         // verificationCompleted: (phoneAuthCredential) async {
@@ -162,4 +161,17 @@ class AuthService {
     }
     return null;
   }
+
+
+
+///---------------------выйти----------------------------------------
+ Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (error) {
+      print('error.toString() ${error.toString()}');
+      return null;
+    }
+  }
+
 }

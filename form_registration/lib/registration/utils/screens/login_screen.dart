@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
 import 'package:form_registration/registration/provider/internet.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
-import 'package:form_registration/registration/screens/home_screen.dart';
-import 'package:form_registration/registration/screens/phoneauth_screen.dart';
+
 import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
-import 'package:form_registration/registration/utils/snackbar.dart';
+import 'package:form_registration/registration/utils/screens/home_screen.dart';
+import 'package:form_registration/registration/utils/screens/phoneauth_screen.dart';
+
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:provider/provider.dart';
 
@@ -217,12 +218,12 @@ class _LoginScreenState extends State<LoginScreen> {
     await ip.checkInternetConnection();
 
     if (ip.hasInternet == false) {
-      openSnackbar(context, "Check your Internet connection", Colors.red);
+   //   openSnackbar(context, "Check your Internet connection", Colors.red);
       googleController.reset();
     } else {
       await sp.signInWithTwitter().then((value) {
         if (sp.hasError == true) {
-          openSnackbar(context, sp.errorCode.toString(), Colors.red);
+      //    openSnackbar(context, sp.errorCode.toString(), Colors.red);
           twitterController.reset();
         } else {
           // checking whether user exists or not
@@ -257,12 +258,12 @@ class _LoginScreenState extends State<LoginScreen> {
     await ip.checkInternetConnection();
 
     if (ip.hasInternet == false) {
-      openSnackbar(context, "Check your Internet connection", Colors.red);
+      //openSnackbar(context, "Check your Internet connection", Colors.red);
       googleController.reset();
     } else {
       await sp.signInWithGoogle().then((value) {
         if (sp.hasError == true) {
-          openSnackbar(context, sp.errorCode.toString(), Colors.red);
+         // openSnackbar(context, sp.errorCode.toString(), Colors.red);
           googleController.reset();
         } else {
           // checking whether user exists or not
@@ -298,7 +299,7 @@ class _LoginScreenState extends State<LoginScreen> {
     await ip.checkInternetConnection();
 
     if (ip.hasInternet == false) {
-      openSnackbar(context, "Check your Internet connection", Colors.red);
+     // openSnackbar(context, "Check your Internet connection", Colors.red);
       facebookController.reset();
     } 
     

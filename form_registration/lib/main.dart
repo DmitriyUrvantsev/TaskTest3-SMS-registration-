@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:form_registration/data/models/user/userApp.dart';
+import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/firebase_options.dart';
-import 'package:form_registration/presentation/f0_auth_screen/scr0_auth/provider/k0_provider.dart';
-import 'package:form_registration/presentation/f0_auth_screen/scr1_confirmation/provider/k1_provider.dart';
+import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 
@@ -13,8 +12,8 @@ import 'core/app_export.dart';
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-   options: DefaultFirebaseOptions.currentPlatform,
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   Future.wait([
     SystemChrome.setPreferredOrientations([
@@ -36,13 +35,12 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
-            ChangeNotifierProvider(create: (context) => Screen0Provider()),
-            ChangeNotifierProvider(create: (context) => Screen1Provider()),
-            ChangeNotifierProvider(create: (context) => Screen2Provider()),
-             StreamProvider<UserApp?>.value(
-          value: AuthService().user,
-          initialData: null,
-        ),
+            ChangeNotifierProvider(create: (context) => AuthScreenProvider()),
+            ChangeNotifierProvider(create: (context) => MainScreenProvider()),
+            StreamProvider<UserApp?>.value(
+              value: AuthService().user,
+              initialData: null,
+            ),
           ],
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
@@ -63,6 +61,8 @@ class MyApp extends StatelessWidget {
                 //!изменить клавиатуру на регистрации и на подтверждении тоже!!!
                 //! при возврате на 0 стриать тулефон
                 //! на странице аккаунта где имя должен быть радиус
+                //! задиспоитить контроллеры
+                //!фото слетает!!!!!
 
                 //!onGenerateInitialRoutes: ,
               );
@@ -73,4 +73,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

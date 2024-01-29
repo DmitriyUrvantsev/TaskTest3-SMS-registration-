@@ -5,26 +5,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 
-import 'provider/k1_provider.dart';
-
 class K1AuthScreenWidget extends StatelessWidget {
   final String verificationId;
- 
-  K1AuthScreenWidget(
-   {
+
+  K1AuthScreenWidget({
     Key? key,
     required this.verificationId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<Screen1Provider>();
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var testoviyUser;
+    final read = context.read<AuthScreenProvider>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: _sectionAppBar(context),
@@ -53,7 +50,8 @@ class K1AuthScreenWidget extends StatelessWidget {
               Container(
                   width: 261.h,
                   margin: EdgeInsets.only(left: 5.h, right: 6.h),
-                  child: Text('Введите номер телефона для регистрации',//!===========
+                  child: Text(
+                      'Введите номер телефона для регистрации', //!===========
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
@@ -63,41 +61,19 @@ class K1AuthScreenWidget extends StatelessWidget {
               //!==========================================
               Padding(
                   padding: EdgeInsets.only(left: 4.h, right: 5.h),
-                  child: Selector<Screen1Provider, TextEditingController?>(
+                  child: Selector<AuthScreenProvider, TextEditingController?>(
+                      //!=========ЭТО НУЖНО ВООБЩЕ?
                       selector: (context, provider) => provider.otpController,
                       builder: (context, otpController, child) {
                         return CustomPinCodeTextField(
                             context: context,
                             controller:
-                                otpController, // здесь null вызодит типа disposnuto уже
+                                otpController, //! здесь null вызодит типа disposnuto уже
                             onChanged: (value) {
                               otpController?.text = value;
                             },
-
-                            ///
-                            /////
-                            ///
-                            ///
-                            ///
                             onCompleted: (value) async {
-                              //!======== read.showMainScreen(context);
-
-                              String smsCode = value;
-
-                              //! Create a PhoneAuthCredential with the code
-                              PhoneAuthCredential credential =
-                                  PhoneAuthProvider.credential(
-                                      verificationId: verificationId,
-                                      smsCode: smsCode);
-
-                              //! Sign the user in (or link) with the credential
-                              testoviyUser = await _auth.signInWithCredential(credential);
-                              //
-                              //
-                              print('testoviyUser -$testoviyUser');
-
-                              //
-                              //
+                              read.confirmation(context, value, verificationId);
                             });
                       })),
               SizedBox(height: 43.v),
@@ -114,9 +90,10 @@ class K1AuthScreenWidget extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _sectionAppBar(BuildContext context) {
-    final read = context.read<Screen1Provider>();
+    final read = context.read<AuthScreenProvider>();
     return CustomAppBar(
         leadingWidth: 374.h,
+       
         leading: AppbarLeadingImage(
             onTap: () {
               read.backPop(context);

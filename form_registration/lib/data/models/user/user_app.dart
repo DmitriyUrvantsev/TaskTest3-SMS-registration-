@@ -11,7 +11,7 @@ class UserApp {
 
 class UserAppData {
   final String uid;
-  final String name;
+  final String? name;
   final String? surName;
   final File? avatar;
   
