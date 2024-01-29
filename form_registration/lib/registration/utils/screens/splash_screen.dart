@@ -2,7 +2,7 @@ import 'dart:async';
 
 
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/main_screen.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
 
 import 'package:form_registration/registration/utils/config.dart';

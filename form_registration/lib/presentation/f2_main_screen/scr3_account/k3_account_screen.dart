@@ -8,7 +8,7 @@ import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr3_account/select_avatar_widget.dart';
+import 'package:form_registration/presentation/f2_main_screen/scr3_account/select_avatar_widget/select_avatar_widget.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';

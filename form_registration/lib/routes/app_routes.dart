@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/presentation/f0_auth_screen/screens/k0_auth_screen.dart';
 
-import 'package:form_registration/presentation/f2_main_screen/scr2_main_screens/k2_main_screen.dart';
+import 'package:form_registration/presentation/f2_main_screen/main_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_name.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/account_form/k7_account_form_surname.dart';
 import 'package:form_registration/wrapper.dart';

@@ -51,6 +51,12 @@ class MainScreenProvider extends ChangeNotifier {
 //==============================================================================
 
 //!=======AccountScreenModel==================================================
+//---------------------------------------
+
+
+
+
+//----------------------------------------
   String? currentName;
   String? currentSurName;
   String? currentAvatar;
@@ -59,14 +65,7 @@ class MainScreenProvider extends ChangeNotifier {
 
   AsyncSnapshot<UserAppData>? snapShot;
 
-  //! void chekChangeUser(uid) {
-  //!   //-----временно
-  //!   if (uid != userData?.uid) {
-  //!     currentName = null;
-  //!     currentSurName = null;
-  //!     currentAvatar = null;
-  //!   } //-----временно
-  //! }
+ 
 
   Future saveChangesData() async {
     await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
@@ -139,7 +138,30 @@ class MainScreenProvider extends ChangeNotifier {
   //==============================================================================
 //
 
-  //!=======Form SurName Model==================================================
+  //!=======Avatar Model========================================================
+
+ Future inputAvatar(context) async {
+   
+      // currentAvatar =
+      //     yourSurNameController.text.substring(0, 1).toUpperCase() +
+      //         yourSurNameController.text
+      //             .substring(
+      //               1,
+      //             )
+      //             .toLowerCase();
+      
+      
+      saveChangesData();
+     
+      print('currentAvatar $currentAvatar');
+      notifyListeners();
+      Navigator.pop(context);
+  
+  }
+
+
+
+
 
 //==============================================================================
 

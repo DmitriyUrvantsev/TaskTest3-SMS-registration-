@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -26,9 +27,27 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
         return;
       }
       final imageTemporary = File(myImage.path);
+
       //final imageTemporary = saveImagePermanently(myImage.path);
       setState(() {
+        //!------TEMP-----
         photo = imageTemporary as File;
+        //---------------------
+        
+if (photo != null) {
+   final bytes = Uint8List.fromList(photo!.readAsBytesSync());
+final imgBase64 = base64Encode(bytes);
+print(imgBase64);
+}
+
+       
+
+
+
+
+        // print('imageTemporary - $imageTemporary');
+        // print('imageTemporary.absolute - ${imageTemporary.absolute}');
+        // print('imageTemporary.path - ${imageTemporary.path}');
       });
     } on PlatformException catch (e) {
       print('проблемы с $e');
@@ -44,7 +63,100 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 
   //!===========================================================================
   //!===========================================================================
-  //=========функция диалога выбора загрузки для  iOS===========================
+  
+  @override
+  Widget build(BuildContext context) {
+    return
+
+//!=============================================================================
+//---------------------------ABATARKA-------------------------------------------
+//!=============================================================================
+
+        SizedBox(
+            height: 95.adaptSize,
+            width: 95.adaptSize,
+            child: Stack(alignment: Alignment.center, children: [
+              Stack(
+                children: [
+                  CustomImageView(
+                      //! синяя подложка под svg
+                      imagePath: ImageConstant.imgClose,
+                      color: PrimaryColors().lightBlueA700, //!
+                      height: 70.adaptSize,
+                      width: 70.adaptSize,
+                      // alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(left: 3.h, top: 5)),
+
+                  //!=========================================================
+                  Container(
+                    //! иконка svg
+                    height: 76.adaptSize,
+                    width: 76.adaptSize,
+
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: fs.Svg(
+                              ImageConstant.imgGroup1,
+                            ), //!
+                            fit: BoxFit.cover)),
+                  ),
+
+                  //!---------------Фото----------------------------------
+                  photo != null
+                      ?
+                      //
+                      //
+                      Container(
+                          height: 76.adaptSize,
+                          width: 76.adaptSize,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.file(photo!,
+                              width: 80, height: 80, fit: BoxFit.cover),
+                        )
+
+                      //
+                      //
+                      : const SizedBox.shrink(),
+                ],
+              ),
+
+              // ),
+              //!=========================================================
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: GestureDetector(
+                  onTap: () => {
+                    showImageSource(context)
+
+                    },
+                  child: Container(
+                    //! иконка svg - кнопка выбора загрузки
+                    height: 31.v,
+                    width: 31.h,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: fs.Svg(ImageConstant.imgCloseGray100,
+                                color: Colors.black), //!
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+              )
+            ]));
+
+//!!!++++++++++++++++++++++++++++++++++++++
+  }
+//                                                                *
+//                                                                *
+//                                                                *
+//              МЕНЮ ВЫБОРА ЗАГРУЗКИ ИЗОБРАЖЕНИЯ                  *            
+//                                                                *
+//                                                                *
+//                                                                *
+//=========Метод диалога выбора загрузки===========================
   Future<ImageSource?> showImageSource(BuildContext context) async {
     if (Platform.isIOS) {
       return showCupertinoModalPopup(
@@ -128,86 +240,6 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 
   //!===========================================================================
 
-  @override
-  Widget build(BuildContext context) {
-    return
 
-        //!=============================================================================
-//---------------------------ABATARKA-------------------------------------------
-//!=============================================================================
 
-        SizedBox(
-            height: 95.adaptSize,
-            width: 95.adaptSize,
-            child: Stack(alignment: Alignment.center, children: [
-              Stack(
-                children: [
-                  CustomImageView(
-                      //! синяя подложка под svg
-                      imagePath: ImageConstant.imgClose,
-                      color: PrimaryColors().lightBlueA700, //!
-                      height: 70.adaptSize,
-                      width: 70.adaptSize,
-                      // alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 3.h, top: 5)),
-
-                  //!=========================================================
-                  Container(
-                    //! иконка svg
-                    height: 76.adaptSize,
-                    width: 76.adaptSize,
-
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: fs.Svg(
-                              ImageConstant.imgGroup1,
-                            ), //!
-                            fit: BoxFit.cover)),
-                  ),
-
-                  //!---------------Фото----------------------------------
-                  photo != null
-                      ?
-                      //
-                      //
-                      Container(
-                          height: 76.adaptSize,
-                          width: 76.adaptSize,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.file(photo!,
-                              width: 80, height: 80, fit: BoxFit.cover),
-                        )
-
-                      //
-                      //
-                      : const SizedBox.shrink(),
-                ],
-              ),
-
-              // ),
-              //!=========================================================
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: GestureDetector(
-                  onTap: () => showImageSource(context),
-                  child: Container(
-                    //! иконка svg - кнопка выбора загрузки
-                    height: 31.v,
-                    width: 31.h,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: fs.Svg(ImageConstant.imgCloseGray100,
-                                color: Colors.black), //!
-                            fit: BoxFit.cover)),
-                  ),
-                ),
-              )
-            ]));
-
-//!!!++++++++++++++++++++++++++++++++++++++
-  }
 }
