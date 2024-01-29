@@ -241,15 +241,18 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
             _sectionRowNameSurNameChous(
               context,
               action: 'Имя',
-              action1: read.currentName?? read.snapShot?.data?.name?? 'Настроить',
-           //! надо будет переделать - брать со своего класса
+              action1:
+                  read.currentName ?? read.snapShot?.data?.name ?? 'Настроить',
+              //! надо будет переделать - брать со своего класса
               onTapRow: () => read.showFormName(context),
             ),
             SizedBox(height: 5.v),
             _sectionRowNameSurNameChous(
               context,
               action: 'Фамилия',
-              action1: watch.currentSurName ?? 'Настроить',
+              action1: read.currentSurName ??
+                  read.snapShot?.data?.surName ??
+                  'Настроить',
               onTapRow: () => read.showFormSurName(context),
             )
           ])),
