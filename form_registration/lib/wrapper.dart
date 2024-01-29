@@ -15,7 +15,7 @@ class SelectorLoading extends StatelessWidget {
     if (user?.uid == null) {
       return const K0AuthScreenWidget();
     } else {
-      return K2MainScreenWidget();
+      return K2MainScreenWidget(uid: user!.uid);
     }
   }
 }

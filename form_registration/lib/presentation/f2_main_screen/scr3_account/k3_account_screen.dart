@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
@@ -14,21 +15,22 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class K3AccounrScreenWidget extends StatefulWidget {
-   String uid;
-   K3AccounrScreenWidget({super.key, required this.uid});
+  String uid;
+  K3AccounrScreenWidget({super.key, required this.uid});
 
   @override
   State<K3AccounrScreenWidget> createState() => _K3AccounrScreenWidgetState();
 }
 
 class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
-   @override
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     // print('user?.uid DID - ${widget.uid}');
     final read = context.read<MainScreenProvider>();
     read.chekChangeUser(widget.uid);
   }
+
   //!===========================================================================
   final imagePicer = ImagePicker();
   File? photo;
@@ -238,14 +240,16 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
             _sectionRowNameSurNameChous(
               context,
               action: 'Имя',
-              action1: watch.userName,
+              action1: UserFromFirebase().name ?? 'blya',
+              //watch.userData?.name?? 'ноль',
+              //watch.currentName?? 'Настроить- NULL',
               onTapRow: () => read.showFormName(context),
             ),
             SizedBox(height: 5.v),
             _sectionRowNameSurNameChous(
               context,
               action: 'Фамилия',
-              action1: watch.userSurName,
+              action1: watch.currentSurName ?? 'Настроить',
               onTapRow: () => read.showFormSurName(context),
             )
           ])),

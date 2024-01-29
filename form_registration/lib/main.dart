@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/firebase_options.dart';
 import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
-import 'package:form_registration/presentation/f2_main_screen/provider/k2_provider.dart';
+import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 
 import 'core/app_export.dart';
@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
 
                 initialRoute: MainNavigation().initialRoute,
                 routes: MainNavigation().routes,
+                //!майн не открывается сразу после авторизации!!!!!!!!
                 //! дизайн не адаптивный(Наименование и заголовки точно)
                 //!добавить показ клавы на айфоне!!!!!
                 //! клава на регистрации не номер!!!!!!!!!!

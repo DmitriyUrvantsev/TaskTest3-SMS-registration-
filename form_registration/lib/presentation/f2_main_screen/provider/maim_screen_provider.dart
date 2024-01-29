@@ -6,6 +6,7 @@ import 'package:form_registration/presentation/f2_main_screen/scr3_account/k3_ac
 import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
 import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/auth_servises.dart';
+import 'package:form_registration/servises/data_base.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
 
 class MainScreenProvider extends ChangeNotifier {
@@ -13,9 +14,9 @@ class MainScreenProvider extends ChangeNotifier {
   //TextEditingController otpController = TextEditingController();
   TextEditingController yourNameController = TextEditingController();
   TextEditingController yourSurNameController = TextEditingController();
-   String? uid;
+  String? uid;
   //---------------------------------------------------------------------------
- 
+
   //---------------------------------------------------------------------------
   int _currentMainScreenIndex = 0;
   int get currentMainScreenIndex => _currentMainScreenIndex;
@@ -54,6 +55,8 @@ class MainScreenProvider extends ChangeNotifier {
 
   UserAppData? userData;
 
+AsyncSnapshot<UserAppData>? snapShot;
+
   void chekChangeUser(uid) {
     //-----временно
     if (uid != userData?.uid) {
@@ -73,13 +76,18 @@ class MainScreenProvider extends ChangeNotifier {
 //==============================================================================
 
 //!=======Form Name Model==================================================
-  String userName = 'Настроить';
 
-  void backToAccount(context) {
+  void backToAccount(context) async {
     if (formKey.currentState?.validate() ?? false) {
-      userName = yourNameController.text.substring(0, 1).toUpperCase() +
+      currentName = yourNameController.text.substring(0, 1).toUpperCase() +
           yourNameController.text.substring(1).toLowerCase();
-      print('userName $userName');
+
+      await DatabaseService(uid: userData?.uid ?? uid ?? '').updateUserData(
+          //! разберись с id
+          currentName ?? snapShot?.data?.name
+          );
+
+      print('userName $currentName');
       notifyListeners();
       Navigator.pop(context);
     }
@@ -89,17 +97,16 @@ class MainScreenProvider extends ChangeNotifier {
 
   //!=======Form SurName Model==================================================
 
-  String userSurName = 'Настроить';
-
   void backToAccountFromSurName(context) {
     if (formKey.currentState?.validate() ?? false) {
-      userSurName = yourSurNameController.text.substring(0, 1).toUpperCase() +
-          yourSurNameController.text
-              .substring(
-                1,
-              )
-              .toLowerCase();
-      print('userSurName $userSurName');
+      currentSurName =
+          yourSurNameController.text.substring(0, 1).toUpperCase() +
+              yourSurNameController.text
+                  .substring(
+                    1,
+                  )
+                  .toLowerCase();
+      print('userSurName $currentSurName');
       notifyListeners();
       Navigator.pop(context);
     }
