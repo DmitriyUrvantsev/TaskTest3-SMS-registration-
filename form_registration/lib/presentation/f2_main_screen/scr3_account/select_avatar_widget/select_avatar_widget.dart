@@ -30,10 +30,9 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
     futureFiles = FirebaseStorage.instance.ref('/files').listAll();
   }
 
-  //!=======================старый код====================================================
   final imagePicer = ImagePicker();
   File? photo;
- // PlatformFile? myImage;
+  // PlatformFile? myImage;
 //=====================функция загрузки фото===========================
   Future pickImage(ImageSource source) async {
     final read = context.read<MainScreenProvider>();
@@ -47,23 +46,45 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
       setState(() {
         photo = imageTemporary;
       });
+
+   
+   print('name - ${myImage.name}');
+
+  //Future uploadFile() async {
+    //const path = 'files/my-image.jpg';
+    final path = 'files/${myImage.name!}';
+    //final file = File(photo!.path); //конвертация
+
+    final ref = FirebaseStorage.instance.ref().child(path);
+    uploadTask = ref.putFile(photo!);
+
+    final snapshot = await uploadTask!.whenComplete(() {});
+    final urlDownload = await snapshot.ref.getDownloadURL();
+    print('Download link - $urlDownload');
+  //}
+
+
+
+
+
+
     } on PlatformException catch (e) {
       print('проблемы с $e');
     }
   }
 
-  Future uploadFile() async {
-    //const path = 'files/my-image.jpg';
-    final path = 'files/${photo!}';
-    final file = File(photo!.path); //конвертация
+  // Future uploadFile() async {
+  //   //const path = 'files/my-image.jpg';
+  //   final path = 'files/${photo!}';
+  //   final file = File(photo!.path); //конвертация
 
-    final ref = FirebaseStorage.instance.ref().child(path);
-    uploadTask = ref.putFile(file);
+  //   final ref = FirebaseStorage.instance.ref().child(path);
+  //   uploadTask = ref.putFile(file);
 
-    final snapshot = await uploadTask!.whenComplete(() {});
-    final urlDownload = await snapshot.ref.getDownloadURL();
-    print('Download link - $urlDownload');
-  }
+  //   final snapshot = await uploadTask!.whenComplete(() {});
+  //   final urlDownload = await snapshot.ref.getDownloadURL();
+  //   print('Download link - $urlDownload');
+  // }
 
 //                                                                            *
 //                                                                            *
@@ -106,6 +127,19 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
   //   final file = File(pickedFile!.path!);
   //   final ref = FirebaseStorage.instance.ref().child(path);
   //   ref.putFile(file);
+  // }
+
+  // Future uploadFile() async {
+  //   //const path = 'files/my-image.jpg';
+  //   final path = 'files/${photo!}';
+  //   final file = File(photo!.path); //конвертация
+
+  //   final ref = FirebaseStorage.instance.ref().child(path);
+  //   uploadTask = ref.putFile(file);
+
+  //   final snapshot = await uploadTask!.whenComplete(() {});
+  //   final urlDownload = await snapshot.ref.getDownloadURL();
+  //   print('Download link - $urlDownload');
   // }
 
   @override
@@ -202,7 +236,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
                       bottom: 0,
                       right: 0,
                       child: GestureDetector(
-                        onTap: () => {}, //! showImageSource(context),
+                        onTap: () => showImageSource(context),
                         child:
                             //-------
                             SvgPicture.asset(
