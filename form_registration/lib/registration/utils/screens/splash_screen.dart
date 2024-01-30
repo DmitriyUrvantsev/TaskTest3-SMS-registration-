@@ -2,17 +2,15 @@ import 'dart:async';
 
 
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/f2_main_screen/main_screen.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
 
-import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
 import 'package:form_registration/registration/utils/screens/home_screen.dart';
 import 'package:form_registration/registration/utils/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -28,13 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () {
       sp.isSignedIn == false
           ? nextScreen(context, const LoginScreen())
-          : nextScreen(context,  HomeScreen());
+          : nextScreen(context,  const HomeScreen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: 
       
       

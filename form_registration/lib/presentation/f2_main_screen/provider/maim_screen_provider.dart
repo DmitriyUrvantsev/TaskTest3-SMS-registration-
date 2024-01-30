@@ -1,12 +1,9 @@
-import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 //import 'package:form_registration/presentation/f2_main_screen/models/k2_model.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr3_account/k3_account_screen.dart';
-import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';
 import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'package:form_registration/servises/data_base.dart';

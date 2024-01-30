@@ -53,7 +53,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
-import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/k3_account_screen.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr4_projects/k4_projects_screen.dart';

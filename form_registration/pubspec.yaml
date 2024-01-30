@@ -10,17 +10,16 @@ dependencies:
   complete_timer: ^1.0.0
   connectivity_plus: ^5.0.2
   dialogx: ^1.0.0
+  dio: ^5.4.0
+  file_picker: ^6.1.1
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   firebase_storage: ^11.6.0
-  firebase_ui_auth: ^1.12.1
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.9
-  flutter_svg_provider: ^1.0.7
-  google_fonts: ^6.1.0
   image_picker: ^1.0.7
   image_picker_ios: ^0.8.9+1
   intl: any

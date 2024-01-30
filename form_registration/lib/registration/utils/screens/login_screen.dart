@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:form_registration/presentation/f2_main_screen/main_screen.dart';
 import 'package:form_registration/registration/provider/internet.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
 
-import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
 import 'package:form_registration/registration/utils/screens/home_screen.dart';
 import 'package:form_registration/registration/utils/screens/phoneauth_screen.dart';
@@ -14,7 +12,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -86,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.red,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       // Icon(
                       //   FontAwesomeIcons.google,
                       //   size: 20,
@@ -118,8 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.blue,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       // Icon(
                       //   FontAwesomeIcons.facebook,
                       //   size: 20,
@@ -151,8 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.lightBlue,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       // Icon(
                       //   FontAwesomeIcons.twitter,
                       //   size: 20,
@@ -185,8 +183,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.black,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       // Icon(
                       //   FontAwesomeIcons.phone,
                       //   size: 20,
@@ -343,7 +341,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // handle after signin
   handleAfterSignIn() {
     Future.delayed(const Duration(milliseconds: 1000)).then((value) {
-      nextScreenReplace(context,  HomeScreen());
+      nextScreenReplace(context,  const HomeScreen());
     });
   }
 }

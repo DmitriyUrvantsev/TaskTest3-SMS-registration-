@@ -4,7 +4,6 @@ import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'package:form_registration/servises/data_base.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:path/path.dart';
 
 class AuthScreenProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -54,16 +53,16 @@ class AuthScreenProvider extends ChangeNotifier {
 
       //! Sign the user in (or link) with the credential
       credentialUser = await _auth.signInWithCredential(credential);
-      User? _user = credentialUser?.user;
+      User? user = credentialUser?.user;
 
-      print('user.uid -${_user?.uid}');
+      print('user.uid -${user?.uid}');
 
-      await DatabaseService(uid: _user!.uid).updateUserData( // );
+      await DatabaseService(uid: user!.uid).updateUserData( // );
        'Настоить', 'Настоить' );
       // print('userName - $userName');
       // print('user - $user');
 
-      return _userFromFirebaseUser(_user);
+      return _userFromFirebaseUser(user);
     } on Exception catch (error) {
       print('error.confirmation ${error.toString()}');
       return null;

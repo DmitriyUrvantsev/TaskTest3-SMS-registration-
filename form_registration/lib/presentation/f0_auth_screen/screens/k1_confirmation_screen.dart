@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:form_registration/core/app_export.dart';
@@ -13,10 +12,10 @@ import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 class K1AuthScreenWidget extends StatelessWidget {
   final String verificationId;
 
-  K1AuthScreenWidget({
-    Key? key,
+  const K1AuthScreenWidget({
+    super.key,
     required this.verificationId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

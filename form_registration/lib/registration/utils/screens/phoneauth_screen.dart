@@ -1,11 +1,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/f2_main_screen/main_screen.dart';
 import 'package:form_registration/registration/provider/internet.dart';
 import 'package:form_registration/registration/provider/sin_in.dart';
 
-import 'package:form_registration/registration/utils/config.dart';
 import 'package:form_registration/registration/utils/next_screen.dart';
 import 'package:form_registration/registration/utils/screens/home_screen.dart';
 import 'package:form_registration/registration/utils/screens/login_screen.dart';
@@ -13,7 +11,7 @@ import 'package:form_registration/registration/utils/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
-  const PhoneAuthScreen({Key? key}) : super(key: key);
+  const PhoneAuthScreen({super.key});
 
   @override
   State<PhoneAuthScreen> createState() => _PhoneAuthScreenState();
@@ -241,7 +239,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                           .then((value) =>
                                               sp.setSignIn().then((value) {
                                                 nextScreenReplace(context,
-                                                   HomeScreen());
+                                                   const HomeScreen());
                                               })));
                                 } else {
                                   // user does not exist
@@ -250,7 +248,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                           (value) =>
                                               sp.setSignIn().then((value) {
                                                 nextScreenReplace(context,
-                                                    HomeScreen());
+                                                    const HomeScreen());
                                               })));
                                 }
                               });
