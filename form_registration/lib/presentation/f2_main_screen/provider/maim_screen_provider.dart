@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
@@ -125,11 +126,52 @@ class MainScreenProvider extends ChangeNotifier {
 
   //!=======Avatar Model========================================================
 
-  Future inputAvatar(imgBase64) async {
-    currentAvatar = '''$imgBase64''' as String;
+//   Future inputAvatar(imgBase64) async {
+//     currentAvatar = 'bjkkhkhkhkhb';
+//     // imgBase64 as String;
+
+//  await DatabaseService(uid: userData?.uid ?? uid ?? '')
+//           .updateUserData(currentSurName ?? snapShot?.data?.surName);
+
+//     saveChangesData();
+
+//     print('currentAvatar $currentAvatar');
+//     notifyListeners();
+//     //Navigator.pop(context);
+//   }
+
+  Future inputAvatar(imgBase64, image) async {
+    Reference storageReference = FirebaseStorage.instance.ref();
+
+    currentAvatar = 'bjkkhkhkhkhb';
     // imgBase64 as String;
+    await DatabaseService(uid: userData?.uid ?? uid ?? '')
+        .updateUserData(currentSurName ?? snapShot?.data?.surName);
 
     saveChangesData();
+
+//!================
+// Создайте ссылку на хранилище из нашего приложения
+    final storageRef = FirebaseStorage.instance.ref();
+
+// Создайте ссылку на "mountains.jpg"
+    final mountainsRef = storageRef.child("mountains.jpg");
+
+// Создайте ссылку на'images/mountains.jpg'
+    final mountainImagesRef = storageRef.child("images/mountains.jpg");
+
+// Хотя имена файлов одинаковы, ссылки указывают на разные файлы.
+    assert(mountainsRef.name == mountainImagesRef.name);
+    assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
+
+  
+  
+ 
+   
+  
+
+
+
 
     print('currentAvatar $currentAvatar');
     notifyListeners();

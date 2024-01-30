@@ -51,7 +51,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
     if (photo != null) {
       final bytes = Uint8List.fromList(photo!.readAsBytesSync());
       final imgBase64 = base64Encode(bytes);
-      read.inputAvatar( imgBase64);
+      read.inputAvatar( imgBase64, photo);
     }
   }
   // @override

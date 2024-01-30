@@ -12,6 +12,7 @@ dependencies:
   dialogx: ^1.0.0
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
+  firebase_storage: ^11.6.0
   firebase_ui_auth: ^1.12.1
   flutter:
     sdk: flutter

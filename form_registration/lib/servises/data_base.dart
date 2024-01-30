@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/data/models/user_from_firebase/user_from_firebase.dart';
@@ -7,29 +8,13 @@ class DatabaseService extends ChangeNotifier {
   final String uid;
   DatabaseService({required this.uid});
 
-  // // ---------ссылка на коллекцию ---------
-  // final CollectionReference taskCollection =
-  //     FirebaseFirestore.instance.collection('test_task');
 
-  // Future<void> updateUserData(String name, [String? chisburger, String? bigMac,
-  //     String? kartoshka, String? cola]) async {
-  //   Map<String, dynamic> data = {
-  //     'name': name,
-  //     'chisburger': chisburger,
-  //     'bigMac': bigMac,
-  //     'kartoshka': kartoshka,
-  //     'cola': cola,
-  //   };
-  //   return await taskCollection.doc(uid).set(data);
-  // }
 
   // ---------ссылка на коллекцию ---------
   final CollectionReference taskCollection =
       FirebaseFirestore.instance.collection('form_registration');
 
-  
 
-  
   Future<void> updateUserData(
       [String? name, String? surName, String? avatar]) async {
     Map<String, dynamic> data = {

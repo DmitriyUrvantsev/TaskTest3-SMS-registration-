@@ -95,7 +95,7 @@ class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
 
     return StreamBuilder<UserAppData>(
         stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot) {
+                builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserAppData? userData = snapshot.data;
             read.snapShot = snapshot;
