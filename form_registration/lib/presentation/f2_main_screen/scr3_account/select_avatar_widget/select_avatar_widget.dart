@@ -20,66 +20,8 @@ class SelectAvatarWidget extends StatefulWidget {
 }
 
 class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
-  //final imagePicer = ImagePicker();
-//  File? photo;
-  // PlatformFile? myImage;
-// //=====================функция загрузки фото===========================
-//   Future pickImage(ImageSource source) async {
-//     final read = context.read<MainScreenProvider>();
-//     try {
-//       final myImage = await imagePicer.pickImage(source: source);
-//       if (myImage == null) {
-//         return;
-//       }
-//       final imageTemporary = File(myImage.path);
-
-//       setState(() {
-//         photo = imageTemporary;
-//       });
-
-//       print('name - ${myImage.name}');
-
-//       //Future uploadFile() async {
-//       //const path = 'files/my-image.jpg';
-//       final path = 'files/${myImage.name!}';
-//       //final file = File(photo!.path); //конвертация
-
-//       final ref = FirebaseStorage.instance.ref().child(path);
-//       uploadTask = ref.putFile(photo!);
-
-//       final snapshot = await uploadTask!.whenComplete(() {});
-//       final urlDownload = await snapshot.ref.getDownloadURL();
-//       print('Download link - $urlDownload');
-//       //}
-//     } on PlatformException catch (e) {
-//       print('проблемы с $e');
-//     }
-//   }
-
-  // Future uploadFile() async {
-  //   //const path = 'files/my-image.jpg';
-  //   final path = 'files/${photo!}';
-  //   final file = File(photo!.path); //конвертация
-
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-  //   uploadTask = ref.putFile(file);
-
-  //   final snapshot = await uploadTask!.whenComplete(() {});
-  //   final urlDownload = await snapshot.ref.getDownloadURL();
-  //   print('Download link - $urlDownload');
-  // }
-
-//                                                                            *
-//                                                                            *
-//                                                                            *
-//                   ФУНЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЯ                              *
-//                                                                            *
-//                                                                            *
-//                                                                            *
-//===================ФУНЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЯ ==============================
-
-  PlatformFile? pickedFile;
-  UploadTask? uploadTask;
+  // PlatformFile? pickedFile;
+  // UploadTask? uploadTask;
 
   @override
   Widget build(BuildContext context) {
@@ -87,19 +29,20 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
     return Column(
       children: [
         SizedBox(
-            height: 95.adaptSize,
-            width: 95.adaptSize,
-            child: Stack(alignment: Alignment.center, children: [
+            height: 80.adaptSize,
+            width: 80.adaptSize,
+            child: Stack(children: [
               Stack(
                 children: [
-                  CustomImageView(
-                      //! синяя подложка под svg
-                      imagePath: ImageConstant.imgClose,
-                      color: PrimaryColors().lightBlueA700, //!
-                      height: 70.adaptSize,
-                      width: 70.adaptSize,
-                      // alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 3.h, top: 5)),
+                  Container(
+                    margin: EdgeInsets.only(left: 2.h, top: 5),
+                    height: 70.adaptSize,
+                    width: 70.adaptSize,
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
 
                   //!=========================================================
                   SvgPicture.asset(
@@ -136,8 +79,6 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
       ],
     );
   }
-
- 
 }
 
 //!==========================================================================
