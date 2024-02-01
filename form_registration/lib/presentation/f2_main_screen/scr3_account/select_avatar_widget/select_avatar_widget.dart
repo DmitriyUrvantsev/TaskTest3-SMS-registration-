@@ -146,8 +146,8 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
                                         shape: BoxShape.circle,
                                       ),
                                       child:
-                                          //========================================
-                                          //========================================
+                                          //====================================
+                                          //====================================
                                           // Image.file(photo!,
                                           //     width: 80,
                                           //     height: 80,
