@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
@@ -25,11 +25,10 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
   //   //!read.chekChangeUser(widget.uid);
   // }
 
-
   @override
   Widget build(BuildContext context) {
     final read = context.read<MainScreenProvider>();
-   // final watch = context.watch<MainScreenProvider>();
+    // final watch = context.watch<MainScreenProvider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _sectionAppBar(context),
@@ -37,9 +36,8 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
-
             //----------------------------------------
-            const SelectAvatarWidget(),
+            SelectAvatarWidget(),
 
             SizedBox(height: 17.v),
             Text('apollo@gmail.com',

@@ -23,12 +23,13 @@ class SelectAvatarWidget extends StatefulWidget {
 }
 
 class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
-  late Future<ListResult> futureFiles;
+  late Future<List<FirebaseFile>> futureFiles;
 
   @override
   void initState() {
     super.initState();
-    futureFiles = FirebaseStorage.instance.ref('/files').listAll();
+
+    futureFiles = FirebaseApi.listAll('files/');
   }
 
   final imagePicer = ImagePicker();
@@ -48,27 +49,20 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
         photo = imageTemporary;
       });
 
-   
-   print('name - ${myImage.name}');
+      print('name - ${myImage.name}');
 
-  //Future uploadFile() async {
-    //const path = 'files/my-image.jpg';
-    final path = 'files/${myImage.name!}';
-    //final file = File(photo!.path); //конвертация
+      //Future uploadFile() async {
+      //const path = 'files/my-image.jpg';
+      final path = 'files/${myImage.name!}';
+      //final file = File(photo!.path); //конвертация
 
-    final ref = FirebaseStorage.instance.ref().child(path);
-    uploadTask = ref.putFile(photo!);
+      final ref = FirebaseStorage.instance.ref().child(path);
+      uploadTask = ref.putFile(photo!);
 
-    final snapshot = await uploadTask!.whenComplete(() {});
-    final urlDownload = await snapshot.ref.getDownloadURL();
-    print('Download link - $urlDownload');
-  //}
-
-
-
-
-
-
+      final snapshot = await uploadTask!.whenComplete(() {});
+      final urlDownload = await snapshot.ref.getDownloadURL();
+      print('Download link - $urlDownload');
+      //}
     } on PlatformException catch (e) {
       print('проблемы с $e');
     }
@@ -96,121 +90,133 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 //                                                                            *
 //===================ФУНЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЯ ==============================
 
-  Future downloadFile(Reference ref) async {
-
-
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/${ref.name}');
-
-    await ref.writeToFile(file);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Downloaded ${ref.name}')));
-  }
-
-//------------------------------------------------------------------------------
-//final result = await FilePicker.
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
 
- 
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<ListResult>(
+    return FutureBuilder<List<FirebaseFile>>(
       future: futureFiles,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final newFiles = snapshot.data!.items;
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          default:
+            if (snapshot.hasError) {
+              return Center(child: Text('Some error occurred!'));
+            } else if (snapshot.hasData) {
+              if (snapshot.data!.isNotEmpty) {
+                final files = snapshot.data!;
+                final file = files.first;
+                return Column(
+                  children: [
+                    SizedBox(
+                        height: 95.adaptSize,
+                        width: 95.adaptSize,
+                        child: Stack(alignment: Alignment.center, children: [
+                          Stack(
+                            children: [
+                              CustomImageView(
+                                  //! синяя подложка под svg
+                                  imagePath: ImageConstant.imgClose,
+                                  color: PrimaryColors().lightBlueA700, //!
+                                  height: 70.adaptSize,
+                                  width: 70.adaptSize,
+                                  // alignment: Alignment.centerLeft,
+                                  margin: EdgeInsets.only(left: 3.h, top: 5)),
 
-          return Column(
-            children: [
-              
-              SizedBox(
-                  height: 95.adaptSize,
-                  width: 95.adaptSize,
-                  child: Stack(alignment: Alignment.center, children: [
-                    Stack(
-                      children: [
-                        CustomImageView(
-                            //! синяя подложка под svg
-                            imagePath: ImageConstant.imgClose,
-                            color: PrimaryColors().lightBlueA700, //!
-                            height: 70.adaptSize,
-                            width: 70.adaptSize,
-                            // alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.only(left: 3.h, top: 5)),
-
-                        //!=========================================================
-                        SvgPicture.asset(
-                          ImageConstant.imgGroup1,
-                          height: 76.adaptSize,
-                          width: 76.adaptSize,
-                        ),
-
-                        // Container(
-                        //   //! иконка svg
-                        //   height: 76.adaptSize,
-                        //   width: 76.adaptSize,
-
-                        //   decoration: BoxDecoration(
-                        //       image: DecorationImage(
-                        //           image: fs.Svg(
-                        //             ImageConstant.imgGroup1,
-                        //           ), //!
-                        //           fit: BoxFit.cover)),
-                        // ),
-
-                        //!---------------Фото----------------------------------
-                        photo != null
-                            ?
-                            //
-                            //
-                            Container(
+                              //!=========================================================
+                              SvgPicture.asset(
+                                ImageConstant.imgGroup1,
                                 height: 76.adaptSize,
                                 width: 76.adaptSize,
-                                clipBehavior: Clip.hardEdge,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.file(photo!,
-                                    width: 80, height: 80, fit: BoxFit.cover),
-                              )
+                              ),
 
-                            //
-                            //
-                            : const SizedBox.shrink(),
-                      ],
-                    ),
+                           
+                              //!---------------Фото----------------------------------
+                              file != null
+                                  ?
+                                  //
+                                  //
+                                  Container(
+                                      height: 76.adaptSize,
+                                      width: 76.adaptSize,
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child:
+                                          //========================================
+                                          //========================================
+                                          // Image.file(photo!,
+                                          //     width: 80,
+                                          //     height: 80,
+                                          //     fit: BoxFit.cover),
 
-                    // ),
-                    //!=========================================================
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: GestureDetector(
-                        onTap: () => showImageSource(context),
-                        child:
-                            //-------
-                            SvgPicture.asset(
-                          ImageConstant.imgCloseGray100,
-                          width: 31.0,
-                          height: 31.0,
-                        ),
-                        // Container(
-                        //   //! иконка svg - кнопка выбора загрузки
-                   
-                      ),
-                    )
-                  ])),
-            ],
-          );
-        } else if (snapshot.hasError) {
-          return const Text('Error occured');
-        } else {
-          return const CircularProgressIndicator();
+                                          Image.network(
+                                        file.url,
+                                        width: 52,
+                                        height: 52,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+
+                                  //
+                                  //
+                                  : const SizedBox.shrink(),
+                            ],
+                          ),
+
+                          // ),
+                          //!=========================================================
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: GestureDetector(
+                              onTap: () => showImageSource(context),
+                              child:
+                                  //-------
+                                  SvgPicture.asset(
+                                ImageConstant.imgCloseGray100,
+                                width: 31.0,
+                                height: 31.0,
+                              ),
+                              // Container(
+                              //   //! иконка svg - кнопка выбора загрузки
+                            ),
+                          )
+                        ])),
+                  ],
+                );
+              } else {
+                return const  SizedBox.shrink();
+              }
+
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     buildHeader(files.length),
+              //     const SizedBox(height: 12),
+              //     Expanded(
+              //       child: ListView.builder(
+              //         itemCount: files.length,
+              //         itemBuilder: (context, index) {
+              //           final file = files[index];
+
+              //           return buildFile(context, file);
+              //         },
+              //       ),
+              //     ),
+              //   ],
+              // );
+            } else {
+              return const SizedBox.shrink();
+            }
         }
       },
     );
+
+//!==========================================================================
 
 //!=============================================================================
 //---------------------------ABATARKA-------------------------------------------
@@ -307,172 +313,4 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
   }
 
   //!===========================================================================
-}
-
-//!===========================================================================
-//!===========================================================================
-//!===========================================================================
-//!===========================================================================
-//!===========================================================================
-
-
-
-class SelectAvatarWidget2 extends StatelessWidget {
-  static final String title = 'Firebase Download';
-
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: MainPage(),
-      );
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  late Future<List<FirebaseFile>> futureFiles;
-
-  @override
-  void initState() {
-    super.initState();
-
-    futureFiles = FirebaseApi.listAll('files/');
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(SelectAvatarWidget2.title),
-          centerTitle: true,
-        ),
-        body: FutureBuilder<List<FirebaseFile>>(
-          future: futureFiles,
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
-              default:
-                if (snapshot.hasError) {
-                  return Center(child: Text('Some error occurred!'));
-                } else {
-                  final files = snapshot.data!;
-
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildHeader(files.length),
-                      const SizedBox(height: 12),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: files.length,
-                          itemBuilder: (context, index) {
-                            final file = files[index];
-
-                            return buildFile(context, file);
-                          },
-                        ),
-                      ),
-                    ],
-                  );
-                }
-            }
-          },
-        ),
-      );
-
-  Widget buildFile(BuildContext context, FirebaseFile file) => ListTile(
-        leading: ClipOval(
-          child: Image.network(
-            file.url,
-            width: 52,
-            height: 52,
-            fit: BoxFit.cover,
-          ),
-        ),
-        title: Text(
-          file.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-            color: Colors.blue,
-          ),
-        ),
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ImagePage(file: file),
-        )),
-      );
-
-  Widget buildHeader(int length) => ListTile(
-        tileColor: Colors.blue,
-        leading: Container(
-          width: 52,
-          height: 52,
-          child: Icon(
-            Icons.file_copy,
-            color: Colors.white,
-          ),
-        ),
-        title: Text(
-          '$length Files',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.white,
-          ),
-        ),
-      );
-}
-
-
-
-class ImagePage extends StatelessWidget {
-  final FirebaseFile file;
-
-  const ImagePage({
-    Key? key,
-    required this.file,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final isImage = ['.jpeg', '.jpg', '.png'].any(file.name.contains);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(file.name),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.file_download),
-            onPressed: () async {
-              await FirebaseApi.downloadFile(file.ref);
-
-              final snackBar = SnackBar(
-                content: Text('Downloaded ${file.name}'),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-          ),
-          const SizedBox(width: 12),
-        ],
-      ),
-      body: isImage
-          ? Image.network(
-              file.url,
-              height: double.infinity,
-              fit: BoxFit.cover,
-            )
-          : Center(
-              child: Text(
-                'Cannot be displayed',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-    );
-  }
 }

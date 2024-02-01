@@ -7,9 +7,9 @@ class PrefUtils {
 
   PrefUtils() {
     // init();
-    SharedPreferences.getInstance().then((value) {
-      _sharedPreferences = value;
-    });
+    // SharedPreferences.getInstance().then((value) {
+    //   _sharedPreferences = value;
+    // });
   }
 
   Future<void> init() async {
