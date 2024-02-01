@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
@@ -8,6 +7,7 @@ import 'package:form_registration/widgets/app_bar/appbar_subtitle.dart';
 import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 
+// ignore: must_be_immutable
 class K3AccounrScreenWidget extends StatefulWidget {
   String uid;
   K3AccounrScreenWidget({super.key, required this.uid});
