@@ -1,6 +1,9 @@
 
+import 'dart:io';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 //import 'package:form_registration/presentation/f2_main_screen/models/k2_model.dart';
@@ -8,6 +11,7 @@ import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'package:form_registration/servises/data_base.dart';
 import 'package:form_registration/widgets/custom_bottom_bar.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MainScreenProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
@@ -121,7 +125,51 @@ class MainScreenProvider extends ChangeNotifier {
     }
   }
 
-  //!=======Avatar Model========================================================
+//!=========Avatar Model========================================================
+ final imagePicer = ImagePicker();
+   File? photo;
+  UploadTask? uploadTask;
+//=====================функция загрузки фото====================================
+  Future pickImage(ImageSource source) async {
+   // final read = context.read<MainScreenProvider>();
+    try {
+      final myImage = await imagePicer.pickImage(source: source);
+      if (myImage == null) {
+        return;
+      }
+      final imageTemporary = File(myImage.path);
+
+   
+        photo = imageTemporary;
+
+
+      print('name - ${myImage.name}');
+
+      //Future uploadFile() async {
+      //const path = 'files/my-image.jpg';
+      final path = 'files/${myImage.name!}';
+      //final file = File(photo!.path); //конвертация
+
+      final ref = FirebaseStorage.instance.ref().child(path);
+      uploadTask = ref.putFile(photo!);
+
+      final snapshot = await uploadTask!.whenComplete(() {});
+      final urlDownload = await snapshot.ref.getDownloadURL();
+      print('Download link - $urlDownload');
+      //}
+    } on PlatformException catch (e) {
+      print('проблемы с $e');
+    }
+  }
+//!=========++++++++++++========================================================
+
+
+
+
+
+
+
+
 
 //   Future inputAvatar(imgBase64) async {
 //     currentAvatar = 'bjkkhkhkhkhb';
