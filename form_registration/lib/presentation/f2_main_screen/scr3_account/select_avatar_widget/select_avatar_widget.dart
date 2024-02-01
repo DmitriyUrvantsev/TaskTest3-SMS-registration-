@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
+import 'package:form_registration/data/firebase_file/firebase_file.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
@@ -96,18 +97,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 //===================ФУНЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЯ ==============================
 
   Future downloadFile(Reference ref) async {
-//альтернативно можно так:(user не видит путь)??
-    //! final url = await ref.getDownloadURL();
-    //! final tempDir = await getTemporaryDirectory();
-    //! final path = '${tempDir.path}/${ref.name}';
-    //! await Dio().download(url, path);
 
-    //! //-------------
-    //! if (url.contains('.mp4')) {
-    //!   GallerySaver.saveVideo(path, toDcim: true);
-    //! } else {
-    //!   GallerySaver.saveImage(path, toDcim: true);
-    //! }
 
     final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir.path}/${ref.name}');
@@ -122,25 +112,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
 
-  // Future uploadFile() async {
-  //   final path = 'files/${pickedFile!.name}';
-  //   final file = File(pickedFile!.path!);
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-  //   ref.putFile(file);
-  // }
-
-  // Future uploadFile() async {
-  //   //const path = 'files/my-image.jpg';
-  //   final path = 'files/${photo!}';
-  //   final file = File(photo!.path); //конвертация
-
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-  //   uploadTask = ref.putFile(file);
-
-  //   final snapshot = await uploadTask!.whenComplete(() {});
-  //   final urlDownload = await snapshot.ref.getDownloadURL();
-  //   print('Download link - $urlDownload');
-  // }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -152,27 +124,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 
           return Column(
             children: [
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: newFiles.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final file = newFiles[index];
-
-                    return ListTile(
-                        title: Text(file.name),
-                        trailing: IconButton(
-                          onPressed: () => downloadFile(file),
-                          icon: const Icon(
-                            Icons.download_done_outlined,
-                            color: Colors.grey,
-                          ),
-                        ));
-                  },
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () => downloadFile, child: Text('dsгрузить')),
+              
               SizedBox(
                   height: 95.adaptSize,
                   width: 95.adaptSize,
@@ -246,18 +198,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
                         ),
                         // Container(
                         //   //! иконка svg - кнопка выбора загрузки
-                        //   height: 31.v,
-                        //   width: 31.h,
-                        //   decoration: BoxDecoration(
-                        //       image:
-                        //       // DecorationImage(
-                        //       //     image:
-
-                        //       //     // fs.Svg(ImageConstant.imgCloseGray100,
-                        //       //     //     color: Colors.black), //!
-                        //       //     fit: BoxFit.cover)
-                        //           ),
-                        // ),
+                   
                       ),
                     )
                   ])),
@@ -368,88 +309,170 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
   //!===========================================================================
 }
 
-// import 'dart:io';
+//!===========================================================================
+//!===========================================================================
+//!===========================================================================
+//!===========================================================================
+//!===========================================================================
 
-// import 'package:dio/dio.dart';
-// import 'package:file_picker/file_picker.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:form_registration/core/app_export.dart';
-// import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:path_provider/path_provider.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 
-// class SelectAvatarWidget extends StatefulWidget {
-//   const SelectAvatarWidget({super.key});
 
-//   @override
-//   State<SelectAvatarWidget> createState() => _SelectAvatarWidgetState();
-// }
+class SelectAvatarWidget2 extends StatelessWidget {
+  static final String title = 'Firebase Download';
 
-// class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
-//   late Future<ListResult> futureFiles;
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: title,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MainPage(),
+      );
+}
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     futureFiles = FirebaseStorage.instance.ref('/files').listAll();
-//   }
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//         future: futureFiles,
-//         builder: (context, snapshot) {
-//           if (snapshot.hasData) {
-//             final files = snapshot.data!.items;
-//             return SizedBox(
-//               height: 400,
-//               child: ListView.builder(
-//                 itemCount: files.length,
-//                 itemBuilder: (context, index) {
-//                   final file = files[index];
-//                   return ListTile(
-//                       title: Text(file.name),
-//                       trailing: IconButton(
-//                         onPressed: () => downloadFile(file),
-//                         icon: const Icon(
-//                           Icons.download_done_outlined,
-//                           color: Colors.grey,
-//                         ),
-//                       ));
-//                 },
-//               ),
-//             );
-//           } else if (snapshot.hasData) {
-//             return Text('error');
-//           } else {
-//             return const Center(child: CircularProgressIndicator());
-//           }
-//         });
-//   }
+class _MainPageState extends State<MainPage> {
+  late Future<List<FirebaseFile>> futureFiles;
 
-//   Future downloadFile(Reference ref) async {
-// //альтернативно можно так:(user не видит путь)??
-//     //! final url = await ref.getDownloadURL();
-//     //! final tempDir = await getTemporaryDirectory();
-//     //! final path = '${tempDir.path}/${ref.name}';
-//     //! await Dio().download(url, path);
+  @override
+  void initState() {
+    super.initState();
 
-//     //! //-------------
-//     //! if (url.contains('.mp4')) {
-//     //!   GallerySaver.saveVideo(path, toDcim: true);
-//     //! } else {
-//     //!   GallerySaver.saveImage(path, toDcim: true);
-//     //! }
+    futureFiles = FirebaseApi.listAll('files/');
+  }
 
-//     final dir = await getApplicationDocumentsDirectory();
-//     final file = File('${dir.path}/${ref.name}');
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(SelectAvatarWidget2.title),
+          centerTitle: true,
+        ),
+        body: FutureBuilder<List<FirebaseFile>>(
+          future: futureFiles,
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default:
+                if (snapshot.hasError) {
+                  return Center(child: Text('Some error occurred!'));
+                } else {
+                  final files = snapshot.data!;
 
-//     await ref.writeToFile(file);
-//     ScaffoldMessenger.of(context)
-//         .showSnackBar(SnackBar(content: Text('Downloaded ${ref.name}')));
-//   }
-// }
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildHeader(files.length),
+                      const SizedBox(height: 12),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: files.length,
+                          itemBuilder: (context, index) {
+                            final file = files[index];
+
+                            return buildFile(context, file);
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                }
+            }
+          },
+        ),
+      );
+
+  Widget buildFile(BuildContext context, FirebaseFile file) => ListTile(
+        leading: ClipOval(
+          child: Image.network(
+            file.url,
+            width: 52,
+            height: 52,
+            fit: BoxFit.cover,
+          ),
+        ),
+        title: Text(
+          file.name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.underline,
+            color: Colors.blue,
+          ),
+        ),
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ImagePage(file: file),
+        )),
+      );
+
+  Widget buildHeader(int length) => ListTile(
+        tileColor: Colors.blue,
+        leading: Container(
+          width: 52,
+          height: 52,
+          child: Icon(
+            Icons.file_copy,
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          '$length Files',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+      );
+}
+
+
+
+class ImagePage extends StatelessWidget {
+  final FirebaseFile file;
+
+  const ImagePage({
+    Key? key,
+    required this.file,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final isImage = ['.jpeg', '.jpg', '.png'].any(file.name.contains);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(file.name),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.file_download),
+            onPressed: () async {
+              await FirebaseApi.downloadFile(file.ref);
+
+              final snackBar = SnackBar(
+                content: Text('Downloaded ${file.name}'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+          ),
+          const SizedBox(width: 12),
+        ],
+      ),
+      body: isImage
+          ? Image.network(
+              file.url,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            )
+          : Center(
+              child: Text(
+                'Cannot be displayed',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+    );
+  }
+}

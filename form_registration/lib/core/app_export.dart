@@ -1,6 +1,6 @@
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:form_registration/core/errors/exceptions.dart';
-export 'package:form_registration/core/network/network_info.dart';
+export 'package:form_registration/core/network/firebase_api.dart';
 export 'package:form_registration/core/utils/image_constant.dart';
 export 'package:form_registration/core/utils/logger.dart';
 export 'package:form_registration/core/utils/navigator_service.dart';

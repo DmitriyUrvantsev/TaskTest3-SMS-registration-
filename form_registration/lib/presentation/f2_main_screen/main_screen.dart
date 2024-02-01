@@ -94,7 +94,7 @@ class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
 
     return StreamBuilder<UserAppData>(
         stream: DatabaseService(uid: user.uid).userData,
-                builder: (context, snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserAppData? userData = snapshot.data;
             read.snapShot = snapshot;
@@ -109,20 +109,7 @@ class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
               bottomNavigationBar: _sectionBottomBar(context),
             );
           } else {
-            return const Column(
-              children: [
-                Text(
-                  'Только зарегистрированные пользователи могут оформить заказ',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 100,
-                )
-              ],
-            );
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }
