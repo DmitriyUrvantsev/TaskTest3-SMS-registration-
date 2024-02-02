@@ -50,8 +50,8 @@ class _StepperAuthScreenWidgetState extends State<StepperAuthScreenWidget> {
         AnotherStepper(
           stepperList: stepperData,
           stepperDirection: Axis.horizontal,
-          iconWidth: 36,
-          iconHeight: 36,
+          iconWidth: 36.fSize,
+          iconHeight: 36.fSize,
           activeBarColor: PrimaryColors().gray200,
           inActiveBarColor: PrimaryColors().gray200,
           inverted: true,

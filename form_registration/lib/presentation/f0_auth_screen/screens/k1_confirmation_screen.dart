@@ -12,19 +12,21 @@ import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 
-class K1AuthScreenWidget extends StatefulWidget {
+class K1ConfirmationScreenWidget extends StatefulWidget {
   final String verificationId;
 
-  const K1AuthScreenWidget({
+  const K1ConfirmationScreenWidget({
     super.key,
     required this.verificationId,
   });
 
   @override
-  State<K1AuthScreenWidget> createState() => _K1AuthScreenWidgetState();
+  State<K1ConfirmationScreenWidget> createState() =>
+      _K1ConfirmationScreenWidgetState();
 }
 
-class _K1AuthScreenWidgetState extends State<K1AuthScreenWidget> {
+class _K1ConfirmationScreenWidgetState
+    extends State<K1ConfirmationScreenWidget> {
   Timer? _timer;
   int _start = 61;
   bool _isPossibleSentCode = false;

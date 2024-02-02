@@ -49,8 +49,8 @@ class _Stepper2ScrWidgetState extends State<Stepper2ScrWidget> {
           AnotherStepper(
             stepperList: stepperData,
             stepperDirection: Axis.horizontal,
-            iconWidth: 40,
-            iconHeight: 40,
+            iconWidth: 36,
+            iconHeight: 36,
             activeBarColor: PrimaryColors().gray200,
             inActiveBarColor: PrimaryColors().gray200,
             inverted: true,

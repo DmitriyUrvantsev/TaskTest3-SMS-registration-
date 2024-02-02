@@ -99,7 +99,6 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/presentation/f0_auth_screen/screens/k1_confirmation_screen.dart';
 
-
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? userName;
@@ -137,13 +136,14 @@ class AuthService {
           print('verificationFailed ERROR - $e');
         },
 
-          //--------------------------
+        //--------------------------
         codeSent: (String verificationId, int? forceResendingToken) async {
           showDialog(
               barrierDismissible: false,
               context: context,
-              builder: (context ) {
-                return K1AuthScreenWidget(  verificationId: verificationId);
+              builder: (context) {
+                return K1ConfirmationScreenWidget(
+                    verificationId: verificationId);
               });
         },
 
@@ -162,10 +162,8 @@ class AuthService {
     return null;
   }
 
-
-
-///---------------------выйти----------------------------------------
- Future signOut() async {
+  ///---------------------выйти----------------------------------------
+  Future signOut() async {
     try {
       return await _auth.signOut();
     } catch (error) {
@@ -173,5 +171,4 @@ class AuthService {
       return null;
     }
   }
-
 }

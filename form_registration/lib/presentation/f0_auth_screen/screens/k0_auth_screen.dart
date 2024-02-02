@@ -24,7 +24,7 @@ class K0AuthScreenWidget extends StatelessWidget {
             child: Column(children: [
               SizedBox(
                 width: 196.h,
-                height: 36.v,
+                height: 40.v,
                 child: const StepperAuthScreenWidget(),
               ),
               SizedBox(height: 21.v),
@@ -66,5 +66,3 @@ class K0AuthScreenWidget extends StatelessWidget {
             ])));
   }
 }
-
-
