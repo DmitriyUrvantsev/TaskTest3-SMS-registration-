@@ -3,6 +3,7 @@ import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f0_auth_screen/screens/k0_auth_field_widget.dart';
+import 'package:form_registration/presentation/f0_auth_screen/screens/widgets/stepper_auth.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_elevated_button.dart';
 import '../provider/k0_provider.dart';
@@ -21,22 +22,12 @@ class K0AuthScreenWidget extends StatelessWidget {
             width: double.maxFinite,
             padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 2.v),
             child: Column(children: [
-              //?==================
               SizedBox(
-                width: 196.fSize,
-                child: AnotherStepper(
-                    stepperDirection: Axis.horizontal,
-                    activeIndex: 0,
-                    barThickness: 1,
-                    inverted: true,
-                    stepperList: [
-                      StepperData(),
-                      StepperData(),
-                      StepperData(),
-                    ]),
+                width: 196.h,
+                height: 36.v,
+                child: const StepperAuthScreenWidget(),
               ),
-              //?==================
-              SizedBox(height: 27.v),
+              SizedBox(height: 21.v),
               Text('Регистрация', style: theme.textTheme.displaySmall),
               SizedBox(height: 21.v),
               SizedBox(
@@ -75,3 +66,5 @@ class K0AuthScreenWidget extends StatelessWidget {
             ])));
   }
 }
+
+

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
+import 'package:form_registration/presentation/f0_auth_screen/screens/widgets/stepper_confirmation.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
@@ -56,22 +57,11 @@ class _K1AuthScreenWidgetState extends State<K1AuthScreenWidget> {
         appBar: _sectionAppBar(context),
         body: Container(
             width: double.maxFinite,
-            padding: EdgeInsets.symmetric(horizontal: 51.h, vertical: 2.v),
+            padding: EdgeInsets.symmetric(
+                horizontal: 51.adaptSize, vertical: 2.adaptSize),
             child: Column(children: [
-              //?========================
-              AnotherStepper(
-                  stepperDirection: Axis.horizontal,
-                  activeIndex: 0,
-                  barThickness: 1,
-                  inverted: true,
-                  stepperList: [
-                    StepperData(),
-                    StepperData(),
-                    StepperData(),
-                  ]),
-              //?========================
-
-              SizedBox(height: 25.v),
+              const Stepper2ScrWidget(),
+              SizedBox(height: 20.v),
               Text('Подтверждение',
                   style: theme
                       .textTheme.displaySmall), //?.copyWith(fontSize: 34)),
