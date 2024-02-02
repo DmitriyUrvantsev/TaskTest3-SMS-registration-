@@ -38,6 +38,7 @@ class K7AccountFormSurNameWidget extends StatelessWidget {
                           ? 'Введите фамилию'
                           : null)
                       : null,
+                  onSubmitted: (p0) => read.inputSurName(context),
                   controller: read.yourSurNameController,
                   hintText: 'Ваша фамилия',
                   textInputAction: TextInputAction.done,

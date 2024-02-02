@@ -25,6 +25,8 @@ class K7AccountFormNameWidget extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 24.v),
+
+
             Padding(
               padding: EdgeInsets.only(
                 left: 8.h,
@@ -33,11 +35,13 @@ class K7AccountFormNameWidget extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: CustomTextFormField(
+                  keyboardType: TextInputType.name,
                   validator: (val) => val != null
                       ? (val.isEmpty || val.length > 20
                           ? 'Введите Ваше имя'
                           : null)
                       : null,
+                      onSubmitted: (p0) => read.inputName(context),
                   controller: read.yourNameController,
                   hintText: 'Ваше имя',
                   textInputAction: TextInputAction.done,
@@ -45,6 +49,7 @@ class K7AccountFormNameWidget extends StatelessWidget {
                       TextFormFieldStyleHelper.fillOnPrimaryContainer,
                   filled: true,
                   fillColor: theme.colorScheme.onPrimaryContainer,
+                  
                 ),
               ),
             ),

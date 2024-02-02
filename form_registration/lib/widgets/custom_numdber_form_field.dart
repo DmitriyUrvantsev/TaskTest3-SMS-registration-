@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+class CustomPhonFormField extends StatelessWidget {
+  const CustomPhonFormField({
     super.key,
     this.alignment,
     this.width,
@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.textStyle,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
+    this.textInputType = TextInputType.phone,
     this.maxLines,
     this.hintText,
     this.hintStyle,
@@ -37,7 +37,6 @@ class CustomTextFormField extends StatelessWidget {
     this.maskInput,
     this.validator,
     this.onChanged,
-    this.onSubmitted,
     this.errorText,
   });
 
@@ -67,7 +66,6 @@ class CustomTextFormField extends StatelessWidget {
   final String? prefixText;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
-  final Function(String)? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
   final MaskTextInputFormatter? maskInput;
   final String? errorText;
@@ -100,8 +98,6 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           decoration: decoration,
           onChanged: onChanged,
-          onFieldSubmitted: onSubmitted,
-        
           validator: validator,
           inputFormatters: inputFormatters,
         ),
@@ -164,8 +160,8 @@ class CustomTextFormField extends StatelessWidget {
       );
 }
 
-/// Extension on [CustomTextFormField] to facilitate inclusion of all types of border style etc
-extension TextFormFieldStyleHelper on CustomTextFormField {
+/// Extension on [CustomPhonFormField] to facilitate inclusion of all types of border style etc
+extension TextFormFieldStyleHelper on CustomPhonFormField {
   static OutlineInputBorder get fillOnPrimaryContainer => OutlineInputBorder(
         borderRadius: BorderRadius.circular(13.h),
         borderSide: BorderSide.none,

@@ -89,6 +89,7 @@ class MainScreenProvider extends ChangeNotifier {
       currentName = yourNameController.text.substring(0, 1).toUpperCase() +
           yourNameController.text.substring(1).toLowerCase();
       saveChangesData();
+      yourNameController.text = '';
       notifyListeners();
       Navigator.pop(context);
     }
@@ -106,6 +107,7 @@ class MainScreenProvider extends ChangeNotifier {
                   )
                   .toLowerCase();
       saveChangesData();
+      yourSurNameController.text = '';
       notifyListeners();
       Navigator.pop(context);
     }
