@@ -24,7 +24,6 @@ class AuthScreenProvider extends ChangeNotifier {
     if ((formKey.currentState?.validate() ?? false) && phone != null) {
       //loading = true;
       final phoneNumder = phone!.replaceAll(RegExp(r"[^0-9,+]"), '');
-      print('phone - $phoneNumder');
       dynamic result = await auth.registerWithPhone(phoneNumder, context);
 
       // loading = false; //!------?-----
@@ -57,7 +56,6 @@ class AuthScreenProvider extends ChangeNotifier {
       credentialUser = await _auth.signInWithCredential(credential);
       User? user = credentialUser?.user;
 
-      print('user.uid -${user?.uid}');
 
       await DatabaseService(uid: user!.uid).updateUserData(
           // );
@@ -69,7 +67,6 @@ class AuthScreenProvider extends ChangeNotifier {
 
       return _userFromFirebaseUser(user);
     } on Exception catch (error) {
-      print('error.confirmation ${error.toString()}');
       return null;
     }
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/core/network/firebase_api.dart';
 import 'package:form_registration/data/firebase_file/firebase_file.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 

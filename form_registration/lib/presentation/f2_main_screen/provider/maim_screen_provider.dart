@@ -137,7 +137,6 @@ class MainScreenProvider extends ChangeNotifier {
       final snapshot = await uploadTask!.whenComplete(() {});
       final urlDownload = await snapshot.ref.getDownloadURL();
       currentAvatar = urlDownload;
-      print('currentAvatar - $currentAvatar');
       notifyListeners();
       //}
     } on PlatformException catch (e) {

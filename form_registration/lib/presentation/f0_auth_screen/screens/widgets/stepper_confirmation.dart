@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 
 class Stepper2ScrWidget extends StatefulWidget {
-  const Stepper2ScrWidget({Key? key}) : super(key: key);
+  const Stepper2ScrWidget({super.key});
 
   @override
   State<Stepper2ScrWidget> createState() => _Stepper2ScrWidgetState();
@@ -17,7 +17,7 @@ class _Stepper2ScrWidgetState extends State<Stepper2ScrWidget> {
       decoration: BoxDecoration(
           border: Border.all(color: Colors.green),
           color: Colors.transparent,
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+          borderRadius: const BorderRadius.all(Radius.circular(30))),
     )),
     StepperData(
         iconWidget: Container(
@@ -32,7 +32,7 @@ class _Stepper2ScrWidgetState extends State<Stepper2ScrWidget> {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: PrimaryColors().gray200,
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+          borderRadius: const BorderRadius.all(Radius.circular(30))),
       child: const Center(child: Text('3')),
     )),
   ];

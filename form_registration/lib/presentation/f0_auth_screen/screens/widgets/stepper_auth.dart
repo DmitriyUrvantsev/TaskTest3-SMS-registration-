@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 
 class StepperAuthScreenWidget extends StatefulWidget {
-  const StepperAuthScreenWidget({Key? key}) : super(key: key);
+  const StepperAuthScreenWidget({super.key});
 
   @override
   State<StepperAuthScreenWidget> createState() =>
@@ -25,7 +25,7 @@ class _StepperAuthScreenWidgetState extends State<StepperAuthScreenWidget> {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: PrimaryColors().gray200,
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+          borderRadius: const BorderRadius.all(Radius.circular(30))),
       child: const Center(child: Text('2')),
     )),
     StepperData(
@@ -33,7 +33,7 @@ class _StepperAuthScreenWidgetState extends State<StepperAuthScreenWidget> {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: PrimaryColors().gray200,
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+          borderRadius: const BorderRadius.all(Radius.circular(30))),
       child: const Center(child: Text('3')),
     )),
   ];
