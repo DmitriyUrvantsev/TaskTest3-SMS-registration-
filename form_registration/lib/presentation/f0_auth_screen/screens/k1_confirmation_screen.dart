@@ -12,11 +12,11 @@ import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 
 class K1AuthScreenWidget extends StatefulWidget {
-  //!final String verificationId;
+  final String verificationId;
 
   const K1AuthScreenWidget({
     super.key,
-    //!required this.verificationId,
+    required this.verificationId,
   });
 
   @override
