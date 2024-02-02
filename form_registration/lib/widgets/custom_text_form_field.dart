@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.textStyle,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
+    this.textInputType = TextInputType.phone,
     this.maxLines,
     this.hintText,
     this.hintStyle,

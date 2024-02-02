@@ -17,7 +17,8 @@ class AuthScreenProvider extends ChangeNotifier {
   var maskFormatter = MaskTextInputFormatter(
       mask: '+#(###) ###-##-##',
       filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
+      type: MaskAutoCompletionType.lazy
+      );
 
   Future<void> register(context) async {
     if ((formKey.currentState?.validate() ?? false) && phone != null) {
