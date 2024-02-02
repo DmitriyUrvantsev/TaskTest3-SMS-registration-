@@ -9,7 +9,7 @@ import 'package:form_registration/servises/auth_servises.dart';
 
 import 'core/app_export.dart';
 
-//
+///
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 Future<void> main() async {
