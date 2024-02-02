@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
@@ -17,8 +18,7 @@ class AuthScreenProvider extends ChangeNotifier {
   var maskFormatter = MaskTextInputFormatter(
       mask: '+#(###) ###-##-##',
       filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy
-      );
+      type: MaskAutoCompletionType.lazy);
 
   Future<void> register(context) async {
     if ((formKey.currentState?.validate() ?? false) && phone != null) {
@@ -59,12 +59,13 @@ class AuthScreenProvider extends ChangeNotifier {
 
       print('user.uid -${user?.uid}');
 
-      await DatabaseService(uid: user!.uid).updateUserData( // );
-       'Настоить', 'Настоить' );
-     
-     
-         Navigator.of(context)
-        .pushReplacementNamed(AppNavigationRoutes.selectorLoading);  
+      await DatabaseService(uid: user!.uid).updateUserData(
+          // );
+          'Настоить',
+          'Настоить');
+
+      Navigator.of(context)
+          .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
 
       return _userFromFirebaseUser(user);
     } on Exception catch (error) {
@@ -82,6 +83,8 @@ class AuthScreenProvider extends ChangeNotifier {
   Stream<UserApp?> get user {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
+
+
 
   void backPop(context) {
     Navigator.of(context).pop();

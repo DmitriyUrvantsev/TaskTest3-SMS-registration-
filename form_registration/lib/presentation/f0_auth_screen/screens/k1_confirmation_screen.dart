@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +11,46 @@ import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 
-class K1AuthScreenWidget extends StatelessWidget {
-  final String verificationId;
+class K1AuthScreenWidget extends StatefulWidget {
+  //!final String verificationId;
 
   const K1AuthScreenWidget({
     super.key,
-    required this.verificationId,
+    //!required this.verificationId,
   });
+
+  @override
+  State<K1AuthScreenWidget> createState() => _K1AuthScreenWidgetState();
+}
+
+class _K1AuthScreenWidgetState extends State<K1AuthScreenWidget> {
+  Timer? _timer;
+  int _start = 61;
+  bool _isPossibleSentCode = false;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+        oneSec,
+        (Timer timer) => setState(() {
+              if (_start < 1) {
+                timer.cancel();
+                _isPossibleSentCode = true;
+              } else {
+                _start = _start - 1;
+              }
+            }));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
 
   @override
   Widget build(BuildContext context) {
     final read = context.read<AuthScreenProvider>();
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: _sectionAppBar(context),
@@ -72,17 +102,31 @@ class K1AuthScreenWidget extends StatelessWidget {
                               otpController?.text = value;
                             },
                             onCompleted: (value) async {
-                              read.confirmation(context, value, verificationId);
+                              read.confirmation(
+                                  context,
+                                  value,
+                                  //!  widget.verificationId
+                                  232342434234);
                             });
                       })),
               SizedBox(height: 43.v),
 
               //!================================================
               GestureDetector(
-                  onTap: () {},
-                  child: Text('60 сек до повтора отправки кода',
-                      style:
-                          theme.textTheme.bodyMedium!.copyWith(height: 1.33))),
+                onTap: _isPossibleSentCode == false
+                    ? () {}
+                    : () {
+                        read.register(context);
+                      },
+                child: _isPossibleSentCode == false
+                    ? Text('$_start сек до повтора отправки кода',
+                        style:
+                            theme.textTheme.bodyMedium!.copyWith(height: 1.33))
+                    : Text('Отправить код еще раз',
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            height: 1.33, color: PrimaryColors().amber600)),
+              ),
+
               SizedBox(height: 5.v)
             ])));
   }
@@ -92,7 +136,6 @@ class K1AuthScreenWidget extends StatelessWidget {
     final read = context.read<AuthScreenProvider>();
     return CustomAppBar(
         leadingWidth: 374.h,
-       
         leading: AppbarLeadingImage(
             onTap: () {
               read.backPop(context);

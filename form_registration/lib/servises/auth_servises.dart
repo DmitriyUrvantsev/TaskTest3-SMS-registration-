@@ -143,7 +143,7 @@ class AuthService {
               barrierDismissible: false,
               context: context,
               builder: (context ) {
-                return K1AuthScreenWidget(  verificationId: verificationId);
+                return K1AuthScreenWidget();//!  verificationId: verificationId);
               });
         },
 

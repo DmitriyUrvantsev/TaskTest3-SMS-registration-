@@ -52,6 +52,8 @@ class MyApp extends StatelessWidget {
                 navigatorKey: NavigatorService.navigatorKey,
                 debugShowCheckedModeBanner: false,
 
+//! еще таймер на повторную отправку
+
                 initialRoute: MainNavigation().initialRoute,
                 routes: MainNavigation().routes,
               );
