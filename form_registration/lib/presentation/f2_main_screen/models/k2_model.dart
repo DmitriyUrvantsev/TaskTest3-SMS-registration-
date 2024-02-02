@@ -1,5 +1,0 @@
-
-
-class K2Model {
-
-}

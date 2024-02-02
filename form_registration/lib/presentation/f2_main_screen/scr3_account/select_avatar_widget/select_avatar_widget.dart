@@ -7,16 +7,8 @@ import 'package:form_registration/presentation/f2_main_screen/scr3_account/selec
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SelectAvatarWidget extends StatefulWidget {
+class SelectAvatarWidget extends StatelessWidget {
   const SelectAvatarWidget({super.key});
-
-  @override
-  State<SelectAvatarWidget> createState() => _SelectAvatarWidgetState();
-}
-
-class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
-  // PlatformFile? pickedFile;
-  // UploadTask? uploadTask;
 
   @override
   Widget build(BuildContext context) {

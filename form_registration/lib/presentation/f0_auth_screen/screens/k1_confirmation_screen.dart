@@ -23,13 +23,13 @@ class K1ConfirmationScreenWidget extends StatefulWidget {
 
 class _K1ConfirmationScreenWidgetState
     extends State<K1ConfirmationScreenWidget> {
-  Timer? _timer;
+  Timer? timer;
   int _start = 61;
   bool _isPossibleSentCode = false;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(
+    timer = Timer.periodic(
         oneSec,
         (Timer timer) => setState(() {
               if (_start < 1) {
@@ -68,24 +68,24 @@ class _K1ConfirmationScreenWidgetState
                   width: 261.h,
                   margin: EdgeInsets.only(left: 5.h, right: 6.h),
                   child: Text(
-                      'Введите номер телефона для регистрации', //!===========
+                      'Введите номер телефона для регистрации', 
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style:
                           theme.textTheme.bodyMedium!.copyWith(height: 1.33))),
               SizedBox(height: 61.v),
-              //!==========================================
+             
               Padding(
                   padding: EdgeInsets.only(left: 4.h, right: 5.h),
                   child: Selector<AuthScreenProvider, TextEditingController?>(
-                      //!=========ЭТО НУЖНО ВООБЩЕ?
+                      //!=
                       selector: (context, provider) => provider.otpController,
                       builder: (context, otpController, child) {
                         return CustomPinCodeTextField(
                             context: context,
                             controller:
-                                otpController, //! здесь null вызодит типа disposnuto уже
+                                otpController, 
                             onChanged: (value) {
                               otpController?.text = value;
                             },
@@ -93,8 +93,8 @@ class _K1ConfirmationScreenWidgetState
                               read.confirmation(
                                   context,
                                   value,
-                                  //!  widget.verificationId
-                                  232342434234);
+                                   widget.verificationId
+                                  );
                             });
                       })),
               SizedBox(height: 43.v),

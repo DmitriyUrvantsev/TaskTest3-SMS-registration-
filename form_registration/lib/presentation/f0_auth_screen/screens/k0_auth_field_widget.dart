@@ -24,8 +24,7 @@ class AuthFieldWidget extends StatelessWidget {
           children: [
             // 
             CustomPhonFormField(
-              // controller: controller, //!
-              keyboardType: TextInputType.phone,
+                            keyboardType: TextInputType.phone,
               onChanged: (p0) => read.phone = p0,
               validator: (val) => val != null
                   ? (val.length < 17 ? 'Введите номер телефона' : null)
@@ -46,5 +45,5 @@ class AuthFieldWidget extends StatelessWidget {
   }
 }
 
-//!===============================================
+
 

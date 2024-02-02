@@ -6,7 +6,6 @@ import 'package:form_registration/firebase_options.dart';
 import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/servises/auth_servises.dart';
-
 import 'core/app_export.dart';
 
 ///
@@ -51,8 +50,6 @@ class MyApp extends StatelessWidget {
                 title: 'form_registration',
                 navigatorKey: NavigatorService.navigatorKey,
                 debugShowCheckedModeBanner: false,
-
-//! еще таймер на повторную отправку
 
                 initialRoute: MainNavigation().initialRoute,
                 routes: MainNavigation().routes,

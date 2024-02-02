@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/core/utils/image_constant.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
-//import 'package:form_registration/presentation/f2_main_screen/models/k2_model.dart';
 import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'package:form_registration/servises/data_base.dart';
@@ -14,11 +13,9 @@ import 'package:image_picker/image_picker.dart';
 
 class MainScreenProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
-  //TextEditingController otpController = TextEditingController();
   TextEditingController yourNameController = TextEditingController();
   TextEditingController yourSurNameController = TextEditingController();
   String? uid;
-  //---------------------------------------------------------------------------
 
   //---------------------------------------------------------------------------
   int _currentMainScreenIndex = 0;
@@ -52,9 +49,7 @@ class MainScreenProvider extends ChangeNotifier {
 //==============================================================================
 
 //!=======AccountScreenModel==================================================
-//---------------------------------------
 
-//----------------------------------------
   String? currentName;
   String? currentSurName;
   String? currentAvatar;
@@ -143,7 +138,6 @@ class MainScreenProvider extends ChangeNotifier {
       print('проблемы с $e');
     }
   }
-//!=========++++++++++++========================================================
 
 //==============================================================================
   void backPop(context) {
@@ -162,7 +156,5 @@ class MainScreenProvider extends ChangeNotifier {
     yourNameController.dispose();
   }
 
-//
 
-//showFormSurName(context)
 }

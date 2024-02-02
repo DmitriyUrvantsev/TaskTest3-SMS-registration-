@@ -13,7 +13,6 @@ class AuthScreenProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   String? phone;
   String? error;
-  //bool loading = false;
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '+#(###) ###-##-##',
@@ -22,27 +21,20 @@ class AuthScreenProvider extends ChangeNotifier {
 
   Future<void> register(context) async {
     if ((formKey.currentState?.validate() ?? false) && phone != null) {
-      //loading = true;
       final phoneNumder = phone!.replaceAll(RegExp(r"[^0-9,+]"), '');
       dynamic result = await auth.registerWithPhone(phoneNumder, context);
 
-      // loading = false; //!------?-----
-      /// showSingInPage = true;
-      ///
       error = null;
       if (result == null || (phone!.isEmpty)) {
-        // loading = false;
-        error =
-            'Пожалуйста, введите номер телефона'; //! если есть валидация нужно ли мне это здесь????
+        error = 'Пожалуйста, введите номер телефона';
       }
     }
   }
 
-//!===================Подтверждение===========================================================
-  TextEditingController otpController = TextEditingController(); //!======
+//!===================Подтверждение=============================================
+  TextEditingController otpController = TextEditingController();
 
   UserCredential? credentialUser;
-  //User? _user;
 
   Future confirmation(context, value, verificationId) async {
     String smsCode = value;
@@ -56,7 +48,6 @@ class AuthScreenProvider extends ChangeNotifier {
       credentialUser = await _auth.signInWithCredential(credential);
       User? user = credentialUser?.user;
 
-
       await DatabaseService(uid: user!.uid).updateUserData(
           // );
           'Настоить',
@@ -67,6 +58,7 @@ class AuthScreenProvider extends ChangeNotifier {
 
       return _userFromFirebaseUser(user);
     } on Exception catch (error) {
+      print(error);
       return null;
     }
   }
@@ -81,10 +73,8 @@ class AuthScreenProvider extends ChangeNotifier {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
-
-
   void backPop(context) {
     Navigator.of(context).pop();
-    notifyListeners(); //!=====
+    notifyListeners(); 
   }
 }

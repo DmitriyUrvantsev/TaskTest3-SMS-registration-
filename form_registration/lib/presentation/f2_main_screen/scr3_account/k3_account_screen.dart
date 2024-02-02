@@ -8,27 +8,16 @@ import 'package:form_registration/widgets/app_bar/appbar_title.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 
 // ignore: must_be_immutable
-class K3AccounrScreenWidget extends StatefulWidget {
+class K3AccounrScreenWidget extends StatelessWidget {
   String uid;
   K3AccounrScreenWidget({super.key, required this.uid});
 
   @override
-  State<K3AccounrScreenWidget> createState() => _K3AccounrScreenWidgetState();
-}
-
-class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
-  @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   // print('user?.uid DID - ${widget.uid}');
-  //   final read = context.read<MainScreenProvider>();
-  //   //!read.chekChangeUser(widget.uid);
-  // }
+ 
 
   @override
   Widget build(BuildContext context) {
     final read = context.read<MainScreenProvider>();
-    // final watch = context.watch<MainScreenProvider>();
     return Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _sectionAppBar(context),
@@ -48,7 +37,6 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
               action: 'Имя',
               action1:
                   read.currentName ?? read.snapShot?.data?.name ?? 'Настроить',
-              //! надо будет переделать - брать со своего класса
               onTapRow: () => read.showFormName(context),
             ),
             SizedBox(height: 5.v),

@@ -13,7 +13,6 @@ class K0AuthScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final read = context.read<AuthScreenProvider>();
-    //final formKey = GlobalKey<FormState>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: const CustomAppBar(),
