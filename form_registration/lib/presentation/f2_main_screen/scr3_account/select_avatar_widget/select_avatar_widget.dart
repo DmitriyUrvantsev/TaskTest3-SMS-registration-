@@ -1,11 +1,7 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/data/firebase_file/firebase_file.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
@@ -53,7 +49,7 @@ class _SelectAvatarWidgetState extends State<SelectAvatarWidget> {
 
                   //!---------------Фото----------------------------------
 
-                  AvatarIconWidget()
+                  const AvatarIconWidget()
                 ],
               ),
 
@@ -249,10 +245,10 @@ class _AvatarIconWidgetState extends State<AvatarIconWidget> {
                       );
                     }
                   } else {
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   }
               }
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }),
       ],
     );

@@ -37,7 +37,7 @@ class _K3AccounrScreenWidgetState extends State<K3AccounrScreenWidget> {
           padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 24.v),
           child: Column(children: [
             //----------------------------------------
-            SelectAvatarWidget(),
+            const SelectAvatarWidget(),
 
             SizedBox(height: 17.v),
             Text('apollo@gmail.com',

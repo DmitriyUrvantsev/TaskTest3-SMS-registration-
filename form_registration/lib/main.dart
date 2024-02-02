@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/firebase_options.dart';
 import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
