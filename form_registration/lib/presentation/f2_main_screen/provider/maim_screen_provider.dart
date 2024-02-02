@@ -59,7 +59,6 @@ class MainScreenProvider extends ChangeNotifier {
   String? currentSurName;
   String? currentAvatar;
 
-
   UserAppData? userData;
   AsyncSnapshot<UserAppData>? snapShot;
 
@@ -128,21 +127,20 @@ class MainScreenProvider extends ChangeNotifier {
         return;
       }
       photo = File(myImage.path);
-    
+
       final path = 'files/avatar$uid.jpg';
-            final ref = FirebaseStorage.instance.ref().child(path);
+      final ref = FirebaseStorage.instance.ref().child(path);
       uploadTask = ref.putFile(photo!);
 
       final snapshot = await uploadTask!.whenComplete(() {});
       final urlDownload = await snapshot.ref.getDownloadURL();
       currentAvatar = urlDownload;
       print('currentAvatar - $currentAvatar');
-
+      notifyListeners();
       //}
     } on PlatformException catch (e) {
       print('проблемы с $e');
     }
-    notifyListeners();
   }
 //!=========++++++++++++========================================================
 

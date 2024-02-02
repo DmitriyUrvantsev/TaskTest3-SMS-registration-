@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
+import 'package:form_registration/routes/app_routes.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'package:form_registration/servises/data_base.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -59,8 +60,10 @@ class AuthScreenProvider extends ChangeNotifier {
 
       await DatabaseService(uid: user!.uid).updateUserData( // );
        'Настоить', 'Настоить' );
-      // print('userName - $userName');
-      // print('user - $user');
+     
+     
+         Navigator.of(context)
+        .pushReplacementNamed(AppNavigationRoutes.selectorLoading);  
 
       return _userFromFirebaseUser(user);
     } on Exception catch (error) {
