@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/data/firebase_file/firebase_file.dart';
 import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/presentation/f2_main_screen/scr3_account/select_avatar_widget/avatar_icon_widget.dart';
 import 'package:image_picker/image_picker.dart';

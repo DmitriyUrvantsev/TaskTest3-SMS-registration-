@@ -1,10 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-
-import 'package:another_stepper/dto/stepper_data.dart';
-import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
-
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
 import 'package:form_registration/presentation/f0_auth_screen/screens/widgets/stepper_confirmation.dart';

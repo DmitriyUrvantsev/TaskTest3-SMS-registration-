@@ -17,14 +17,6 @@ class K2MainScreenWidget extends StatefulWidget {
 }
 
 class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // print('user?.uid DID - ${widget.uid}');
-    final read = context.read<MainScreenProvider>();
-    //!read.chekChangeUser(widget.uid);
-  }
-
   int index = 0;
 
   @override
@@ -35,25 +27,21 @@ class _K2MainScreenWidgetState extends State<K2MainScreenWidget> {
     read.uid = user.uid;
     final List mainScreenWidget = [
       const K4ProjectsScreenWidget(),
-      K3AccounrScreenWidget(uid: user.uid ?? ''),
+      K3AccounrScreenWidget(uid: user.uid),
     ];
-    print('K2MainScreenWidget user?.uid - ${user.uid}');
     index = context.watch<MainScreenProvider>().currentMainScreenIndex;
 
     return StreamBuilder<UserAppData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            UserAppData? userData = snapshot.data;
+            //UserAppData? userData = snapshot.data;
             read.snapShot = snapshot;
-            // read.cleanerUserName(
-            //     userData); //!сомнения конечно//такто можно сделать лучше
 
             return Scaffold(
               backgroundColor: appTheme.gray100,
               body: SizedBox(
-                  width: SizeUtils.width, //!======= потом поправь
-                  child: mainScreenWidget[index]),
+                  width: SizeUtils.width, child: mainScreenWidget[index]),
               bottomNavigationBar: _sectionBottomBar(context),
             );
           } else {
