@@ -2,8 +2,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/f0_auth_screen/provider/k0_provider.dart';
-import 'package:form_registration/presentation/f0_auth_screen/screens/widgets/stepper_confirmation.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/provider/k0_provider.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/screens/widgets/stepper_confirmation.dart';
 import 'package:form_registration/widgets/app_bar/appbar_leading_image.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_pin_code_text_field.dart';

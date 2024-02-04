@@ -11,8 +11,10 @@ class CustomButtonStyles {
         ),
       );
   // text button style
-  static ButtonStyle get none => ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        elevation: MaterialStateProperty.all<double>(0),
+ static ButtonStyle get disableGrey => ElevatedButton.styleFrom(
+        backgroundColor: appTheme.gray400,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.h),
+        ),
       );
 }

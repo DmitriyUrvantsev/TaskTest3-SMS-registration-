@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/f0_auth_screen/screens/k0_auth_field_widget.dart';
-import 'package:form_registration/presentation/f0_auth_screen/screens/widgets/stepper_auth.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/screens/k0_auth_field_widget.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/screens/widgets/stepper_auth.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_elevated_button.dart';
 import '../provider/k0_provider.dart';
@@ -13,6 +12,7 @@ class K0AuthScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final read = context.read<AuthScreenProvider>();
+    final watch = context.watch<AuthScreenProvider>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: const CustomAppBar(),
@@ -42,10 +42,14 @@ class K0AuthScreenWidget extends StatelessWidget {
               CustomElevatedButton(
                   text: 'Отправить смс-код',
                   margin: EdgeInsets.symmetric(horizontal: 29.h),
-                  buttonStyle: CustomButtonStyles.fillAmber,
-                  onPressed: () {
-                    read.register(context);
-                  }),
+                  buttonStyle: watch.isPossibleRegistr
+                      ? CustomButtonStyles.fillAmber
+                      : CustomButtonStyles.disableGrey,
+                  onPressed: watch.isPossibleRegistr
+                      ? () {
+                          read.register(context);
+                        }
+                      : () => {}),
               SizedBox(height: 8.v),
               SizedBox(
                   width: 228.h,

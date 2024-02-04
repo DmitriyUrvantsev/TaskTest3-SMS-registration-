@@ -13,6 +13,7 @@ class AuthScreenProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   String? phone;
   String? error;
+  bool isPossibleRegistr = false;
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '+#(###) ###-##-##',
@@ -29,6 +30,13 @@ class AuthScreenProvider extends ChangeNotifier {
         error = 'Пожалуйста, введите номер телефона';
       }
     }
+  }
+
+  void onCangeTextField(p0) {
+    phone = p0;
+    p0.length < 17 ? isPossibleRegistr = false : isPossibleRegistr = true;
+    print(isPossibleRegistr);
+    notifyListeners();
   }
 
 //!===================Подтверждение=============================================
@@ -75,6 +83,6 @@ class AuthScreenProvider extends ChangeNotifier {
 
   void backPop(context) {
     Navigator.of(context).pop();
-    notifyListeners(); 
+    notifyListeners();
   }
 }

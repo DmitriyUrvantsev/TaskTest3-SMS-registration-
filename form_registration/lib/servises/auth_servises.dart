@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
-import 'package:form_registration/presentation/f0_auth_screen/screens/k1_confirmation_screen.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/screens/k1_confirmation_screen.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

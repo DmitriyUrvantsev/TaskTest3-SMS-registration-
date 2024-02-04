@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/f2_main_screen/provider/maim_screen_provider.dart';
+import 'package:form_registration/presentation/folder2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 
 class K4ProjectsScreenWidget extends StatelessWidget {
