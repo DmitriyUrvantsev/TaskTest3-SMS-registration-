@@ -26,6 +26,7 @@ class _K1ConfirmationScreenWidgetState
   Timer? timer;
   int _start = 61;
   bool _isPossibleSentCode = false;
+// Я ТУТ С ТАЙМЕРОМ НЕПРАВИЛЬНО ВСЕ СДЕЛАЛ. Я ПЕРЕДЕЛАЮ В БЛИЖАЙЩЕЕ ВРЕМЯ. ПОТОРОПИЛСЯ.
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
