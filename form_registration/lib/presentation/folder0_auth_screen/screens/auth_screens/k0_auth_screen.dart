@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
-import 'package:form_registration/presentation/folder0_auth_screen/screens/k0_auth_field_widget.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/screens/auth_screens/k0_auth_field_widget.dart';
 import 'package:form_registration/presentation/folder0_auth_screen/screens/widgets/stepper_auth.dart';
 import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_elevated_button.dart';
-import '../provider/k0_provider.dart';
+import '../../provider/auth_provider.dart';
 
 // ignore: must_be_immutable
 class K0AuthScreenWidget extends StatelessWidget {

@@ -6,7 +6,6 @@ export 'package:form_registration/core/utils/logger.dart';
 export 'package:form_registration/core/utils/navigator_service.dart';
 export 'package:form_registration/core/utils/pref_utils.dart';
 export 'package:form_registration/core/utils/size_utils.dart';
-export 'package:form_registration/data/models/selectionPopupModel/selection_popup_model.dart';
 
 export 'package:form_registration/routes/app_routes.dart';
 export 'package:form_registration/theme/app_decoration.dart';

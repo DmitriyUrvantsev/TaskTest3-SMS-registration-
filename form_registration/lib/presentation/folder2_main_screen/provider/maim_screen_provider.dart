@@ -154,7 +154,6 @@ class MainScreenProvider extends ChangeNotifier {
   void dispose() {
     super.dispose();
     yourNameController.dispose();
+    yourSurNameController.dispose();
   }
-
-
 }

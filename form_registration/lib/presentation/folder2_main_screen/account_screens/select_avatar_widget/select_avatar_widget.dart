@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/folder2_main_screen/provider/maim_screen_provider.dart';
-import 'package:form_registration/presentation/folder2_main_screen/scr3_account/select_avatar_widget/avatar_icon_widget.dart';
+import 'package:form_registration/presentation/folder2_main_screen/account_screens/select_avatar_widget/avatar_icon_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

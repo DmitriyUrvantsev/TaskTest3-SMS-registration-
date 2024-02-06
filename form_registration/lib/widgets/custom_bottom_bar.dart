@@ -25,11 +25,6 @@ class CustomBottomBarState extends State<CustomBottomBar> {
           BoxShadow(
             color: appTheme.black9004c,
             spreadRadius: 1.h,
-            //blurRadius: 2.h,
-            // offset: const Offset(
-            //   0,
-            //   -0.5,
-            // ),
           ),
         ],
       ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_registration/data/models/user/user_app.dart';
 import 'package:form_registration/firebase_options.dart';
-import 'package:form_registration/presentation/folder0_auth_screen/provider/k0_provider.dart';
+import 'package:form_registration/presentation/folder0_auth_screen/provider/auth_provider.dart';
 import 'package:form_registration/presentation/folder2_main_screen/provider/maim_screen_provider.dart';
 import 'package:form_registration/servises/auth_servises.dart';
 import 'core/app_export.dart';

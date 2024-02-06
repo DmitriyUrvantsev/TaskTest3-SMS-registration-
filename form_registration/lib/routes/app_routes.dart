@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_registration/presentation/folder2_main_screen/scr3_account/account_form/k7_account_form_name.dart';
-import 'package:form_registration/presentation/folder2_main_screen/scr3_account/account_form/k7_account_form_surname.dart';
+import 'package:form_registration/presentation/folder2_main_screen/account_screens/account_form/k7_account_form_name.dart';
+import 'package:form_registration/presentation/folder2_main_screen/account_screens/account_form/k7_account_form_surname.dart';
 import 'package:form_registration/selector_loading.dart';
 
 abstract class AppNavigationRoutes {
