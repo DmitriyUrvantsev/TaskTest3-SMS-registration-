@@ -10,7 +10,8 @@ class SelectorLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserApp?>(context);
-  
+    //в зависимости от того, получен ли ID или нет, попадаем либо на авторизацию
+    //либо на главный экран
     if (user?.uid == null) {
       return const K0AuthScreenWidget();
     } else {
