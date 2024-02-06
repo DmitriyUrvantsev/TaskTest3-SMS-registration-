@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:form_registration/core/app_export.dart';
 import 'package:form_registration/presentation/folder0_auth_screen/provider/k0_provider.dart';
@@ -23,34 +22,21 @@ class K1ConfirmationScreenWidget extends StatefulWidget {
 
 class _K1ConfirmationScreenWidgetState
     extends State<K1ConfirmationScreenWidget> {
-  Timer? timer;
-  int _start = 61;
-  bool _isPossibleSentCode = false;
-// Я ТУТ С ТАЙМЕРОМ НЕПРАВИЛЬНО ВСЕ СДЕЛАЛ. Я ПЕРЕДЕЛАЮ В БЛИЖАЙЩЕЕ ВРЕМЯ. ПОТОРОПИЛСЯ.
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-    timer = Timer.periodic(
-        oneSec,
-        (Timer timer) => setState(() {
-              if (_start < 1) {
-                timer.cancel();
-                _isPossibleSentCode = true;
-              } else {
-                _start = _start - 1;
-              }
-            }));
-  }
-
   @override
   void initState() {
     super.initState();
-    startTimer();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final read = context.read<AuthScreenProvider>();
+      read.start = 60;
+      read.startTimer();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final read = context.read<AuthScreenProvider>();
+    final watch = context.watch<AuthScreenProvider>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: _sectionAppBar(context),
@@ -68,47 +54,38 @@ class _K1ConfirmationScreenWidgetState
               Container(
                   width: 261.h,
                   margin: EdgeInsets.only(left: 5.h, right: 6.h),
-                  child: Text(
-                      'Введите номер телефона для регистрации', 
+                  child: Text('Введите номер телефона для регистрации',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style:
                           theme.textTheme.bodyMedium!.copyWith(height: 1.33))),
               SizedBox(height: 61.v),
-             
+
               Padding(
                   padding: EdgeInsets.only(left: 4.h, right: 5.h),
-                  child: Selector<AuthScreenProvider, TextEditingController?>(
-                      //!=
-                      selector: (context, provider) => provider.otpController,
-                      builder: (context, otpController, child) {
-                        return CustomPinCodeTextField(
-                            context: context,
-                            controller:
-                                otpController, 
-                            onChanged: (value) {
-                              otpController?.text = value;
-                            },
-                            onCompleted: (value) async {
-                              read.confirmation(
-                                  context,
-                                  value,
-                                   widget.verificationId
-                                  );
-                            });
+                  child: CustomPinCodeTextField(
+                      context: context,
+                      controller: read.otpController,
+                      onChanged: (value) {
+                        read.otpController.text = value;
+                      },
+                      onCompleted: (value) async {
+                        read.confirmation(
+                            context, value, widget.verificationId);
                       })),
               SizedBox(height: 43.v),
 
               //!================================================
+
               GestureDetector(
-                onTap: _isPossibleSentCode == false
+                onTap: watch.isPossibleSentCode == false
                     ? () {}
                     : () {
                         read.register(context);
                       },
-                child: _isPossibleSentCode == false
-                    ? Text('$_start сек до повтора отправки кода',
+                child: watch.isPossibleSentCode == false
+                    ? Text('${watch.start} сек до повтора отправки кода',
                         style:
                             theme.textTheme.bodyMedium!.copyWith(height: 1.33))
                     : Text('Отправить код еще раз',
