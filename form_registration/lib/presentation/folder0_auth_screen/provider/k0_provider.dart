@@ -14,6 +14,7 @@ class AuthScreenProvider extends ChangeNotifier {
   String? phone;
   String? error;
   bool isPossibleRegistr = false;
+  bool? isPossibleSentCode = false;
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '+#(###) ###-##-##',
@@ -81,8 +82,36 @@ class AuthScreenProvider extends ChangeNotifier {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
+  //!====================Таймер=================================================
+  Timer? _timer;
+  int? start;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (Timer timer) {
+      if (start != null) {
+        if (start! < 1) {
+          timer.cancel();
+          isPossibleSentCode = true;
+          notifyListeners();
+        } else {
+          start = start! - 1;
+          notifyListeners();
+        }
+      }
+    });
+
+    notifyListeners();
+  }
+
   void backPop(context) {
     Navigator.of(context).pop();
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
   }
 }
