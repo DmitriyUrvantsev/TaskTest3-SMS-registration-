@@ -7,19 +7,15 @@ class DatabaseService extends ChangeNotifier {
   final String uid;
   DatabaseService({required this.uid});
 
-
-
   // ---------ссылка на коллекцию ---------
   final CollectionReference taskCollection =
       FirebaseFirestore.instance.collection('form_registration');
-
 
   Future<void> updateUserData(
       [String? name, String? surName, String? avatar]) async {
     Map<String, dynamic> data = {
       'name': name,
       'surName': surName,
-     // 'avatar': avatar,
     };
     return await taskCollection.doc(uid).set(data);
   }
@@ -30,7 +26,6 @@ class DatabaseService extends ChangeNotifier {
       return UserFromFirebase(
         name: doc.get('name') ?? '0',
         surName: doc.get('surName') ?? '0',
-       // avatar: doc.get('avatar') ?? '0',
       );
     }).toList();
   }
@@ -41,7 +36,6 @@ class DatabaseService extends ChangeNotifier {
       uid: uid,
       name: snapshot.get('name'),
       surName: snapshot.get('surName'),
-      //avatar: snapshot.get('avatar'),
     );
   }
 
