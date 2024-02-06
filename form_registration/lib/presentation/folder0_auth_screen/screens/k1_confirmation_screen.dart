@@ -9,10 +9,12 @@ import 'package:form_registration/widgets/custom_pin_code_text_field.dart';
 
 class K1ConfirmationScreenWidget extends StatefulWidget {
   final String verificationId;
+  String? uid;
 
-  const K1ConfirmationScreenWidget({
+   K1ConfirmationScreenWidget({
     super.key,
     required this.verificationId,
+    String? uid,
   });
 
   @override
@@ -72,7 +74,7 @@ class _K1ConfirmationScreenWidgetState
                       },
                       onCompleted: (value) async {
                         read.confirmation(
-                            context, value, widget.verificationId);
+                            context, value, widget.verificationId, widget.uid);
                       })),
               SizedBox(height: 43.v),
 
@@ -82,7 +84,7 @@ class _K1ConfirmationScreenWidgetState
                 onTap: watch.isPossibleSentCode == false
                     ? () {}
                     : () {
-                        read.register(context);
+                        read.register(context, widget.uid);
                       },
                 child: watch.isPossibleSentCode == false
                     ? Text('${watch.start} сек до повтора отправки кода',

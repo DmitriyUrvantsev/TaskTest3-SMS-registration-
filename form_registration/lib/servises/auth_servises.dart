@@ -19,24 +19,19 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
-  Future<String>? registerWithPhone(String phoneNumber, BuildContext context) {
+  Future<String>? registerWithPhone(
+      String phoneNumber, BuildContext context, String? uid) {
     try {
       _auth.verifyPhoneNumber(
         //--------------------------
         phoneNumber: phoneNumber,
         timeout: const Duration(seconds: 60),
         //--------------------------
-        // verificationCompleted: (phoneAuthCredential) async {
-        //   return;
-        // },
         verificationCompleted: (AuthCredential credential) async {
           await _auth.signInWithCredential(credential);
         },
 
         //--------------------------
-        // verificationFailed: (error) async {
-        //   return;
-        // },
         verificationFailed: (FirebaseAuthException e) {
           print('verificationFailed ERROR - $e');
         },
@@ -48,7 +43,7 @@ class AuthService {
               context: context,
               builder: (context) {
                 return K1ConfirmationScreenWidget(
-                    verificationId: verificationId);
+                    verificationId: verificationId, uid: uid);
               });
         },
 

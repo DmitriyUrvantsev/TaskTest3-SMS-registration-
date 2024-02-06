@@ -6,11 +6,15 @@ import 'package:form_registration/widgets/app_bar/custom_app_bar.dart';
 import 'package:form_registration/widgets/custom_elevated_button.dart';
 import '../provider/k0_provider.dart';
 
+// ignore: must_be_immutable
 class K0AuthScreenWidget extends StatelessWidget {
-  const K0AuthScreenWidget({super.key});
+  String? uid;
+
+  K0AuthScreenWidget({super.key, String? uid});
 
   @override
   Widget build(BuildContext context) {
+    print('K0AuthScreenWidget uid - $uid');
     final read = context.read<AuthScreenProvider>();
     final watch = context.watch<AuthScreenProvider>();
     return Scaffold(
@@ -47,7 +51,7 @@ class K0AuthScreenWidget extends StatelessWidget {
                       : CustomButtonStyles.disableGrey,
                   onPressed: watch.isPossibleRegistr
                       ? () {
-                          read.register(context);
+                          read.register(context, uid);
                         }
                       : () => {}),
               SizedBox(height: 8.v),

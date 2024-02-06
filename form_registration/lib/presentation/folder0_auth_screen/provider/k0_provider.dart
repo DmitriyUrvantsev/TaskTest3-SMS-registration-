@@ -21,10 +21,10 @@ class AuthScreenProvider extends ChangeNotifier {
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
-  Future<void> register(context) async {
+  Future<void> register(context, String? uid) async {
     if ((formKey.currentState?.validate() ?? false) && phone != null) {
       final phoneNumder = phone!.replaceAll(RegExp(r"[^0-9,+]"), '');
-      dynamic result = await auth.registerWithPhone(phoneNumder, context);
+      dynamic result = await auth.registerWithPhone(phoneNumder, context, uid);
 
       error = null;
       if (result == null || (phone!.isEmpty)) {
@@ -45,30 +45,47 @@ class AuthScreenProvider extends ChangeNotifier {
 
   UserCredential? credentialUser;
 
-  Future confirmation(context, value, verificationId) async {
+  Future confirmation(context, value, verificationId, String? uid) async {
     String smsCode = value;
+    if (uid == null) {//если нет регистрации, то обновляем DatabaseService
+      //! Create a PhoneAuthCredential with the code
+      try {
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: verificationId, smsCode: smsCode);
 
-    //! Create a PhoneAuthCredential with the code
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationId, smsCode: smsCode);
+        //! Sign the user in (or link) with the credential
+        credentialUser = await _auth.signInWithCredential(credential);
+        User? user = credentialUser?.user;
 
-      //! Sign the user in (or link) with the credential
-      credentialUser = await _auth.signInWithCredential(credential);
-      User? user = credentialUser?.user;
+        await DatabaseService(uid: user!.uid)
+            .updateUserData('Настоить', 'Настоить');
 
-      await DatabaseService(uid: user!.uid).updateUserData(
-          // );
-          'Настоить',
-          'Настоить');
+        Navigator.of(context)
+            .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
 
-      Navigator.of(context)
-          .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
+        return _userFromFirebaseUser(user);
+      } on Exception catch (error) {
+        print(error);
+        return null;
+      }
+    } else {//если есть регистрация, то не обновляем DatabaseService
+      //! Create a PhoneAuthCredential with the code
+      try {
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: verificationId, smsCode: smsCode);
 
-      return _userFromFirebaseUser(user);
-    } on Exception catch (error) {
-      print(error);
-      return null;
+        //! Sign the user in (or link) with the credential
+        credentialUser = await _auth.signInWithCredential(credential);
+        User? user = credentialUser?.user;
+
+        Navigator.of(context)
+            .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
+
+        return _userFromFirebaseUser(user);
+      } on Exception catch (error) {
+        print(error);
+        return null;
+      }
     }
   }
 
