@@ -57,8 +57,13 @@ class AuthScreenProvider extends ChangeNotifier {
         credentialUser = await _auth.signInWithCredential(credential);
         User? user = credentialUser?.user;
 
-        await DatabaseService(uid: user!.uid)
-            .updateUserData('Настоить', 'Настоить');
+         final baseIsEmpti =//!===============================================
+          await DatabaseService(uid: user!.uid).userData.isEmpty;
+
+      if (baseIsEmpti) {
+        await DatabaseService(uid: user.uid)
+            .updateUserData('Настоить2', 'Настоить2');
+      }
 
         Navigator.of(context)
             .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
