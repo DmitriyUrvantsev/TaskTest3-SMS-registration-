@@ -47,7 +47,8 @@ class AuthScreenProvider extends ChangeNotifier {
 
   Future confirmation(context, value, verificationId, String? uid) async {
     String smsCode = value;
-    if (uid == null) {//если нет регистрации, то обновляем DatabaseService
+    if (uid == null) {
+      //если нет регистрации, то обновляем DatabaseService
       //! Create a PhoneAuthCredential with the code
       try {
         PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -57,13 +58,13 @@ class AuthScreenProvider extends ChangeNotifier {
         credentialUser = await _auth.signInWithCredential(credential);
         User? user = credentialUser?.user;
 
-         final baseIsEmpti =//!===============================================
-          await DatabaseService(uid: user!.uid).userData.isEmpty;
+        final baseIsEmpti = //!===============================================
+            await DatabaseService(uid: user!.uid).userData.isEmpty;
 
-      if (baseIsEmpti) {
-        await DatabaseService(uid: user.uid)
-            .updateUserData('Настоить2', 'Настоить2');
-      }
+        if (baseIsEmpti) {
+          await DatabaseService(uid: user.uid)
+              .updateUserData('Настоить', 'Настоить');
+        }
 
         Navigator.of(context)
             .pushReplacementNamed(AppNavigationRoutes.selectorLoading);
@@ -73,7 +74,8 @@ class AuthScreenProvider extends ChangeNotifier {
         print(error);
         return null;
       }
-    } else {//если есть регистрация, то не обновляем DatabaseService
+    } else {
+      //если есть регистрация, то не обновляем DatabaseService
       //! Create a PhoneAuthCredential with the code
       try {
         PhoneAuthCredential credential = PhoneAuthProvider.credential(
